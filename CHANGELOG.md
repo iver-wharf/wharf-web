@@ -1,0 +1,258 @@
+# Wharf Angular (web) frontend changelog
+
+This project tries to follow [SemVer 2.0.0](https://semver.org/).
+
+<!--
+	When composing new changes to this list, try to follow convention.
+
+	The WIP release shall be updated just before adding the Git tag.
+	From (WIP) to (YYYY-MM-DD), ex: (2021-02-09) for 9th of Febuary, 2021
+
+	A good source on conventions can be found here:
+	https://changelog.md/
+-->
+
+## v1.2.0 (WIP)
+
+- Added Markdown linting via `remark-lint`. (!94)
+
+- Added Wharf web version to the sidebar menu, together with other build info
+  such as CI build ID and commit SHA. (!97)
+
+- Changed internal type of the build models date fields from string to Date.
+  Less error-prone this way. (!95)
+
+- Changed from TSLint to ESLint. (!93)
+
+## v1.1.0 (2021-04-21)
+
+- Added overflow cutoff with ellipsis on project and build lists. (!91)
+
+- Added automatic routing to new build you've just started. (!91)
+
+- Changed to display provider hostname instead of an icon. Our usage of the
+  company icons were not allowed because of their licensing terms. (!91)
+
+- Changed full row to be clickable instead of only the project name or build
+  status cells. (!91)
+
+- Changed column widths in artifacts tab to give more room for the filename.
+  (!91)
+
+- Changed project name cells to have larger font size than the rest in the
+  project list table. Makes it stand out more. (!91)
+
+- Changed name of `wh-tabView-x` and `wh-tabPanel-x` to only be lowercase. (!91)
+
+- Changed name of `app-root` and `app-nav` components to be prefixed with `wh-`.
+  (!91)
+
+- Changed version of nginx base image in Dockerfile from 1.17.9 to 1.19.10 and
+  node build image from 15.5.1 to 15.14.0. (!88)
+
+- Fixed project ID being wrapped to two lines on lengthier IDs. (!91)
+
+- Fixed "Noto Sans" font not being used. Now it's properly applied everywhere.
+  (!91)
+
+## v1.0.0 (2021-04-08)
+
+- Added progress spinning animation on the status for builds that are still
+  scheduling or running. (!80)
+
+- Added duration to build list with `setInterval` to have animated duration
+  for unfinished builds. (!82)
+
+- Added configuration tab on the project details page, showing the build
+  definition (`.wharf-ci.yml` file content) with syntax highlighting
+  courtesy of [Prism.js](https://prismjs.com/). (!79)
+
+- Added code block and inline-code styling, mimicking the documentation code
+  block style found at <https://iver-wharf.github.io/>. (!79)
+
+- Added `wh-project-refresh-button` and `wh-project-refresh-icon` components
+  to be reused in both the project list and inside the project details page.
+  (!79)
+
+- Added `wh-tabView-x` and `wh-tabPanel-x` as extended variants of PrimeNG's
+  `p-tabView` and `p-tabPanel` to allow side headers to the right of the list
+  of tabs. (!86)
+
+- Added new styling for the actions modal ("Run all" dialog) together with some
+  helpful tooltips on fields created by input variables. (!87)
+
+- Added new styling of the entire frontend to give it a fresh and clean look.
+  There are still some sections, menu items, and tabs grayed out as they have
+  not yet been implemented as they are lacking backend support.
+  List of restyled components:
+
+  - Project list, the landing page. (!71, !81)
+  - Project list item, each table row on the landing page. (!69)
+  - Project details. (!69, !81)
+  - Side nav component. (!68)
+
+- Added new set of SASS variables in `variables.scss` to control the colors
+  throughout the entire newly styled frontend. (!68, !69, !81)
+
+- Added new components under project details to split up the logic into
+  separate components. New components are `project-details-build` and
+  `project-details-schedule`. (!71)
+
+- Changed `project-list` component to use PrimeNG's `p-table` instead of
+  `p-dataview`. (!69)
+
+- Changed `project-list` component to hold the `wh-provider` component instead
+  of the `nav` component. (!68)
+
+- Changed PrimeNG from v9.0.0 to 11.3.1, and a lot of styling changes
+  thereof as they renamed most CSS classes from `ui-` to `p-` prefix. (!81)
+
+- Changed to require NPM 7.0.0 or later due to `package-lock.json` format
+  changes since NPM 7.0.0, which comes with Node 15.0.0 or later. (!77)
+
+- Fixed favorites tab flickering on load by abusing the cache of favorited
+  projects. (!88)
+
+- Removed misconfiguration warnings when starting a new build as their logic was
+  invalid. We're planning on doing the validation in the backend instead, so
+  this feature will return later once that's in place. (!87)
+
+- Removed `extractCss` setting from `angular.json` as that gave some issues with
+  the transpiled CSS when compiling with the `--prod` flag. (!76)
+
+## v0.12.0 (2021-03-12)
+
+- Added CHANGELOG.md to repository. (!66)
+
+- Added animation to the "refresh project" button as visual feedback. Had to
+  break out `project-list.component` into two additional components,
+  `project-list-item.component` and `wharf-spinner-animation.component`, to keep
+  the code clean. (!65)
+
+- Added `/src/app/animations/` folder containing
+  `wharf-spinner-animation.component` with tests. (!65)
+
+- Fixed local Docker build via Dockerfile not succeeding when running via
+  [Podman](https://podman.io) on a pristine repository. (!62, !64)
+
+## v0.11.0 (2021-01-19)
+
+- Fixed logs incorrectly displaying as `- [ ]` because the events from the
+  Server-Side Events (SSE) stream was not getting parsed correctly. (!60, !61)
+
+## v0.10.0 (2021-01-14)
+
+- Added ability to start a build without a given environment. This new option
+  is available on projects that has any environments configured in their
+  `.wharf-ci.yml` file, and is shown as the dropdown option
+  `*Only stages without environments filter*`. (!59)
+
+- Added documentation on regenerating services and models on GNU/Linux. (!58)
+
+- Added `pwsh` shebang to `generate-rest-client.ps1`. (!58)
+
+- Added `.dockerignore` for increased stability in local builds. (!57)
+
+## v0.9.0 (2020-12-04)
+
+- Added pagination of a projects build history, using the new pagination
+  endpoint from the Wharf API v1.0.1. (!48)
+
+- Fixed group data handling as group metadata was merged into the project
+  model in Wharf API v1.0.0. (!53)
+
+- Fixed some NPM audit warnings through a basic `npm audit fix`. (!50)
+
+- Fixed `README.md` to not assume developer has the `ng` CLI installed, and
+  instead rely on `npm run` and `npm start`. (!49)
+
+- Fixed misleading and unclear documentation found in the `README.md` on how to
+  regenerate the models and services via PowerShell. (!51)
+
+## v0.8.0 (2020-10-23)
+
+- Changed all references to "TFS" to "AzureDevops" (including HTTP paths), as a
+  reflection of the changes introduced in the Wharf API v0.8.0. (!46, !47)
+
+## v0.7.13 (2020-10-12)
+
+- Fixed environments selection not showing in rare cases when starting a new
+  build. (!43)
+
+- Changed internal naming of services from `tfs` to `azuredevops`. (!45)
+
+- Deprecated favorites data scheme migration that was introduced in v0.7.11.
+  (!44)
+
+## v0.7.12 (2020-08-14)
+
+- Added toast/popup messages on successful and unsuccessful project refresh.
+  (!38)
+
+- Added TypeScript linting to the development environment of the web-ng source
+  code. (!40)
+
+- Changed style of some pages, shrinking some unnecessary margins and unwanted
+  whitespace. (!41)
+
+- Changed color theme of Wharf to mimic the Spark dark theme. (!42)
+
+## v0.7.11 (2020-06-18)
+
+- Added automatic selection of default branch when you start a new build. (!36)
+
+- Added project refresh button from the project list page. (!35)
+
+- Fixed favorited projects stored as entire project objects, and now instead
+  only stores the project ID in local storage, with added migrations to
+  automatically convert to the new compacted format. (!37)
+
+- Fixed log lines sometimes showing `[Object object]`. (!34)
+
+## v0.7.10 (2020-05-12)
+
+- Changed logs to fetch from configured source instead of hardcoded source.
+  (!33)
+
+## v0.7.9 (2020-05-11)
+
+- Added automatic focus on favorites tab if user has any favorited projects.
+  (!29)
+
+## v0.7.8 (2020-05-06)
+
+- Fixed outdated autogenerated libraries by regenereating them. (!28)
+
+## v0.7.7 (2020-04-30)
+
+- Fixed incorrect path in Dockerfile. (!27)
+
+## v0.7.6 (2020-04-29)
+
+- Fixed invalid syntax in Nginx config. (!26)
+
+## v0.7.5 (2020-04-29)
+
+- Added automatic refresh of the project list after importing new projects.
+  (!16)
+
+- Fixed visual glitch caused by long project descriptions. (!22)
+
+- Fixed bug in branch and environment dropdowns getting confused after
+  selecting. (!23)
+
+- Changed themed color from slight violet to clear blue. (!24)
+
+- Changed Docker image with Nginx to expose on port 8080 instead of port 80.
+  (!25)
+
+## v0.7.4 (2020-04-10)
+
+- Fixed Wharf build where image was named `web` and thereby colliding with the
+  old web image. Renamed to `web-ng`. (!21)
+
+## v0.7.3 (2020-04-10)
+
+- Added initial version of the Angular port of old Wharf web written in React.
+  (1b91a5d, !1, !2, !3, !4, !5, !6, !7, !8, !5, !9, !10, !11, !12, !13, !14,
+  !15, !17, !18, !20)

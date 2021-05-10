@@ -1,0 +1,99 @@
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  background-color: $wharf_sidenav_menu_background_color;
+  #logo {
+    a {
+      text-decoration: none;
+    }
+    h3 {
+      color: $wharf_sidenav_menu_logo_color;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .version-button {
+      display: block;
+      margin: 0 auto;
+      padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+      font-size: 0.8rem;
+      color: $wharf_sidenav_menu_version_color;
+      background-color: $wharf_sidenav_menu_version_background_color;
+      border: none;
+      &:hover {
+        color: $wharf_sidenav_menu_version_hover_color;
+        cursor: pointer;
+      }
+      .pi {
+        vertical-align: text-bottom;
+      }
+    }
+    .version-panel {
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .label {
+        font-size: 0.8rem;
+        color: $wharf_sidenav_menu_version_details_label_color;
+      }
+      .value {
+        padding-inline-start: 1rem;
+      }
+      .label,
+      .value {
+        display: block;
+        overflow-wrap: break-word;
+      }
+    }
+  }
+
+  .p-menu {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    // !important is needed on the following lines to override prime ng classes.
+
+    .p-menuitem-link {
+      opacity: 80%;
+      background-color: transparent !important;
+      transition: all 0.3s ease;
+      width: 12.5rem;
+
+      &:hover {
+        opacity: 100%;
+        text-decoration: none;
+      }
+
+      &:not(.p-disabled):hover .p-menuitem-text,
+      .p-menuitem-text {
+        color: $wharf_sidenav_menu_text_color;
+      }
+      .p-menuitem-text {
+        font-size: 0.9rem;
+        font-weight: 200;
+      }
+
+      &.p-disabled,
+      &.p-disabled:hover {
+        opacity: 30%;
+
+        .p-menuitem-text {
+          text-decoration: line-through;
+          text-decoration-color: white;
+        }
+      }
+    }
+
+    .p-menuitem-icon {
+      color: $wharf_sidenav_menu_icon_color !important;
+      font-size: 1.8rem;
+      margin: 0 0.12rem 0 1.5rem !important;
+    }
+  }
+}

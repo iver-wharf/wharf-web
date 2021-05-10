@@ -1,0 +1,20 @@
+<div id="artifacts-list">
+  <p-table [value]="artifacts">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="col-id">ID</th>
+            <th class="col-filename">FILE NAME</th>
+            <th class="col-actions">ACTIONS</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-artifact>
+        <tr>
+            <td class="col-id">{{artifact.artifactId}}</td>
+            <td class="col-filename">{{artifact.fileName}}</td>
+            <td class="col-actions">
+              <a [href]="getArtifactUrl(artifact)" class="fas fa-file-download"></a>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>

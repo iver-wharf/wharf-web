@@ -1,0 +1,51 @@
+
+/* Inline code block */
+code {
+  margin: 0 0.15em;
+  padding: 0.125em 0.4em;
+  border-radius: 2px;
+  background: $wharf_code_inline_background;
+  font-family: $wharf_code_font_family;
+  font-weight: $wharf_code_font_weight;
+  color: $wharf_code_inline_color;
+}
+
+/* Full-width code block */
+pre[class*=language-] {
+  background: $wharf_code_block_background;
+  border-radius: 4px;
+  padding: 0px;
+  margin: 1em 0;
+  overflow: hidden;
+  position: relative;
+
+  font-family: $wharf_code_font_family;
+  font-weight: $wharf_code_font_weight;
+  tab-size: 4;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  hyphens: none;
+  text-align: left;
+
+  code {
+    display: block;
+    overflow: auto;
+    padding: 1.75em 1.5em 1.5em 1.5em;
+    margin: 0;
+    background: none;
+  }
+}
+
+/* Prism classes coloring */
+.token {
+  &.comment, &.prolog, &.doctype, &.cdata {
+    color: $wharf_code_token_comment_color;
+  }
+  &.punctuation {
+    color: $wharf_code_token_punctuation_color;
+  }
+  &.key, &.attr-value, &.keyword {
+    color: $wharf_code_token_keyword_color;
+  }
+}

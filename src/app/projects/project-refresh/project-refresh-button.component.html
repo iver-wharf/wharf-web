@@ -1,0 +1,13 @@
+<div class="button-container">
+  <button class="p-button p-component p-ripple"
+    (click)="onClick($event)"
+    [disabled]="isRefreshing"
+    >
+    <span class="p-button-label">
+      <wh-spinner-animation
+        [isRefreshAnimationPlaying]="isRefreshing"
+        ></wh-spinner-animation>
+      {{label}}
+    </span>
+  </button>
+</div>

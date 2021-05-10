@@ -1,0 +1,15 @@
+<div *ngIf="selectedProvider">
+  <ng-container *ngTemplateOutlet="selectedProviderTemplate"></ng-container>
+</div>
+
+<ng-template #GitLab>
+  <wh-gitlab></wh-gitlab>
+</ng-template>
+
+<ng-template #GitHub>
+  <wh-github></wh-github>
+</ng-template>
+
+<ng-template #AzureDevOps>
+  <wh-azuredevops></wh-azuredevops>
+</ng-template>

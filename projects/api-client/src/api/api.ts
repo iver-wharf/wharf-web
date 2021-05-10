@@ -1,0 +1,17 @@
+export * from './artifact.service';
+import { ArtifactService } from './artifact.service';
+export * from './branch.service';
+import { BranchService } from './branch.service';
+export * from './branches.service';
+import { BranchesService } from './branches.service';
+export * from './build.service';
+import { BuildService } from './build.service';
+export * from './logs.service';
+import { LogsService } from './logs.service';
+export * from './project.service';
+import { ProjectService } from './project.service';
+export * from './provider.service';
+import { ProviderService } from './provider.service';
+export * from './token.service';
+import { TokenService } from './token.service';
+export const APIS = [ArtifactService, BranchService, BranchesService, BuildService, LogsService, ProjectService, ProviderService, TokenService];

@@ -1,0 +1,13 @@
+.fa-sync-alt {
+  margin-top: 0.156rem;
+}
+
+.spin-in {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(1080deg);
+  }
+}

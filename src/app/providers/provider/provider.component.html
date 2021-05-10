@@ -1,0 +1,15 @@
+<div class="settings-pane">
+  <p-button label='+ IMPORT PROJECT' (click)='openProviderSelector()'></p-button>
+  <p-dialog [(visible)]='this.isProviderSelectorVisible'>
+    <h4>Import Project</h4>
+    <p>Please select the provider</p>
+    <p-menu styleClass="provider-item" [model]='this.providers'></p-menu>
+  </p-dialog>
+
+  <p-dialog [(visible)]='this.isProviderFormVisible'>
+    <h4>Import Project - {{ selectedProvider }}</h4>
+    <p>Please provide project details</p>
+    <wh-provider-form [selectedProvider]='selectedProvider'></wh-provider-form>
+    <h5 id='close-form' (click)='openProviderSelector()'>&lt; Change Provider</h5>
+  </p-dialog>
+</div>

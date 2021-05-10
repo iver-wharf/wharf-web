@@ -1,0 +1,122 @@
+wh-project-list-item {
+  display: table-row;
+}
+
+.p-button-icon-only .p-button-icon {
+  color: $wharf_splitbutton_icon_color;
+}
+
+body .p-datatable .p-datatable-tbody > tr,
+body .p-datatable .p-datatable-tbody > wh-project-list-item {
+  border-bottom: 0.06rem solid #3a3a3a !important;
+  background-color: $wharf_table_row_background_color;
+
+  &:hover {
+    background-color: $wharf_table_row_hover_background_color;
+
+    &[role=button] {
+      cursor: pointer;
+    }
+  }
+
+  > td {
+    border: none;
+    color: $wharf_table_content_text_color;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+}
+
+body .p-datatable .p-datatable-thead > tr > th {
+  background-color: transparent;
+  border: 0;
+  color: $wharf_table_header_text_color;
+  border-bottom: 0.06rem solid #3a3a3a;
+  padding: 1rem 1rem 1rem 1rem;
+  font-weight: unset;
+}
+
+.build-list {
+  th {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+
+    &.col-id {
+      width: 6rem;
+    }
+    &.col-stage {
+      width: 10rem;
+    }
+    &.col-status {
+      width: 9rem;
+    }
+    &.col-duration {
+      width: 9rem;
+    }
+  }
+
+  td {
+    &.col-stage,
+    &.col-environment,
+    &.col-status,
+    &.col-branch {
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.project-list {
+  th {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+
+    &.col-status {
+      width: 10rem;
+    }
+    &.col-actions {
+      width: 10rem;
+    }
+    &.col-quickactions {
+      width: 6rem;
+    }
+  }
+
+  td {
+    padding: 0.6rem 1rem 0.6rem 1rem !important;
+    text-align: left;
+
+    &.col-name {
+      font-size: 1rem;
+    }
+
+    &.col-provider,
+    &.col-name,
+    &.col-group,
+    &.col-status {
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    &.col-quickactions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        margin: 0 0.62rem 0 0.62rem;
+        color: $wharf_table_icon_color;
+        &.pi {
+          font-size: 1.56rem !important;
+        }
+      }
+      wh-project-refresh-icon {
+        font-size: 1rem !important;
+      }
+    }
+  }
+}
+
+.p-datatable table {
+  color: $wharf_table_content_text_color;
+  text-align: left;
+}

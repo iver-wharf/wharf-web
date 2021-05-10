@@ -1,0 +1,21 @@
+#artifacts-list {
+  th {
+    text-align: left;
+
+    &.col-id {
+      width: 6rem;
+    }
+    &.col-actions {
+      text-align: center;
+      width: 100px;
+    }
+  }
+  td {
+    &.col-actions {
+      text-align: center;
+      a {
+        font-size: 1.3em;
+      }
+    }
+  }
+}

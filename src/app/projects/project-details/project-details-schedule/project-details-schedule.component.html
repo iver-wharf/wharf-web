@@ -1,0 +1,36 @@
+<p-button label='+ ADD SCHEDULE' class="button-container"></p-button>
+<p-table
+  [value]="schedules"
+  [paginator]="true"
+  [rows]="rowsCount"
+  [totalRecords]="buildsTotalCount">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>OCCURRANCE</th>
+      <th>FINISH DATE</th>
+      <th>START DATE</th>
+      <th>ACTIONS</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-schedule>
+    <tr>
+      <td>{{schedule.scheduleId}}</td>
+      <td>{{schedule.occurrence}}</td>
+      <td>{{schedule.finishDate}}</td>
+      <td>{{schedule.startDate}}</td>
+      <td>
+        <div class="logo-container">
+          <i class="pi pi-pencil" pTooltip='This feature has not yet been
+            implemented.
+            Stay tuned!' tooltipPosition="top">
+          </i>
+          <i class="pi pi-trash" pTooltip='This feature has not yet been
+            implemented.
+            Stay tuned!' tooltipPosition="top">
+          </i>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

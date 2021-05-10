@@ -1,0 +1,70 @@
+<div id="actions-modal" *ngIf="this.editedProjectInstance">
+  <p-dialog
+    [(visible)]="isVisible"
+    (onHide)="cleanup()"
+    >
+    <h4>{{this.actionName | uppercase}} OPTIONS</h4>
+    <ng-container *ngTemplateOutlet="inputsTemplate" ></ng-container>
+    <div class="action-buttons">
+      <p-button label="Submit" (onClick)="submitForm()" class="submit-button" label="Go"></p-button>
+    </div>
+  </p-dialog>
+</div>
+
+<ng-template #inputsTemplate>
+  <form [formGroup]="actionsFormGroup">
+    <div *ngIf="this.editedProjectInstance.branches" class="form-control">
+      <h5><label>Branch <span class="required">*</span></label></h5>
+      <p-dropdown
+        [options]="this.editedProjectInstance.branches"
+        optionLabel="name"
+        formControlName="branch"
+        [filter]="true">
+      </p-dropdown>
+    </div>
+    <div *ngIf="this.shouldShowEnvironmentsForm" class="form-control">
+      <h5><label>Environment</label></h5>
+      <p-dropdown
+        [options]="this.editedProjectInstance.build.environments"
+        optionLabel="label"
+        formControlName="environment">
+      </p-dropdown>
+    </div>
+    <div *ngFor="let input of this.editedProjectInstance.build.inputs" class="inputs">
+      <div [ngSwitch]="input.type" class="form-control">
+        <h5><label>
+          <span class="var-prefix">Input: </span>
+          <span class="var-name">{{input.name}}</span>
+          <i class="var-info-icon pi pi-info-circle"
+            pTooltip='This field sets the input variable of which is defined in the "inputs:" list found in the .wharf&#8209;ci.yml file inside the repository.'
+            tooltipPosition="top"
+          ></i>
+        </label></h5>
+        <input
+          *ngSwitchCase="'string'"
+          class="form-input"
+          type="text"
+          pInputText
+          formControlName="{{input.name}}"/>
+        <p-dropdown
+          *ngSwitchCase="'choice'"
+          [options]="input.values"
+          formControlName="{{input.name}}">
+        </p-dropdown>
+        <input
+          *ngSwitchCase="'password'"
+          class="form-input"
+          type="password"
+          pPassword
+          formControlName="{{input.name}}"/>
+        <input
+          *ngSwitchCase="'number'"
+          class="form-input"
+          type="number"
+          pInputText
+          formControlName="{{input.name}}"/>
+        <div *ngSwitchDefault>Field not recognized. Type: {{input.value['type']}}</div>
+      </div>
+    </div>
+  </form>
+</ng-template>
