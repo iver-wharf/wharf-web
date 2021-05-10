@@ -1,0 +1,51 @@
+<section>
+  <wh-tabview-x [(activeIndex)]="activeTabIndex">
+    <wh-tabpanel-x header="All Projects">
+      <ng-container *ngTemplateOutlet="template;context:{projects:
+        this.projects}"></ng-container>
+    </wh-tabpanel-x>
+    <wh-tabpanel-x header="Favorite Projects">
+      <ng-container *ngTemplateOutlet="template;context:{projects:
+        this.favoriteProjects}"></ng-container>
+    </wh-tabpanel-x>
+    <ng-template pTemplate="side-header">
+      <div class="project-search">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+          <input type="text" pInputText placeholder="Search" (keyup)="onSearchKeyUp($event)"/>
+        </div>
+      </div>
+      <wh-provider></wh-provider>
+    </ng-template>
+  </wh-tabview-x>
+
+  <ng-template #template let-projects="projects">
+    <p-table
+      #dt
+      class="project-list"
+      [value]="projects"
+      [paginator]="true"
+      [rows]="14"
+      [globalFilterFields]="['name', 'groupName', 'gitUrl']">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="col-name">NAME</th>
+          <th class="col-group">GROUP</th>
+          <th class="col-provider">PROVIDER</th>
+          <th class="col-status">STATUS</th>
+          <th class="col-actions">ACTIONS</th>
+          <th class="col-quickactions"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-project>
+        <wh-project-list-item
+          [project]="project"
+          (refreshed)="onProjectRefreshed($event)"
+          (favoriteClick)="initFavoriteProjects()"
+          role="button"
+          (click)="onProjectRowClicked($event, project)"></wh-project-list-item>
+      </ng-template>
+    </p-table>
+  </ng-template>
+  <wh-actions-modal *ngIf="isActionsFormVisible"></wh-actions-modal>
+</section>

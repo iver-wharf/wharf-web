@@ -1,0 +1,23 @@
+<section class="projects-container">
+  <wh-tabview-x>
+    <wh-tabpanel-x id="build-logs" header="Logs">
+      <ng-container *ngTemplateOutlet="buildDataView"></ng-container>
+    </wh-tabpanel-x>
+    <wh-tabpanel-x header="Artifacts">
+      <ng-container *ngTemplateOutlet="artifactsView"></ng-container>
+    </wh-tabpanel-x>
+  </wh-tabview-x>
+
+  <ng-template #buildDataView >
+    <div id=console-log>
+      <div>
+        <p *ngFor="let log of this.logEvents">
+          [{{log.timestamp | whDate}}] - {{log.message}}
+        </p>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #artifactsView >
+    <wh-artifacts-list [buildId]="buildId"></wh-artifacts-list>
+  </ng-template>
+</section>

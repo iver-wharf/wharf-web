@@ -1,0 +1,24 @@
+<div *ngIf="missingConfiguration; else hasConfiguration">
+  <p>
+    <i class="pi pi-exclamation-circle"></i>
+    <strong>Uh oh! No configuration found.</strong>
+  <p>
+    There is no configuration here, as seen from the <strong>latest</strong>
+    refresh of the <code>.wharf-ci.yml</code> file from the
+    <code>{{defaultBranchName}}</code> branch.
+  </p>
+  <p>
+    Try double checking that the <code>{{defaultBranchName}}</code> branch does
+    in fact has a <code>.wharf-ci.yml</code> file in the repository root
+    directory, and then <a href="javascript:void(0)" (click)="wantToRefresh.emit()">refresh</a> again.
+  </p>
+</div>
+<ng-template #hasConfiguration>
+  <wh-syntax-highlight language="yaml" code="{{project.buildDefinition}}"></wh-syntax-highlight>
+
+  <p>
+    This is taken from the <strong>latest</strong> refresh of the
+    <code>.wharf-ci.yml</code> file from the <code>{{defaultBranchName}}</code>
+    branch.
+  </p>
+</ng-template>

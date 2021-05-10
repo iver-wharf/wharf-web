@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "api-client": [
+        "dist/api-client/api-client",
+        "dist/api-client"
+      ],
+      "import-gitlab-client": [
+        "dist/import-gitlab-client/import-gitlab-client",
+        "dist/import-gitlab-client"
+      ],
+      "import-github-client": [
+        "dist/import-github-client/import-github-client",
+        "dist/import-github-client"
+      ],
+      "import-azuredevops-client": [
+        "dist/import-azuredevops-client/import-azuredevops-client",
+        "dist/import-azuredevops-client"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

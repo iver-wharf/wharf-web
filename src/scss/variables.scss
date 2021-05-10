@@ -1,0 +1,172 @@
+// Colors
+$color_warn: #ffc107;
+$color_gray_dark: #808080;
+$wharf_theme_color: #007ad9;
+$border_color: #dadada;
+$wharf_light_text_color: #f3f3f3;
+
+//New scheme colors
+$wharf_black: #000;
+$wharf_white: #fff;
+$wharf_dirty_white: #e8e8e8;
+$wharf_light_grey: #323232;
+$wharf_lighter_grey: #505059;
+$wharf_lighter_grey_hover: #6d6d79;
+$wharf_dark_grey: #252525;
+$wharf_yellow: #fcde06;
+$wharf_yellow_hover: #f9e132;
+$wharf_status_green: #52a917;
+$wharf_status_yellow: #ffc107;
+$wharf_status_orange: #fb8c00;
+$wharf_status_red: #e53935;
+$wharf_status_purple: #7166bb;
+
+//Ui-redesign
+//Primary Colors
+$wharf_palette_neon_blue: #4ba3d9;
+$wharf_palette_cloud_grey: #848181;
+$wharf_palette_background_grey: #383c43;
+$wharf_palette_background_light_grey: #383e47;
+$wharf_palette_cloud_white: #f7f7f7;
+$wharf_palette_primary_grey: #4b5058;
+$wharf_palette_primary_gunmetal_black: #292c31;
+$wharf_palette_primary_gunmetal_hover: #3f4246;
+$wharf_palette_eerie_black: #212122;
+$wharf_palette_transparent: transparent;
+
+//Status
+$wharf_palette_status_scheduling: #ce875b;
+$wharf_palette_status_completed: #348962;
+$wharf_palette_status_failed: #ce5b5b;
+$wharf_palette_status_running: $wharf_palette_neon_blue;
+$wharf_palette_status_not_applicable: grey;
+
+//Buttons
+$wharf_button_border_color: $wharf_palette_neon_blue;
+$wharf_button_hover_background_color: $wharf_palette_neon_blue;
+$wharf_button_text_color: $wharf_palette_cloud_white;
+$wharf_button_text_hover_color: $wharf_black;
+$wharf_splitbutton_icon_color: $wharf_palette_cloud_white;
+
+//Menus
+$wharf_provider_menu_border_color: $wharf_palette_neon_blue;
+$wharf_provider_menu_hover_background_color: $wharf_palette_neon_blue;
+$wharf_provider_menu_icon_color: $wharf_palette_neon_blue;
+$wharf_provider_menu_change_provider_text_color: $wharf_dirty_white;
+$wharf_provider_menu_titlebar_background_color: $wharf_palette_background_grey;
+$wharf_provider_menu_content_background_color: $wharf_palette_background_grey;
+$wharf_provider_menu_content_header_text_color: $wharf_dirty_white;
+$wharf_provider_menu_close_color: $wharf_palette_cloud_grey;
+$wharf_provider_menu_text_color: $wharf_palette_cloud_white;
+$wharf_provider_menu_text_border_bottom_color: $wharf_dirty_white;
+$wharf_provider_menu_text_hover_color: $wharf_black;
+$wharf_provider_menu_text_focus_color: $wharf_dirty_white;
+$wharf_dropdown_menu_background_color: $wharf_lighter_grey;
+$wharf_dropdown_menu_text_color: $wharf_dirty_white;
+$wharf_dropdown_menu_text_hover_color: $wharf_palette_neon_blue;
+$wharf_dropdown_menu_background_hover_color: $wharf_palette_transparent;
+$wharf_sidenav_menu_text_color: $wharf_palette_cloud_white;
+$wharf_sidenav_menu_icon_color: $wharf_palette_neon_blue;
+$wharf_sidenav_menu_logo_color: $wharf_palette_neon_blue;
+$wharf_sidenav_menu_background_color: $wharf_palette_eerie_black;
+$wharf_sidenav_menu_version_color: $wharf_palette_cloud_grey;
+$wharf_sidenav_menu_version_hover_color: $wharf_dirty_white;
+$wharf_sidenav_menu_version_background_color: $wharf_palette_transparent;
+$wharf_sidenav_menu_version_details_label_color: $wharf_palette_cloud_grey;
+$wharf_sidenav_menu_version_details_background_color: $wharf_palette_primary_gunmetal_black;
+$wharf_builds_description_text_color: $wharf_palette_cloud_grey;
+
+//Tabviews
+$wharf_tabview_default_color: $wharf_palette_cloud_grey;
+$wharf_tabview_active_color: $wharf_white;
+$wharf_tabview_disabled_color: $wharf_lighter_grey;
+$wharf_tabview_separator_color: $wharf_palette_cloud_grey;
+
+//Input fields
+$wharf_provider_input_field_hover_color: $wharf_lighter_grey;
+$wharf_provider_input_field_text_color: $wharf_white;
+$wharf_provider_input_field_border_color: $wharf_palette_cloud_grey;
+$wharf_provider_input_field_background_color: $wharf_palette_background_grey;
+$wharf_input_field_placeholder_text_color: $wharf_palette_cloud_grey;
+$wharf_provider_label_text_color: $wharf_palette_cloud_white;
+$wharf_searchbox_input_field_background_color: $wharf_palette_eerie_black;
+$wharf_searchbox_input_field_text_color: $wharf_white;
+$wharf_dropdown_input_icon_background_color: $wharf_palette_transparent;
+$wharf_dropdown_input_icon_text_color: $wharf_palette_neon_blue;
+$wharf_dropdown_input_panel_header_background_color: $wharf_lighter_grey;
+$wharf_dropdown_input_panel_body_background_color: $wharf_lighter_grey;
+$wharf_dropdown_input_item_text_color: $wharf_dirty_white;
+$wharf_dropdown_input_item_background_color: $wharf_palette_transparent;
+$wharf_dropdown_input_item_highlight_text_color: $wharf_palette_neon_blue;
+$wharf_dropdown_input_item_highlight_background_color: $wharf_dropdown_input_item_background_color;
+$wharf_dropdown_input_item_hover_text_color: $wharf_palette_neon_blue;
+$wharf_dropdown_input_item_hover_background_color: $wharf_dropdown_input_item_background_color;
+$wharf_dropdown_input_filter_background_color: $wharf_palette_primary_gunmetal_black;
+$wharf_dropdown_input_filter_text_color: $wharf_white;
+$wharf_dropdown_input_filter_no_results_text_color: $color_warn;
+
+//Backgrounds
+$wharf_background_color: $wharf_palette_background_grey;
+$wharf_body_background_color: $wharf_palette_primary_gunmetal_black;
+
+//Table
+$wharf_table_icon_color: $wharf_palette_neon_blue;
+$wharf_table_header_text_color: $wharf_white;
+$wharf_table_content_text_color: $wharf_white;
+$wharf_table_row_background_color: $wharf_body_background_color;
+$wharf_table_row_hover_background_color: $wharf_palette_primary_gunmetal_hover;
+
+//Paginator
+$wharf_paginator_active_page_color: $wharf_palette_neon_blue;
+$wharf_paginator_icon_color: $wharf_palette_neon_blue;
+
+//Tab
+$wharf_tabview_active_color: $wharf_dirty_white;
+
+// Borders
+$input_border_width: 1px;
+$input_border_radius: 4px;
+
+// Code blocks
+$wharf_code_font_family: Inconsolata, Consolas, Menlo, Monaco, "Andale Mono WT",
+  "Andale Mono", "Lucida Console", "DejaVu Sans Mono",
+  "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+$wharf_code_font_weight: normal;
+
+$wharf_code_inline_color: $wharf_palette_cloud_white;
+$wharf_code_inline_background: $wharf_palette_background_light_grey;
+
+$wharf_code_block_background: $wharf_palette_eerie_black;
+
+$wharf_code_token_comment_color: $wharf_lighter_grey;
+$wharf_code_token_keyword_color: $wharf_palette_neon_blue;
+$wharf_code_token_punctuation_color: $wharf_palette_cloud_white;
+
+// Links
+$wharf_link_color: $wharf_palette_neon_blue;
+
+// Typography
+$font-sans-serif: "Noto Sans", sans-serif;
+
+// Base container width
+.wharf-container {
+  padding: 4rem 2rem;
+  -webkit-flex: 1 1;
+  flex: 1 1;
+  margin: 0 auto;
+  max-width: 86rem;
+  width: 100%;
+}
+
+.required {
+  margin-left: 4px;
+  color: red;
+}
+
+.grid {
+  display: grid;
+}
+
+.not-available {
+  color: $wharf_palette_status_not_applicable;
+}

@@ -1,0 +1,20 @@
+{
+    "environment": {
+        "name": "dev",
+        "isProduction": false
+    },
+    "updateLatency": 20000,
+    "updateFrequency": 30000,
+    "identityServer": {
+        "url": "https://login.stage.local",
+        "scope": "openid profile email SpotApi",
+        "debugMode": false,
+        "silentRenewEndpoint": "/assets/silent-renew.html"
+    },
+    "backendUrls": {
+        "Api": "http://localhost:5000/api",
+        "GitlabImport": "http://localhost:5000/import",
+        "GithubImport": "http://localhost:5000/import",
+        "AzureDevopsImport": "http://localhost:5000/import"
+    }
+}

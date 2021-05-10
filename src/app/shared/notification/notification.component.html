@@ -1,0 +1,29 @@
+<div id="notification">
+  <p-toast sticky="true" (onClose)="clear()">
+    <ng-template let-message pTemplate="message">
+      <ng-container
+        *ngTemplateOutlet="message.severity === 'error' ? errorToastContent : toastContent;context:{message: message}">
+      </ng-container>
+    </ng-template>
+  </p-toast>
+</div>
+
+<ng-template #toastContent let-message="message" >
+  <h3>{{message.summary}}</h3>
+  <p>{{message.detail}}</p>
+</ng-template>
+
+<ng-template #errorToastContent let-message="message" >
+  <h3>{{message.summary}}</h3>
+  <p id="message-details">{{message.detail}}</p>
+  <button pButton
+    type="button"
+    (click)="copyToClipboard(message.detail)"
+    label="Copy error message"
+    class="p-button-secondary">
+  </button>
+</ng-template>
+
+
+
+
