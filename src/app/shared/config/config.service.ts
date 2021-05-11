@@ -68,6 +68,12 @@ export class ConfigService {
     });
   }
 
+  getGitHubImportConfig(): GitlabConfiguration {
+    return new GitlabConfiguration({
+      basePath: upGet(upGet(this.config, 'backendUrls'), 'githubImport')
+    });
+  }
+
   getAzureDevOpsImportConfig(): AzureDevOpsConfiguration {
     return new AzureDevOpsConfiguration({
       basePath: upGet(upGet(this.config, 'backendUrls'), 'azureDevopsImport')
