@@ -206,3 +206,8 @@ docker run --rm -it -p 8080:8080 wharf_web-ng
 ```
 
 Visit <http://localhost:8080/>
+
+---
+
+Maintained by [Iver](https://www.iver.com/en).
+Licensed under the [MIT license](./LICENSE).
