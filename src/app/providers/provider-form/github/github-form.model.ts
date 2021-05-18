@@ -5,5 +5,4 @@ export class GithubFormModel {
   token = ['', [Validators.required]];
   group = [''];
   project = [''];
-  uploadUrl = ['', [Validators.required]];
 }

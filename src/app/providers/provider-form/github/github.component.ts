@@ -25,8 +25,6 @@ export class GithubComponent {
       url: this.providerForm.value.url,
       token: this.providerForm.value.token,
       group: this.providerForm.value.group,
-      project: this.providerForm.value.project,
-      uploadUrl: this.providerForm.value.uploadUrl
     };
     this.gitHubService.githubPost(providerData)
       .pipe(

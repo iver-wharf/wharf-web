@@ -17,11 +17,6 @@
     <h5><label>Project</label></h5>
     <input pInputText type="text" placeholder="Project" formControlName="project" class="form-input">
   </div>
-  <div class="form-control">
-    <h5><label>Upload URL <span class="required">*</span></label></h5>
-    <span *ngIf="providerForm.get('uploadUrl').validator"></span>
-    <input pInputText type="text" placeholder="Upload URL" formControlName="uploadUrl" class="form-input">
-  </div>
   <div class="bottom-part">
     <p-button label="IMPORT" type="submit"[disabled]="!providerForm.valid"></p-button>
   </div>
