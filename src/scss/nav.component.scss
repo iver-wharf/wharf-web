@@ -32,6 +32,9 @@ nav {
       }
     }
     .version-panel {
+      .p-overlaypanel {
+        background-color: $wharf_sidenav_menu_version_details_background_color;
+      }
       ul {
         list-style-type: none;
         margin: 0;
@@ -43,6 +46,7 @@ nav {
       }
       .value {
         padding-inline-start: 1rem;
+        color: $wharf_sidenav_menu_version_details_value_color;
       }
       .label,
       .value {
