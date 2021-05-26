@@ -24,6 +24,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Changed from TSLint to ESLint. (!93)
 
+- Fixed version panel background color to be dark instead of light. (#20)
+
 ## v1.1.0 (2021-04-21)
 
 - Added overflow cutoff with ellipsis on project and build lists. (!91)
