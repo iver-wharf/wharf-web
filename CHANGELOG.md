@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.2.0 (WIP)
+## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
 
