@@ -31,7 +31,6 @@ export class GithubComponent {
       .pipe(first())
       .subscribe(
         success => this.providersService.triggerCloseForm(this.providerForm),
-        error => {/* Error gets show to screen form window does not close. */},
       );
   }
 }
