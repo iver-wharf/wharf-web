@@ -23,8 +23,8 @@ export class ProvidersService {
   constructor(
     private gitlabService: GitlabService,
     private gitHubService: GitHubService,
-    private azureDevOpsService: AzureDevOpsService) {
-  }
+    private azureDevOpsService: AzureDevOpsService,
+  ) { }
 
   triggerCloseForm(providersForm: FormGroup) {
     this.formClosedSource$.next(providersForm);
