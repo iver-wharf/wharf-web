@@ -10,7 +10,7 @@ import {
   ConfiguredApiModule,
   ConfiguredAzureDevOpsModule,
   ConfiguredGitHubApiModule,
-  ConfiguredGitLabApiModule
+  ConfiguredGitLabApiModule,
 } from 'projects/projects.module';
 
 @NgModule({
@@ -32,6 +32,6 @@ import {
   providers: [],
   exports: [
     NavComponent,
-  ]
+  ],
 })
 export class NavModule { }

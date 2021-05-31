@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'wh-actions-modal',
-  templateUrl: './actions-modal.component.html'
+  templateUrl: './actions-modal.component.html',
 })
 export class ActionsModalComponent implements OnInit, OnDestroy {
   project: WharfProject;
@@ -59,7 +59,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
       this.actionName,
       this.actionsFormGroup.value.branch.name,
       this.actionsFormGroup.value.environment.value,
-      this.actionsFormGroup.value
+      this.actionsFormGroup.value,
     )
       .pipe(
         tap(build => {
@@ -67,7 +67,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
         }),
         finalize(() => {
           this.cleanup();
-        })
+        }),
       )
       .subscribe();
   }
@@ -116,7 +116,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
         const inputField: InputField = {
           default: input.default,
           name: input.name,
-          type: input.type
+          type: input.type,
         };
         this.editedProjectInstance.build.inputs.push(inputField);
         if (input.type === 'choice') {

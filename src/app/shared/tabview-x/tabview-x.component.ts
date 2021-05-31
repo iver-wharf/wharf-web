@@ -63,7 +63,7 @@ export class TabPanelExtendedComponent extends TabPanel implements AfterContentI
   constructor(
     @Inject(forwardRef(() => TabViewExtendedComponent)) tabView,
     public viewContainer: ViewContainerRef,
-    public cd: ChangeDetectorRef
+    public cd: ChangeDetectorRef,
   ) {
     super(tabView, viewContainer, cd);
   }

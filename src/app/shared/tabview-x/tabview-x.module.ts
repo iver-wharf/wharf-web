@@ -54,6 +54,6 @@ import {
     TabViewModule,
     TooltipModule,
   ],
-  providers: []
+  providers: [],
 })
 export class TabViewExtendedModule { }

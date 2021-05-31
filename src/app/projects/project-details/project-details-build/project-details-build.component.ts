@@ -56,8 +56,8 @@ export class ProjectDetailsBuildComponent {
       {
         project: this.project,
         isVisible: true,
-        actionName: this.selectedAction
-      }
+        actionName: this.selectedAction,
+      },
     );
   }
 
@@ -94,17 +94,17 @@ export class ProjectDetailsBuildComponent {
           .pipe(
             map(
               testResults =>
-                new TestsResults(testResults.passed, testResults.failed)
-            )
-          )
-      )
+                new TestsResults(testResults.passed, testResults.failed),
+            ),
+          ),
+      ),
     ).pipe(
       map(testResults => {
         testResults.forEach((element, index) => {
           this.project.buildHistory[index].testsResults = element;
         });
         return this.project;
-      })
+      }),
     );
   }
 

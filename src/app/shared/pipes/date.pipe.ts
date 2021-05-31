@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
-  name: 'whDate'
+  name: 'whDate',
 })
 export class DateFormatPipe implements PipeTransform {
   transform(value: string | Date, pattern: string = 'dd MMMM yyyy | hh:mm'): string {

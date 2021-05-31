@@ -7,7 +7,7 @@ import { BuildStatus } from '../../models/build-status';
 
 @Component({
   selector: 'wh-build-details',
-  templateUrl: './build-details.component.html'
+  templateUrl: './build-details.component.html',
 })
 export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecked {
   buildId: string;

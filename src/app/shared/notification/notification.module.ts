@@ -13,6 +13,6 @@ import {ButtonModule} from 'primeng/button';
     ButtonModule,
   ],
   providers: [MessageService],
-  exports: [NotificationComponent]
+  exports: [NotificationComponent],
 })
 export class NotificationModule { }

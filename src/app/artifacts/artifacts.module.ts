@@ -12,9 +12,9 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     CommonModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
   ],
   providers: [ArtifactService, ProjectService, AppUtilsService],
-  exports: [ArtifactsListComponent]
+  exports: [ArtifactsListComponent],
 })
 export class ArtifactsModule { }

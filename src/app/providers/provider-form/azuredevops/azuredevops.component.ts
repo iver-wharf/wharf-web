@@ -7,7 +7,7 @@ import { ProvidersService } from '../../providers.service';
 
 @Component({
   selector: 'wh-azuredevops',
-  templateUrl: './azuredevops.component.html'
+  templateUrl: './azuredevops.component.html',
 })
 export class AzureDevOpsComponent {
   providerForm: FormGroup;
@@ -25,12 +25,12 @@ export class AzureDevOpsComponent {
       token: this.providerForm.value.token,
       group: this.providerForm.value.group,
       project: this.providerForm.value.project,
-      user: this.providerForm.value.user
+      user: this.providerForm.value.user,
     };
 
     this.azureService.azuredevopsPost(providerData)
       .pipe(
-        finalize(() => this.providersService.triggerCloseForm(this.providerForm))
+        finalize(() => this.providersService.triggerCloseForm(this.providerForm)),
       )
       .subscribe();
   }

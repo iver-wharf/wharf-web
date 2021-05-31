@@ -13,7 +13,7 @@ import { LocalStorageProjectsService } from './../local-storage-projects.service
 
 @Component({
   selector: 'wh-project-list',
-  templateUrl: './project-list.component.html'
+  templateUrl: './project-list.component.html',
 })
 export class ProjectListComponent implements OnInit {
   // Need ViewChildren instead of ViewChild because the ng-container actually

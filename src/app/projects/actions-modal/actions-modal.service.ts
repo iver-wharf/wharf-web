@@ -11,11 +11,11 @@ export interface ActionsModalState {
 const state: ActionsModalState = {
   isVisible: false,
   project: null,
-  actionName: ''
+  actionName: '',
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActionsModalStore {
 
@@ -33,8 +33,8 @@ export class ActionsModalStore {
       {
         isVisible: newState.isVisible,
         project: newState.project,
-        actionName: newState.actionName
-      }
+        actionName: newState.actionName,
+      },
     );
   }
 

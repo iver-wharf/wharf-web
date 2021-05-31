@@ -121,7 +121,7 @@ export class NavComponent implements OnInit {
       },
       () => {
         this.ref.markForCheck();
-      }
+      },
     );
   }
 }

@@ -3,7 +3,7 @@ import { ProviderType } from '../provider-type.enum';
 
 @Component({
   selector: 'wh-provider-form',
-  templateUrl: './provider-form.component.html'
+  templateUrl: './provider-form.component.html',
 })
 export class ProviderFormComponent implements OnChanges {
   @Input() selectedProvider: string;
