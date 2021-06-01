@@ -10,16 +10,16 @@ import { KeyValue } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
 
-enum VersionCheckStatus {
+enum RemoteVersionStatus {
   Pending,
   OK,
   NotFound,
   Error,
 }
 
-interface VersionCheck {
+interface RemoteVersion {
   version?: string;
-  status: VersionCheckStatus;
+  status: RemoteVersionStatus;
   error?: string;
 }
 
@@ -43,13 +43,13 @@ export class NavComponent implements OnInit {
   items: MenuItem[];
   userItem: MenuItem[];
 
-  versionCheckStatus = VersionCheckStatus;
+  remoteVersionStatus = RemoteVersionStatus;
 
-  private serviceStates = new Map<ServiceName, VersionCheck>([
-    [ServiceName.Api, { status: VersionCheckStatus.Pending }],
-    [ServiceName.ProviderGitHub, { status: VersionCheckStatus.Pending }],
-    [ServiceName.ProviderGitLab, { status: VersionCheckStatus.Pending }],
-    [ServiceName.ProviderAzureDevOps, { status: VersionCheckStatus.Pending }],
+  private serviceStates = new Map<ServiceName, RemoteVersion>([
+    [ServiceName.Api, { status: RemoteVersionStatus.Pending }],
+    [ServiceName.ProviderGitHub, { status: RemoteVersionStatus.Pending }],
+    [ServiceName.ProviderGitLab, { status: RemoteVersionStatus.Pending }],
+    [ServiceName.ProviderAzureDevOps, { status: RemoteVersionStatus.Pending }],
   ]);
 
   private isFetchingVersions = false;
@@ -81,11 +81,11 @@ export class NavComponent implements OnInit {
     ];
   }
 
-  getServiceStates(): KeyValue<ServiceName, VersionCheck>[] {
+  getServiceStates(): KeyValue<ServiceName, RemoteVersion>[] {
     return Array.from(this.serviceStates.entries()).map(([name, state]) => ({ key: name, value: state }));
   }
 
-  serviceStateTrackBy(index: number, pair: KeyValue<ServiceName, VersionCheck>): string {
+  serviceStateTrackBy(index: number, pair: KeyValue<ServiceName, RemoteVersion>): string {
     return pair.key;
   }
 
@@ -105,31 +105,29 @@ export class NavComponent implements OnInit {
 
   private updateAppVersion(serviceName: ServiceName, version$: Observable<VersionResponse>) {
     const state = this.serviceStates.get(serviceName);
-    state.status = VersionCheckStatus.Pending;
-    setTimeout(() => {
-      version$.subscribe(
-        version => {
-          state.status = VersionCheckStatus.OK;
-          state.version = version.version;
-        },
-        err => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 404) {
-              state.status = VersionCheckStatus.NotFound;
-            } else {
-              state.status = VersionCheckStatus.Error;
-              state.error = err.message;
-            }
+    state.status = RemoteVersionStatus.Pending;
+    version$.subscribe(
+      version => {
+        state.status = RemoteVersionStatus.OK;
+        state.version = version.version;
+      },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 404) {
+            state.status = RemoteVersionStatus.NotFound;
           } else {
-            console.warn('Unknown error fetching version for', serviceName, err);
-            state.status = VersionCheckStatus.Error;
-            state.error = `Unknown error: ${err}`;
+            state.status = RemoteVersionStatus.Error;
+            state.error = err.message;
           }
-        },
-        () => {
-          this.ref.markForCheck();
+        } else {
+          console.warn('Unknown error fetching version for', serviceName, err);
+          state.status = RemoteVersionStatus.Error;
+          state.error = `Unknown error: ${err}`;
         }
-      );
-    }, (Math.random() + 2) * 2000);
+      },
+      () => {
+        this.ref.markForCheck();
+      }
+    );
   }
 }
