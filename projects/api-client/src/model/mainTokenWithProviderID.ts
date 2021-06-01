@@ -11,9 +11,9 @@
  */
 
 
-export interface MainArtifact { 
-    artifactId?: number;
-    buildId?: number;
-    fileName?: string;
-    name?: string;
+export interface MainTokenWithProviderID { 
+    providerId?: number;
+    token?: string;
+    tokenId?: number;
+    userName?: string;
 }

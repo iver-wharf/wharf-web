@@ -1,6 +1,6 @@
 /**
- * Wharf provider API for GitLab
- * Wharf backend API for integrating GitLab repositories with the Wharf main API.
+ * Wharf provider API for Azure DevOps
+ * Wharf backend API for integrating Azure DevOps repositories with the Wharf main API.
  *
  * OpenAPI spec version: v1.2.0
  * Contact: wharf@iver.se
@@ -11,13 +11,17 @@
  */
 
 
-export interface MainImport { 
+export interface MainImportBody { 
     group?: string;
     project?: string;
     /**
      * used in refresh only
      */
     projectId?: number;
+    /**
+     * azuredevops, gitlab or github
+     */
+    provider?: string;
     /**
      * used in refresh only
      */

@@ -11,9 +11,7 @@
  */
 
 
-export interface MainArtifact { 
-    artifactId?: number;
-    buildId?: number;
-    fileName?: string;
-    name?: string;
+export interface MainHealthStatus { 
+    isHealthy?: boolean;
+    message?: string;
 }
