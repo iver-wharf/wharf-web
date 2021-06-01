@@ -45,18 +45,18 @@
               </span>
             </li>
             <hr/>
-            <li *ngFor="let kw of getServiceStates();trackBy:serviceStateTrackBy">
-              <span class="label">Version of {{kw.key}}:</span>
-              <ng-container [ngSwitch]="kw.value.status">
+            <li *ngFor="let state of serviceStates">
+              <span class="label">Version of {{state.service}}:</span>
+              <ng-container [ngSwitch]="state.status">
                 <span class="value version-ok" *ngSwitchCase="remoteVersionStatus.OK">
-                  {{kw.value.version}}
+                  {{state.version}}
                 </span>
                 <span class="value version-not-found" *ngSwitchCase="remoteVersionStatus.NotFound">
                   <span class="not-available" pTooltip="The service seems to be missing or it has not implemented the version check endpoint.">N/A</span>
                 </span>
                 <span class="value version-error" *ngSwitchCase="remoteVersionStatus.Error">
                   <i class="pi pi-exclamation-triangle"></i>
-                  <span pTooltip="Error received while fetching version: {{kw.value.error}}">Error fetching version</span>
+                  <span pTooltip="Error received while fetching version: {{state.error}}">Error fetching version</span>
                 </span>
                 <span class="value version-pending" *ngSwitchDefault>
                   <p-progressSpinner strokeWidth="8"></p-progressSpinner> Fetching...

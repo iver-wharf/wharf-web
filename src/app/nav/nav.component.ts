@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, KeyValueDiffers, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { MetaService as GitLabMetaService } from 'import-gitlab-client';
@@ -6,9 +6,7 @@ import { MetaService as GitHubMetaService } from 'import-github-client';
 import { MetaService as AzureDevOpsMetaService } from 'import-azuredevops-client';
 import { MetaService as ApiMeta } from 'api-client';
 import { Observable } from 'rxjs';
-import { KeyValue } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
 
 enum RemoteVersionStatus {
   Pending,
@@ -18,6 +16,7 @@ enum RemoteVersionStatus {
 }
 
 interface RemoteVersion {
+  service: ServiceName;
   version?: string;
   status: RemoteVersionStatus;
   error?: string;
@@ -45,12 +44,12 @@ export class NavComponent implements OnInit {
 
   remoteVersionStatus = RemoteVersionStatus;
 
-  private serviceStates = new Map<ServiceName, RemoteVersion>([
-    [ServiceName.Api, { status: RemoteVersionStatus.Pending }],
-    [ServiceName.ProviderGitHub, { status: RemoteVersionStatus.Pending }],
-    [ServiceName.ProviderGitLab, { status: RemoteVersionStatus.Pending }],
-    [ServiceName.ProviderAzureDevOps, { status: RemoteVersionStatus.Pending }],
-  ]);
+  serviceStates: RemoteVersion[] = [
+    { service: ServiceName.Api, status: RemoteVersionStatus.Pending },
+    { service: ServiceName.ProviderGitHub, status: RemoteVersionStatus.Pending },
+    { service: ServiceName.ProviderGitLab, status: RemoteVersionStatus.Pending },
+    { service: ServiceName.ProviderAzureDevOps, status: RemoteVersionStatus.Pending },
+  ];
 
   private isFetchingVersions = false;
 
@@ -81,21 +80,12 @@ export class NavComponent implements OnInit {
     ];
   }
 
-  getServiceStates(): KeyValue<ServiceName, RemoteVersion>[] {
-    return Array.from(this.serviceStates.entries()).map(([name, state]) => ({ key: name, value: state }));
-  }
-
-  serviceStateTrackBy(index: number, pair: KeyValue<ServiceName, RemoteVersion>): string {
-    return pair.key;
-  }
-
   fetchServiceVersions() {
     if (this.isFetchingVersions) {
       return;
     }
 
     this.isFetchingVersions = true;
-    console.log('Started fetching versions...');
 
     this.updateAppVersion(ServiceName.Api, this.apiMeta.versionGet());
     this.updateAppVersion(ServiceName.ProviderGitHub, this.gitHubMetaService.githubVersionGet());
@@ -104,7 +94,11 @@ export class NavComponent implements OnInit {
   }
 
   private updateAppVersion(serviceName: ServiceName, version$: Observable<VersionResponse>) {
-    const state = this.serviceStates.get(serviceName);
+    const state = this.serviceStates.find(s => s.service === serviceName);
+    if (!state) {
+      console.warn('Unknown service when fetching remote versions:', serviceName);
+      return;
+    }
     state.status = RemoteVersionStatus.Pending;
     version$.subscribe(
       version => {
