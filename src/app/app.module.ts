@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER, ErrorHandler } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
 import { ApiModule, Configuration } from 'api-client';
 import { configServiceProvider } from './shared/config/config.service.provider';
 import { HttpClient } from '@angular/common/http';
@@ -16,13 +15,12 @@ import { NotificationModule } from './shared/notification/notification.module';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
 import { SyntaxHighlightService } from './shared/syntax-highlight/syntax-highlight.service';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SharedModule } from './shared/pipes/shared.module';
+import { NavModule } from './nav/nav.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +30,7 @@ import { SharedModule } from './shared/pipes/shared.module';
     BuildsModule,
     ProvidersModule,
     NotificationModule,
-    OverlayPanelModule,
+    NavModule,
     MenuModule,
     TooltipModule,
     SharedModule,

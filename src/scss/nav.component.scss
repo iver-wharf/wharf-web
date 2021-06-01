@@ -63,6 +63,21 @@ nav {
         display: block;
         overflow-wrap: break-word;
       }
+      .version-pending {
+        color: $wharf_sidenav_menu_version_remote_pending_text_color;
+        .p-progress-spinner {
+          width: 0.8em;
+          height: 0.8em;
+          vertical-align: baseline;
+        }
+      }
+      .version-error {
+        color: $wharf_sidenav_menu_version_remote_error_text_color;
+        .pi {
+          vertical-align: middle;
+          margin-right: 0.3rem;
+        }
+      }
     }
   }
 
