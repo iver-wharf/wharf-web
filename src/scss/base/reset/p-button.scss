@@ -1,0 +1,15 @@
+body .p-button {
+  background-color: transparent;
+  border: 0.06rem solid $wharf_button_border_color !important;
+  color: $wharf_button_text_color;
+  font-size: 14px;
+
+  &:enabled:hover {
+    background-color: $wharf_button_hover_background_color;
+    color: $wharf_button_text_hover_color;
+  }
+
+  ::placeholder {
+    color: $wharf_dirty_white;
+  }
+}

@@ -1,32 +1,30 @@
+@import "./reset/p-button.scss";
+@import "./reset/p-dialog.scss";
+@import "./reset/p-dropdown.scss";
+@import "./reset/p-splitbutton.scss";
+@import "./reset/p-tabview.scss";
+@import "./reset/p-toast.scss";
+
 :root {
   color-scheme: dark;
 }
+
 body {
   margin: 0;
   background-color: $wharf_body_background_color;
+
   *:focus {
     box-shadow: none !important;
   }
 
-  .p-button {
-    background-color: transparent;
-    border: 0.06rem solid $wharf_button_border_color !important;
-    color: $wharf_button_text_color;
-    border: none;
-    font-size: 14px;
-
-    &:enabled:hover {
-      background-color: $wharf_button_hover_background_color;
-      color: $wharf_button_text_hover_color;
-    }
-
-    ::placeholder {
-      color: $wharf_dirty_white;
-    }
+  ::placeholder {
+    color: $wharf_input_field_placeholder_text_color;
+    font-size: smaller;
   }
 
   .p-tabview-panel p {
     margin: unset;
+
     /*
       PrimeNG reset <p> margin to 0. This sets it back to have margins again.
       Copied styling from Chromium default user agent stylesheet
@@ -40,287 +38,9 @@ body {
   input {
     padding: 0 0.5rem;
   }
-
-  ::placeholder {
-    color: $wharf_input_field_placeholder_text_color;
-    font-size: smaller;
-  }
 }
 
 .p-component {
   font-size: 14px;
   font-family: inherit;
-}
-
-.p-dropdown {
-  .p-dropdown-panel {
-    background-color: $wharf_dropdown_input_panel_body_background_color;
-    border: none;
-    border-radius: 3px;
-
-    .p-dropdown-items {
-      .p-dropdown-item {
-        color: $wharf_dropdown_input_item_text_color;
-        background-color: $wharf_dropdown_input_item_background_color;
-        overflow: unset;
-        white-space: unset;
-
-        &.p-highlight {
-          color: $wharf_dropdown_input_item_highlight_text_color;
-          background-color: $wharf_dropdown_input_item_highlight_background_color;
-        }
-        &:not(.p-highlight):not(p-disabled):hover {
-          color: $wharf_dropdown_input_item_hover_text_color;
-          background-color: $wharf_dropdown_input_item_hover_background_color;
-        }
-      }
-      .p-dropdown-empty-message {
-        color: $wharf_dropdown_input_filter_no_results_text_color;
-      }
-    }
-    .p-dropdown-header {
-      background-color: $wharf_dropdown_input_panel_header_background_color;
-      border: none;
-    }
-    .p-dropdown-filter {
-      border: none;
-      background-color: $wharf_dropdown_input_filter_background_color;
-      color: $wharf_dropdown_input_filter_text_color;
-    }
-  }
-  .p-dropdown-trigger {
-    background-color: $wharf_dropdown_input_icon_background_color;
-    color: $wharf_dropdown_input_icon_text_color;
-  }
-}
-
-p-splitbutton {
-  .p-button {
-    color: $wharf_white;
-    background-color: transparent;
-    border: 0.06rem solid $wharf_button_border_color !important;
-    &:hover {
-      background-color: $wharf_button_hover_background_color !important;
-    }
-  }
-
-  .ng-trigger {
-    width: 100%;
-    text-align: center;
-  }
-
-  .p-button:enabled:hover {
-    color: $wharf_dark_grey;
-  }
-  .p-menu.p-menu-overlay {
-    background-color: $wharf_dropdown_menu_background_color;
-    border: none;
-    .p-menuitem-text {
-      text-align: left;
-      color: $wharf_dropdown_menu_text_color !important;
-      &:hover {
-        color: $wharf_dropdown_menu_text_hover_color !important;
-      }
-    }
-    .p-menuitem-link:hover {
-      background-color: $wharf_dropdown_menu_background_hover_color;
-    }
-  }
-}
-
-body .p-tabview {
-  padding: 0;
-
-  .p-tabview-panels {
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0;
-  }
-  .p-tabview-nav {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    margin: 0;
-
-    li,
-    li.p-highlight,
-    li:not(.p-highlight):not(.p-disabled):hover
-    {
-      border-left: 1px solid $wharf_tabview_separator_color;
-
-      .p-tabview-nav-link {
-        background: none;
-        border: none;
-      }
-
-      &:first-child {
-        border-left: none;
-      }
-    }
-
-    li {
-      border-radius: 0;
-      padding: 0;
-
-      &.p-disabled {
-        opacity: 1;
-        .p-tabview-nav-link {
-          pointer-events: initial;
-          color: $wharf_tabview_disabled_color;
-        }
-      }
-
-      &:not(.p-highlight):not(.p-disabled):hover {
-        .p-tabview-nav-link {
-          color: $wharf_tabview_active_color;
-        }
-      }
-
-      &:first-child .p-tabview-nav-link {
-        padding-left: 0;
-      }
-
-      &.p-highlight .p-tabview-nav-link {
-        color: $wharf_tabview_active_color;
-      }
-
-      .p-tabview-nav-link {
-        font-weight: normal;
-        color: $wharf_tabview_default_color;
-        padding: 0 2rem 0.2rem 2rem;
-
-        i.pi {
-          vertical-align: middle;
-        }
-      }
-    }
-  }
-
-  p {
-    color: $wharf_dirty_white;
-  }
-
-  .p-paginator-bottom {
-    background-color: transparent;
-    padding-top: 3.5rem;
-    border: none;
-    .p-paginator-pages {
-      .p-paginator-page {
-        background-color: transparent !important;
-        &:hover {
-          opacity: 80%;
-        }
-      }
-      .p-paginator-page.p-highlight {
-        background-color: transparent;
-        color: $wharf_paginator_active_page_color !important;
-      }
-    }
-  }
-
-  .p-paginator > * {
-    color: $wharf_paginator_icon_color !important;
-    &:hover {
-      opacity: 80%;
-      background-color: transparent !important;
-    }
-  }
-}
-
-body .p-dialog {
-  width: 60%;
-  max-width: 30rem;
-  min-width: 19rem;
-  padding-top: 0;
-  border: none;
-
-  .p-dialog-header,
-  .p-dialog-content {
-    border: none;
-  }
-
-  .p-dialog-header {
-    background-color: $wharf_provider_menu_titlebar_background_color;
-    border-top-right-radius: 0.31rem;
-    border-top-left-radius: 0.31rem;
-    height: auto;
-    padding: 0.62rem 0.62rem 0 0.62rem;
-    justify-content: flex-end;
-
-    .p-dialog-header-icon {
-      width: unset;
-      height: unset;
-      color: $wharf_provider_menu_close_color;
-    }
-  }
-
-  h4 {
-    border-bottom: 0.06rem solid $wharf_provider_menu_text_border_bottom_color;
-    padding-bottom: 0.6rem;
-    margin: 0 0 0.6rem 0;
-  }
-
-  .p-dialog-content {
-    overflow: unset;
-    padding: 0 1.87rem 1.87rem 1.87rem;
-    background-color: $wharf_provider_menu_content_background_color;
-    color: $wharf_provider_menu_content_header_text_color;
-    border-bottom-right-radius: 0.3rem;
-    border-bottom-left-radius: 0.3rem;
-
-    h1,h2,h3,h4,h5,h6 {
-      font-weight: 400;
-    }
-
-    .form-control {
-      margin-top: 1rem;
-      color: $wharf_provider_label_text_color;
-      h5 {
-        margin: 0.31rem 0;
-      }
-      .p-inputtext {
-        color: $wharf_provider_input_field_text_color;
-      }
-      .form-input, .p-dropdown {
-        width: 100%;
-        color: $wharf_provider_input_field_text_color;
-        background-color: $wharf_provider_input_field_background_color;
-        border: 0.06rem solid $wharf_provider_input_field_border_color;
-        border-radius: 0;
-        &:focus {
-          color: $wharf_provider_menu_text_focus_color;
-        }
-        &:hover {
-          background-color: $wharf_provider_input_field_hover_color;
-        }
-      }
-    }
-  }
-}
-
-
-
-body .p-toast .p-toast-message {
-  .p-toast-message-content {
-    color: $wharf_dirty_white;
-    display: block;
-
-    h3 {
-      margin-top: 0.5rem;
-    }
-    p {
-      margin: 0.8rem 0;
-    }
-
-    .p-toast-icon-close {
-      color: $wharf_dirty_white;
-      float: right;
-    }
-  }
-
-  &.p-toast-message-success {
-    background-color: $wharf_status_green !important;
-  }
-  &.p-toast-message-error {
-    background-color: $wharf_status_red !important;
-  }
 }

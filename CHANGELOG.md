@@ -19,6 +19,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added refresh logic for the GitHub configurations. (#8)
 
+- Added stylelint as a dev dependency and handled all linting issues in all
+  `.scss` files. (#26)
+
 - Added newly generated code for each Swagger-based API clients inside
   `projects` directory inside repository: (#25)
 

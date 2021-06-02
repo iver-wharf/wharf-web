@@ -97,6 +97,9 @@ npm run lint
 # Only run Angular/TypeScript linting
 npm run lint-ng
 
+# Only run SCSS linting
+npm run lint-scss
+
 # Only run Markdown linting
 npm run lint-md
 ```
@@ -110,6 +113,9 @@ npm run lint-fix
 
 # Only fix Angular/TypeScript lint errors
 npm run lint-ng-fix
+
+# Only fix SCSS lint errors
+npm run lint-scss-fix
 
 # Only fix Markdown lint errors
 npm run lint-md-fix
@@ -129,19 +135,26 @@ this `npm run lint-fix` command. For those, you'll have to fix them manually.
 
    - ESLint (`dbaeumer.vscode-eslint`): <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
    - vscode-remark-lint (`vscode-remark-lint`): <https://marketplace.visualstudio.com/items?itemName=drewbourne.vscode-remark-lint>
+   - stylelint (`stylelint.vscode-stylelint`): <https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint>
 
    > :warning: The `vscode-remark-lint` extension has not proven itself to work
    > previously. If it does not work correctly for you, then skip it and rely
    > on the command-line linting instead.
 
-2. Open a `*.ts` file
+2. Install NPM dependencies (required by stylelint):
 
-3. Click the "🚫 ESLINT" tab in the bottom right toolbar and then select
+   ```sh
+   npm install
+   ```
+
+3. Open a `*.ts` file
+
+4. Click the "🚫 ESLINT" tab in the bottom right toolbar and then select
    either "Enable" or "Enable everywhere"
 
    ![ESLINT button in toolbar](./docs/linting-in-vscode-enable.png)
 
-4. Done!
+5. Done!
 
    ![ESLINT extension in action inside VS Code](./docs/linting-in-vscode.png)
 
@@ -173,20 +186,28 @@ this `npm run lint-fix` command. For those, you'll have to fix them manually.
 3. Install coc.nvim extensions
 
    - [`coc-eslint`](https://github.com/neoclide/coc-eslint)
+   - [`coc-stylelint-plus`](https://github.com/bmatcuk/coc-stylelintplus)
 
    ```vim
    :CocInstall coc-eslint
+   :CocInstall coc-stylelintplus
    ```
 
-4. Open a `*.ts` file
+4. Install NPM dependencies (required by stylelint):
 
-5. Open the `coc-eslint` output to see the options to enable it
+   ```sh
+   npm install
+   ```
+
+5. Open a `*.ts` file
+
+6. Open the `coc-eslint` output to see the options to enable it
 
    ```vim
    :CocCommand eslint.showOutputChannel
    ```
 
-6. Done!
+7. Done!
 
    ![coc-eslint in action inside neovide](./docs/linting-in-neovide.png)
 
