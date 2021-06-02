@@ -1,8 +1,8 @@
 export class TestsResults {
-  passed: string;
-  failed: string;
+  passed: number;
+  failed: number;
 
-  constructor(passed: string, failed: string) {
+  constructor(passed: number, failed: number) {
     this.passed = passed;
     this.failed = failed;
   }

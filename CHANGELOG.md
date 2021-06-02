@@ -22,6 +22,14 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Added stylelint as a dev dependency and handled all linting issues in all
   `.scss` files. (#26)
 
+- Added newly generated code for each Swagger-based API clients inside
+  `projects` directory inside repository: (#25)
+
+  - `api-client`: v4.0.1
+  - `import-github-client`: v1.2.0
+  - `import-gitlab-client`: v1.2.0
+  - `import-azuredevops-client`: v1.2.0
+
 ## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
