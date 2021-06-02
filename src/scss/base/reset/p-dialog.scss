@@ -1,0 +1,81 @@
+body .p-dialog {
+  width: 60%;
+  max-width: 30rem;
+  min-width: 19rem;
+  padding-top: 0;
+  border: none;
+
+  .p-dialog-header,
+  .p-dialog-content {
+    border: none;
+  }
+
+  .p-dialog-header {
+    background-color: $wharf_provider_menu_titlebar_background_color;
+    border-top-right-radius: 0.31rem;
+    border-top-left-radius: 0.31rem;
+    height: auto;
+    padding: 0.62rem 0.62rem 0 0.62rem;
+    justify-content: flex-end;
+
+    .p-dialog-header-icon {
+      width: unset;
+      height: unset;
+      color: $wharf_provider_menu_close_color;
+    }
+  }
+
+  h4 {
+    border-bottom: 0.06rem solid $wharf_provider_menu_text_border_bottom_color;
+    padding-bottom: 0.6rem;
+    margin: 0 0 0.6rem 0;
+  }
+
+  .p-dialog-content {
+    overflow: unset;
+    padding: 0 1.87rem 1.87rem 1.87rem;
+    background-color: $wharf_provider_menu_content_background_color;
+    color: $wharf_provider_menu_content_header_text_color;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+    }
+
+    .form-control {
+      margin-top: 1rem;
+      color: $wharf_provider_label_text_color;
+
+      h5 {
+        margin: 0.31rem 0;
+      }
+
+      .p-inputtext {
+        color: $wharf_provider_input_field_text_color;
+      }
+
+      .form-input,
+      .p-dropdown {
+        width: 100%;
+        color: $wharf_provider_input_field_text_color;
+        background-color: $wharf_provider_input_field_background_color;
+        border: 0.06rem solid $wharf_provider_input_field_border_color;
+        border-radius: 0;
+
+        &:focus {
+          color: $wharf_provider_menu_text_focus_color;
+        }
+
+        &:hover {
+          background-color: $wharf_provider_input_field_hover_color;
+        }
+      }
+    }
+  }
+}

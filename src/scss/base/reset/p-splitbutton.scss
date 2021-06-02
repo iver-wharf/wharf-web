@@ -1,0 +1,38 @@
+body .p-splitbutton {
+  .p-button {
+    color: $wharf_white;
+    background-color: transparent;
+    border: 0.06rem solid $wharf_button_border_color !important;
+
+    &:hover {
+      background-color: $wharf_button_hover_background_color !important;
+    }
+  }
+
+  .ng-trigger {
+    width: 100%;
+    text-align: center;
+  }
+
+  .p-button:enabled:hover {
+    color: $wharf_dark_grey;
+  }
+
+  .p-menu.p-menu-overlay {
+    background-color: $wharf_dropdown_menu_background_color;
+    border: none;
+
+    .p-menuitem-text {
+      text-align: left;
+      color: $wharf_dropdown_menu_text_color !important;
+
+      &:hover {
+        color: $wharf_dropdown_menu_text_hover_color !important;
+      }
+    }
+
+    .p-menuitem-link:hover {
+      background-color: $wharf_dropdown_menu_background_hover_color;
+    }
+  }
+}
