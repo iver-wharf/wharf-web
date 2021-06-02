@@ -10,21 +10,9 @@ body {
     box-shadow: none !important;
   }
 
-  .p-button {
-    background-color: transparent;
-    border: 0.06rem solid $wharf_button_border_color !important;
-    color: $wharf_button_text_color;
-    border: none;
-    font-size: 14px;
-
-    &:enabled:hover {
-      background-color: $wharf_button_hover_background_color;
-      color: $wharf_button_text_hover_color;
-    }
-
-    ::placeholder {
-      color: $wharf_dirty_white;
-    }
+  ::placeholder {
+    color: $wharf_input_field_placeholder_text_color;
+    font-size: smaller;
   }
 
   .p-tabview-panel p {
@@ -43,10 +31,21 @@ body {
   input {
     padding: 0 0.5rem;
   }
+}
+
+body .p-button {
+  background-color: transparent;
+  border: 0.06rem solid $wharf_button_border_color !important;
+  color: $wharf_button_text_color;
+  font-size: 14px;
+
+  &:enabled:hover {
+    background-color: $wharf_button_hover_background_color;
+    color: $wharf_button_text_hover_color;
+  }
 
   ::placeholder {
-    color: $wharf_input_field_placeholder_text_color;
-    font-size: smaller;
+    color: $wharf_dirty_white;
   }
 }
 
@@ -102,7 +101,7 @@ body {
   }
 }
 
-p-splitbutton {
+body .p-splitbutton {
   .p-button {
     color: $wharf_white;
     background-color: transparent;
@@ -151,7 +150,6 @@ body .p-tabview {
   }
 
   .p-tabview-nav {
-    margin-bottom: 1rem;
     font-size: 1rem;
     margin: 0;
 
@@ -183,18 +181,14 @@ body .p-tabview {
         }
       }
 
-      &:not(.p-highlight):not(.p-disabled):hover {
-        .p-tabview-nav-link {
-          color: $wharf_tabview_active_color;
-        }
-      }
-
       &:first-child .p-tabview-nav-link {
         padding-left: 0;
       }
 
-      &.p-highlight .p-tabview-nav-link {
-        color: $wharf_tabview_active_color;
+      &:not(.p-highlight):not(.p-disabled):hover {
+        .p-tabview-nav-link {
+          color: $wharf_tabview_active_color;
+        }
       }
 
       .p-tabview-nav-link {
@@ -205,6 +199,10 @@ body .p-tabview {
         i.pi {
           vertical-align: middle;
         }
+      }
+
+      &.p-highlight .p-tabview-nav-link {
+        color: $wharf_tabview_active_color;
       }
     }
   }
@@ -220,9 +218,11 @@ body .p-tabview {
 
     .p-paginator-pages {
       .p-paginator-page {
+        color: $wharf_paginator_page_color;
         background-color: transparent !important;
 
         &:hover {
+          color: $wharf_paginator_page_color;
           opacity: 80%;
         }
       }
@@ -234,7 +234,7 @@ body .p-tabview {
     }
   }
 
-  .p-paginator > * {
+  .p-paginator > .p-paginator-element {
     color: $wharf_paginator_icon_color !important;
 
     &:hover {
