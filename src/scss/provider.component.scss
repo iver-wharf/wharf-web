@@ -1,95 +1,97 @@
 .ng-trigger {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
+
 /* The !important is needed here to override PrimeNG's stylings.
   Have explored different approaches but all turned out to be difficult. */
 
 .settings-pane {
-    p-splitButton {
-        padding-right: 1.25rem;
+  .p-splitbutton {
+    padding-right: 1.25rem;
+  }
+
+  .p-dialog {
+    #close-form {
+      width: 50%;
+      margin: 0;
+      margin-top: -1.25rem;
+      color: #848181;
+      font-size: 0.6rem;
+
+      &:hover {
+        color: $wharf_provider_menu_change_provider_text_color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .provider-item.p-menu {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+
+    .p-menu,
+    .p-menubar,
+    .p-tieredmenu,
+    .p-contextmenu,
+    .p-megamenu,
+    .p-slidemenu,
+    .p-menuitem-link {
+      border: 0.06rem solid $wharf_provider_menu_border_color;
+      padding: 0.4rem 0 0.4rem 0.4rem;
+      width: 100%;
+      margin: 0.9rem 0 0.9rem 0;
+
+      &:hover {
+        background: $wharf_provider_menu_hover_background_color !important;
+        color: $wharf_provider_menu_text_hover_color !important;
+      }
     }
 
-    p-dialog {
-        .p-dialog {
-            #close-form {
-                width: 50%;
-                margin: 0;
-                margin-top: -1.25rem;
-                color: #848181;
-                font-size: 0.6rem;
-                &:hover {
-                    color: $wharf_provider_menu_change_provider_text_color;
-                    cursor: pointer;
-                }
-            }
-        }
+    .p-corner-all,
+    .ng-star-inserted,
+    .p-menuitem-text {
+      color: $wharf_provider_menu_text_color;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
 
-        .provider-item.p-menu {
-            background-color: transparent;
-            border: none;
-            width: 100%;
-
-            .p-menu,
-            .p-menubar,
-            .p-tieredmenu,
-            .p-contextmenu,
-            .p-megamenu,
-            .p-slidemenu,
-            .p-menuitem-link {
-                border: 0.06rem solid $wharf_provider_menu_border_color;
-                padding: 0.4rem 0 0.4rem 0.4rem;
-                width: 100%;
-                margin: 0.9rem 0 0.9rem 0;
-
-                &:hover {
-                    background: $wharf_provider_menu_hover_background_color !important;
-                    color: $wharf_provider_menu_text_hover_color !important;
-                }
-            }
-
-            .p-corner-all,
-            .ng-star-inserted,
-            .p-menuitem-text {
-                color: $wharf_provider_menu_text_color;
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: space-between;
-
-                &:hover > * {
-                    color: $wharf_provider_menu_text_hover_color;
-                }
-            }
-            .pi-angle-right {
-                color: $wharf_provider_menu_icon_color;
-            }
-        }
+      &:hover > * {
+        color: $wharf_provider_menu_text_hover_color;
+      }
     }
+
+    .pi-angle-right {
+      color: $wharf_provider_menu_icon_color;
+    }
+  }
 }
 
 .wh-tabview-x-header-side {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 
-    .project-search {
-        margin-right: 1rem;
+  .project-search {
+    margin-right: 1rem;
+  }
+
+  .p-inputgroup {
+    background-color: $wharf_searchbox_input_field_background_color;
+
+    .p-inputtext,
+    .p-inputgroup-addon {
+      border: none;
+      background-color: $wharf_searchbox_input_field_background_color;
+      color: $wharf_searchbox_input_field_text_color;
     }
 
-    .p-inputgroup {
-        background-color: $wharf_searchbox_input_field_background_color;
-
-        .p-inputtext, .p-inputgroup-addon {
-            border: none;
-            background-color: $wharf_searchbox_input_field_background_color;
-            color: $wharf_searchbox_input_field_text_color;
-        }
-
-        .p-inputgroup-addon {
-            i {
-                color: gray !important;
-                font-size: 1rem;
-                padding: 0.2rem;
-            }
-        }
+    .p-inputgroup-addon {
+      i {
+        color: gray !important;
+        font-size: 1rem;
+        padding: 0.2rem;
+      }
     }
+  }
 }

@@ -7,7 +7,8 @@ import { ArtifactService } from './api/artifact.service';
 import { BranchService } from './api/branch.service';
 import { BranchesService } from './api/branches.service';
 import { BuildService } from './api/build.service';
-import { LogsService } from './api/logs.service';
+import { HealthService } from './api/health.service';
+import { MetaService } from './api/meta.service';
 import { ProjectService } from './api/project.service';
 import { ProviderService } from './api/provider.service';
 import { TokenService } from './api/token.service';
@@ -21,7 +22,8 @@ import { TokenService } from './api/token.service';
     BranchService,
     BranchesService,
     BuildService,
-    LogsService,
+    HealthService,
+    MetaService,
     ProjectService,
     ProviderService,
     TokenService ]

@@ -1,11 +1,12 @@
 .grid-container {
-    display: grid;
-    /* default min width of a column is auto.
+  display: grid;
+
+  /* default min width of a column is auto.
        <pre> tags expand that "auto" to whatever it needs.
        Here we set the second column's min to 0 instead, so
        the grid can actually shrink the <pre> tag.
        Big help: https://css-tricks.com/preventing-a-grid-blowout/
      */
-    grid-template-columns: 12.5rem minmax(0, 1fr);
-    height: 100vh;
+  grid-template-columns: 12.5rem minmax(0, 1fr);
+  height: 100vh;
 }

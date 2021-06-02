@@ -1,0 +1,27 @@
+body .p-toast .p-toast-message {
+  .p-toast-message-content {
+    color: $wharf_dirty_white;
+    display: block;
+
+    h3 {
+      margin-top: 0.5rem;
+    }
+
+    p {
+      margin: 0.8rem 0;
+    }
+
+    .p-toast-icon-close {
+      color: $wharf_dirty_white;
+      float: right;
+    }
+  }
+
+  &.p-toast-message-success {
+    background-color: $wharf_status_green !important;
+  }
+
+  &.p-toast-message-error {
+    background-color: $wharf_status_red !important;
+  }
+}

@@ -1,7 +1,9 @@
 body {
-  a[href], .url-link {
+  a[href],
+  .url-link {
     color: $wharf_link_color;
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }

@@ -2,9 +2,11 @@
   .var-prefix {
     color: $wharf_palette_cloud_grey;
   }
+
   .var-name {
     font-family: $wharf_code_font_family;
   }
+
   .var-info-icon {
     vertical-align: bottom;
     color: $wharf_palette_cloud_grey;
@@ -13,6 +15,7 @@
       color: inherit;
     }
   }
+
   .action-buttons {
     margin-top: 1rem;
 

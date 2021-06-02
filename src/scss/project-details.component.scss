@@ -6,6 +6,42 @@
       margin: 1.5rem 0 1rem 0;
     }
 
+    label {
+      margin-right: 0.3rem;
+      color: darkgray;
+      font-size: smaller;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      a {
+        margin-right: 0.3rem;
+        color: darkgray;
+      }
+
+      h4,
+      p {
+        margin: 0.3rem;
+      }
+
+      .favorite-project-icon {
+        font-size: 1.3rem;
+        color: $wharf_table_icon_color;
+        margin-left: 0.6rem;
+      }
+
+      .copy-icon {
+        opacity: 100%;
+
+        &:hover {
+          opacity: 70%;
+        }
+      }
+    }
+
     .top {
       color: white;
       display: flex;
@@ -41,42 +77,9 @@
         margin-right: 0.3rem;
         color: darkgray;
         text-decoration: none;
+
         &:hover {
           text-decoration: none;
-        }
-      }
-    }
-
-    label {
-      margin-right: 0.3rem;
-      color: darkgray;
-      font-size: smaller;
-    }
-
-    span {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-
-      a {
-        margin-right: 0.3rem;
-        color: darkgray;
-      }
-
-      h4, p {
-        margin: 0.3rem;
-      }
-
-      .favorite-project-icon {
-        font-size: 1.3rem;
-        color: $wharf_table_icon_color;
-        margin-left: 0.6rem;
-      }
-
-      .copy-icon {
-        opacity: 100%;
-        &:hover {
-          opacity: 70%;
         }
       }
     }
@@ -88,7 +91,7 @@
   }
 
   .p-tabview {
-    .p-disabled a {
+    .p-disabled .p-tabview-nav-link {
       text-decoration: line-through;
     }
 
@@ -97,9 +100,7 @@
     }
   }
 
-
   .status-progress-spinner .p-progress-spinner {
-    width: auto;
     height: 1.1rem;
     width: 1.1rem;
     vertical-align: middle;

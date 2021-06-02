@@ -14,11 +14,10 @@ code {
 pre[class*=language-] {
   background: $wharf_code_block_background;
   border-radius: 4px;
-  padding: 0px;
+  padding: 0;
   margin: 1em 0;
   overflow: hidden;
   position: relative;
-
   font-family: $wharf_code_font_family;
   font-weight: $wharf_code_font_weight;
   tab-size: 4;
@@ -39,13 +38,20 @@ pre[class*=language-] {
 
 /* Prism classes coloring */
 .token {
-  &.comment, &.prolog, &.doctype, &.cdata {
+  &.comment,
+  &.prolog,
+  &.doctype,
+  &.cdata {
     color: $wharf_code_token_comment_color;
   }
+
   &.punctuation {
     color: $wharf_code_token_punctuation_color;
   }
-  &.key, &.attr-value, &.keyword {
+
+  &.key,
+  &.attr-value,
+  &.keyword {
     color: $wharf_code_token_keyword_color;
   }
 }
