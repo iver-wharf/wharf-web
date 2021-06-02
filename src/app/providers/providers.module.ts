@@ -1,5 +1,6 @@
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ApiModule as GitlabImportApiModule, Configuration as GitlabImportConfiguration } from 'import-gitlab-client';
+import { ApiModule as GitHubImportApiModule, Configuration as GitHubImportConfiguration } from 'import-github-client';
 import { ApiModule as AzureImportApiModule, Configuration as AzureImportConfiguration } from 'import-azuredevops-client';
 import { DropdownModule } from 'primeng/dropdown';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -39,6 +40,16 @@ import { InputTextModule } from 'primeng/inputtext';
       providers: [{
         provide: GitlabImportConfiguration,
         useFactory: (configService: ConfigService) => configService.getGitlabImportConfig(),
+        deps: [
+          ConfigService
+        ]
+      }]
+    },
+    {
+      ngModule: GitHubImportApiModule,
+      providers: [{
+        provide: GitHubImportConfiguration,
+        useFactory: (configService: ConfigService) => configService.getGitHubImportConfig(),
         deps: [
           ConfigService
         ]
