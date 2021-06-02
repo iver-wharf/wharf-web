@@ -97,6 +97,9 @@ npm run lint
 # Only run Angular/TypeScript linting
 npm run lint-ng
 
+# Only run SCSS linting
+npm run lint-scss
+
 # Only run Markdown linting
 npm run lint-md
 ```
@@ -110,6 +113,9 @@ npm run lint-fix
 
 # Only fix Angular/TypeScript lint errors
 npm run lint-ng-fix
+
+# Only fix SCSS lint errors
+npm run lint-scss-fix
 
 # Only fix Markdown lint errors
 npm run lint-md-fix
