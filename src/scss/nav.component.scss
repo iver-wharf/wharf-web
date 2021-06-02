@@ -84,12 +84,8 @@ nav {
         text-decoration: none;
       }
 
-      &:not(.p-disabled):hover .p-menuitem-text,
       .p-menuitem-text {
         color: $wharf_sidenav_menu_text_color;
-      }
-
-      .p-menuitem-text {
         font-size: 0.9rem;
         font-weight: 200;
       }
@@ -102,6 +98,10 @@ nav {
           text-decoration: line-through;
           text-decoration-color: white;
         }
+      }
+
+      &:not(.p-disabled):hover .p-menuitem-text {
+        color: $wharf_sidenav_menu_text_color;
       }
     }
 
