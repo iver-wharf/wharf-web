@@ -19,6 +19,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added refresh logic for the GitHub configurations. (#8)
 
+- Added stylelint as a dev dependency and handled all linting issues in all
+  `.scss` files. (#26)
+
 ## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
