@@ -22,6 +22,10 @@ body {
     font-size: smaller;
   }
 
+  .p-tooltip-text {
+    overflow-wrap: break-word;
+  }
+
   .p-tabview-panel p {
     margin: unset;
 

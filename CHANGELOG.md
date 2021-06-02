@@ -30,6 +30,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   - `import-gitlab-client`: v1.2.0
   - `import-azuredevops-client`: v1.2.0
 
+- Added versions of remote services to the version panel in the sidebar. (#24)
+
 ## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
