@@ -34,6 +34,7 @@ nav {
 
       .pi {
         vertical-align: text-bottom;
+        font-size: 1em;
       }
     }
 
@@ -126,8 +127,12 @@ nav {
 
     .p-menuitem-icon {
       color: $wharf_sidenav_menu_icon_color !important;
-      font-size: 1.8rem;
-      margin: 0 0.12rem 0 1.5rem !important;
+      font-size: 1.3rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      line-height: 1.8rem;
+      margin: auto 0.12rem auto 1.5rem !important;
+      text-align: center;
     }
   }
 }
