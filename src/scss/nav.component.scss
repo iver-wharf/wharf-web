@@ -4,10 +4,12 @@ nav {
   justify-content: space-between;
   min-height: 100%;
   background-color: $wharf_sidenav_menu_background_color;
+
   #logo {
     a {
       text-decoration: none;
     }
+
     h3 {
       color: $wharf_sidenav_menu_logo_color;
       font-size: 1.5rem;
@@ -15,6 +17,7 @@ nav {
       justify-content: center;
       margin-bottom: 0;
     }
+
     .version-button {
       display: block;
       margin: 0 auto;
@@ -23,31 +26,38 @@ nav {
       color: $wharf_sidenav_menu_version_color;
       background-color: $wharf_sidenav_menu_version_background_color;
       border: none;
+
       &:hover {
         color: $wharf_sidenav_menu_version_hover_color;
         cursor: pointer;
       }
+
       .pi {
         vertical-align: text-bottom;
       }
     }
+
     .version-panel {
       .p-overlaypanel {
         background-color: $wharf_sidenav_menu_version_details_background_color;
       }
+
       ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
       }
+
       .label {
         font-size: 0.8rem;
         color: $wharf_sidenav_menu_version_details_label_color;
       }
+
       .value {
         padding-inline-start: 1rem;
         color: $wharf_sidenav_menu_version_details_value_color;
       }
+
       .label,
       .value {
         display: block;
@@ -78,6 +88,7 @@ nav {
       .p-menuitem-text {
         color: $wharf_sidenav_menu_text_color;
       }
+
       .p-menuitem-text {
         font-size: 0.9rem;
         font-weight: 200;

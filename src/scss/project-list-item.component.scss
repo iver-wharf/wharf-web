@@ -43,12 +43,15 @@ body .p-datatable .p-datatable-thead > tr > th {
     &.col-id {
       width: 6rem;
     }
+
     &.col-stage {
       width: 10rem;
     }
+
     &.col-status {
       width: 9rem;
     }
+
     &.col-duration {
       width: 9rem;
     }
@@ -73,9 +76,11 @@ body .p-datatable .p-datatable-thead > tr > th {
     &.col-status {
       width: 10rem;
     }
+
     &.col-actions {
       width: 10rem;
     }
+
     &.col-quickactions {
       width: 6rem;
     }
@@ -97,6 +102,7 @@ body .p-datatable .p-datatable-thead > tr > th {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     &.col-quickactions {
       display: flex;
       align-items: center;
@@ -105,10 +111,12 @@ body .p-datatable .p-datatable-thead > tr > th {
       .icon {
         margin: 0 0.62rem 0 0.62rem;
         color: $wharf_table_icon_color;
+
         &.pi {
           font-size: 1.56rem !important;
         }
       }
+
       wh-project-refresh-icon {
         font-size: 1rem !important;
       }

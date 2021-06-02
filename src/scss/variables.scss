@@ -129,9 +129,9 @@ $input_border_width: 1px;
 $input_border_radius: 4px;
 
 // Code blocks
-$wharf_code_font_family: Inconsolata, Consolas, Menlo, Monaco, "Andale Mono WT",
+$wharf_code_font_family: inconsolata, consolas, menlo, monaco, "Andale Mono WT",
   "Andale Mono", "Lucida Console", "DejaVu Sans Mono",
-  "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  "Bitstream Vera Sans Mono", "Courier New", courier, monospace;
 $wharf_code_font_weight: normal;
 
 $wharf_code_inline_color: $wharf_palette_cloud_white;
