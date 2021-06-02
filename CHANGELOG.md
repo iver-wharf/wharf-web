@@ -19,6 +19,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added refresh logic for the GitHub configurations. (#8)
 
+- Changed version of Angular from v9 to v12. Nothing major for end users. (#27)
+
 ## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
