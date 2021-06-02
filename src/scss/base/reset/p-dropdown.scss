@@ -16,7 +16,7 @@
           background-color: $wharf_dropdown_input_item_highlight_background_color;
         }
 
-        &:not(.p-highlight):not(p-disabled):hover {
+        &:not(.p-highlight):not(.p-disabled):hover {
           color: $wharf_dropdown_input_item_hover_text_color;
           background-color: $wharf_dropdown_input_item_hover_background_color;
         }
