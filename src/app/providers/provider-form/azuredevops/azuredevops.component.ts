@@ -1,4 +1,4 @@
-import { DefaultService as AzureService, MainImport } from 'import-azuredevops-client';
+import { DefaultService as AzureService, MainImportBody } from 'import-azuredevops-client';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class AzureDevOpsComponent {
   }
 
   onSubmit() {
-    const providerData: MainImport = {
+    const providerData: MainImportBody = {
       url: this.providerForm.value.url,
       token: this.providerForm.value.token,
       group: this.providerForm.value.group,

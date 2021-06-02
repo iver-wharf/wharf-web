@@ -4,13 +4,15 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { DefaultService } from './api/default.service';
+import { MetaService } from './api/meta.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
   providers: [
-    DefaultService ]
+    DefaultService,
+    MetaService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {

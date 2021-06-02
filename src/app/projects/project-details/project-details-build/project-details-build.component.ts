@@ -94,7 +94,7 @@ export class ProjectDetailsBuildComponent {
           .pipe(
             map(
               testResults =>
-                new TestsResults(testResults.Passed, testResults.Failed)
+                new TestsResults(testResults.passed, testResults.failed)
             )
           )
       )

@@ -18,14 +18,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { MainImport } from '../model/mainImport';
+import { AppVersion } from '../model/appVersion';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class DefaultService {
+export class MetaService {
 
     protected basePath = 'https://localhost/import';
     public defaultHeaders = new HttpHeaders();
@@ -57,23 +57,20 @@ export class DefaultService {
 
 
     /**
-     * Import projects from gitlab or refresh existing one
+     * Returns the version of this API
      * 
-     * @param _import import object
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public gitlabPost(_import?: MainImport, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public gitlabPost(_import?: MainImport, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public gitlabPost(_import?: MainImport, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public gitlabPost(_import?: MainImport, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
+    public gitlabVersionGet(observe?: 'body', reportProgress?: boolean): Observable<AppVersion>;
+    public gitlabVersionGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AppVersion>>;
+    public gitlabVersionGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AppVersion>>;
+    public gitlabVersionGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -82,15 +79,9 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.post<any>(`${this.basePath}/gitlab`,
-            _import,
+        return this.httpClient.get<AppVersion>(`${this.basePath}/gitlab/version`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
