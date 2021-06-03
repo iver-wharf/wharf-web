@@ -9,11 +9,15 @@
   </wh-tabview-x>
 
   <ng-template #buildDataView >
-    <div id=console-log>
+    <div id="console-log">
       <div>
-        <p *ngFor="let log of this.logEvents">
-          [{{log.timestamp | whDate}}] - {{log.message}}
-        </p>
+        <span class="no-logs" *ngIf="logEvents.length === 0">
+          // No logs are here to be seen yet. But they might arrive soon!
+        </span>
+        <pre class="logline"
+             *ngFor="let log of logEvents"
+          ><span class="timestamp">[{{log.timestamp | whDate: 'dd MMM yyyy | hh:mm'}}]</span
+          > {{log.message}}</pre>
       </div>
     </div>
   </ng-template>

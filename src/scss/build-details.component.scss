@@ -7,9 +7,24 @@
   color: white;
   font-family: monospace;
   padding: 0;
+  border-radius: 0.3em;
 
   div {
+    padding: 1rem;
     min-height: 700px;
     overflow-x: auto;
+
+    .logline {
+      margin: 0.2em 0;
+    }
+
+    .timestamp {
+      color: $wharf_builds_log_timestamp_text_color;
+    }
+
+    .no-logs {
+      font-style: italic;
+      color: $wharf_builds_log_empty_text_color;
+    }
   }
 }
