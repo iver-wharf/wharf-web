@@ -32,6 +32,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added versions of remote services to the version panel in the sidebar. (#24)
 
+- Changed styling of build logs to have different colors on timestamps and to
+  use scrolling of the body instead of scrolling a smaller container. (#29)
+
 ## v1.2.0 (2021-05-28)
 
 - Added Markdown linting via `remark-lint`. (!94)
