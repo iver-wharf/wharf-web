@@ -9,7 +9,7 @@
   padding: 0;
 
   div {
-    height: 700px;
-    overflow: auto;
+    min-height: 700px;
+    overflow-x: auto;
   }
 }
