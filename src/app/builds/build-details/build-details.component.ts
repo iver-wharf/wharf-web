@@ -75,7 +75,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   private scrollToBottom(): void {
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   private isScrolledToBottom(): boolean {
