@@ -4,7 +4,7 @@ import { TableModule } from 'primeng/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtifactsListComponent } from './artifacts-list/artifacts-list.component';
-import { ArtifactService, ProjectService } from 'projects/api-client/src';
+import { ArtifactService, ProjectService } from 'projects/api-client';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({

@@ -128,7 +128,7 @@
     "api-client": {
       "projectType": "library",
       "root": "projects/api-client",
-      "sourceRoot": "projects/api-client/src",
+      "sourceRoot": "projects/api-client",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -142,21 +142,13 @@
               "tsConfig": "projects/api-client/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/api-client/src/test.ts",
-            "tsConfig": "projects/api-client/tsconfig.spec.json",
-            "karmaConfig": "projects/api-client/karma.conf.js"
-          }
         }
       }
     },
     "import-gitlab-client": {
       "projectType": "library",
       "root": "projects/import-gitlab-client",
-      "sourceRoot": "projects/import-gitlab-client/src",
+      "sourceRoot": "projects/import-gitlab-client",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -170,21 +162,13 @@
               "tsConfig": "projects/import-gitlab-client/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/import-gitlab-client/src/test.ts",
-            "tsConfig": "projects/import-gitlab-client/tsconfig.spec.json",
-            "karmaConfig": "projects/import-gitlab-client/karma.conf.js"
-          }
         }
       }
     },
     "import-github-client": {
       "projectType": "library",
       "root": "projects/import-github-client",
-      "sourceRoot": "projects/import-github-client/src",
+      "sourceRoot": "projects/import-github-client",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -198,21 +182,13 @@
               "tsConfig": "projects/import-github-client/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/import-github-client/src/test.ts",
-            "tsConfig": "projects/import-github-client/tsconfig.spec.json",
-            "karmaConfig": "projects/import-github-client/karma.conf.js"
-          }
         }
       }
     },
     "import-azuredevops-client": {
       "projectType": "library",
       "root": "projects/import-azuredevops-client",
-      "sourceRoot": "projects/import-azuredevops-client/src",
+      "sourceRoot": "projects/import-azuredevops-client",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -225,14 +201,6 @@
             "production": {
               "tsConfig": "projects/import-azuredevops-client/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/import-azuredevops-client/src/test.ts",
-            "tsConfig": "projects/import-azuredevops-client/tsconfig.spec.json",
-            "karmaConfig": "projects/import-azuredevops-client/karma.conf.js"
           }
         }
       }

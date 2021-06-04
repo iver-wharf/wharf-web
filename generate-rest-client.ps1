@@ -3,7 +3,7 @@
 param (
 	[string] $ServerUrl = "http://localhost:5000",
 	[string] $DockerNetwork = "host",
-	[string] $DockerImage = "swaggerapi/swagger-codegen-cli:2.4.19",
+	[string] $DockerImage = "swaggerapi/swagger-codegen-cli:2.4.20",
 	[string] $DockerExec = "docker",
 	[switch] $SkipBuilding
 )
@@ -23,8 +23,8 @@ function Sync-Project {
 		generate `
 			--input-spec $ServerUrl$SwaggerDocPath `
 			--lang typescript-angular `
-			--output /local/projects/$ProjectName/src `
-			--additional-properties ngVersion=9.0.3
+			--output /local/projects/$ProjectName `
+			--additional-properties ngVersion=12.0.2
 
 	if (-not $?) {
 		throw "Failed to pull Swagger definitions for '$ProjectName'"

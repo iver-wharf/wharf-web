@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MainImport } from 'projects/import-gitlab-client/src/model/models';
+import { MainImport } from 'projects/import-gitlab-client/model/models';
 import { finalize } from 'rxjs/operators';
 import { DefaultService as GitlabService } from 'import-gitlab-client';
 import { ProvidersService } from '../../providers.service';

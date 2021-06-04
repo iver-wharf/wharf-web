@@ -4,7 +4,7 @@ import { GithubFormModel } from './github-form.model';
 import { DefaultService as GitHubService } from 'import-github-client';
 import { ProvidersService } from '../../providers.service';
 import { first } from 'rxjs/operators';
-import { MainImport } from 'projects/import-gitlab-client/src/model/models';
+import { MainImport } from 'projects/import-gitlab-client/model/models';
 
 @Component({
   selector: 'wh-github',

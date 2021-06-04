@@ -2,10 +2,10 @@
   "name": "import-github-client",
   "version": "0.0.1",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.1.0"
   },
   "peerDependencies": {
-    "@angular/common": "^9.0.3",
-    "@angular/core": "^9.0.3"
+    "@angular/common": "~12.0.2",
+    "@angular/core": "~12.0.2"
   }
 }
