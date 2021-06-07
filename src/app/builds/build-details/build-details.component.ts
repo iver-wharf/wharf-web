@@ -1,5 +1,5 @@
 import { ConfigService } from './../../shared/config/config.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BuildService, MainLog } from 'api-client';
 import { WharfProject } from 'src/app/models/main-project.model';
@@ -9,7 +9,7 @@ import { BuildStatus } from '../../models/build-status';
   selector: 'wh-build-details',
   templateUrl: './build-details.component.html'
 })
-export class BuildDetailsComponent implements OnInit, OnDestroy {
+export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecked {
   buildId: string;
   project: WharfProject;
   buildStatus?: BuildStatus;
@@ -32,6 +32,10 @@ export class BuildDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngAfterViewChecked(): void {
+    this.stayScrolledToBottom();
+  }
+
   connect(): void {
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
@@ -43,8 +47,6 @@ export class BuildDetailsComponent implements OnInit, OnDestroy {
           // When it comes to SSE, the MessageEvent.data is always a string
           const data = JSON.parse(message.data);
           this.logEvents.push(data);
-          this.container = document.querySelector('#console-log > div');
-          this.container.scrollTop = this.container.scrollHeight;
         });
       }
     } else {
@@ -64,5 +66,20 @@ export class BuildDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.source?.removeEventListener('message', this.listener);
+  }
+
+  private stayScrolledToBottom(): void {
+    if (this.isScrolledToBottom()) {
+      this.scrollToBottom();
+    }
+  }
+
+  private scrollToBottom(): void {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  private isScrolledToBottom(): boolean {
+    // The -2 is to have some margin for error
+    return (window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 2;
   }
 }
