@@ -4,16 +4,13 @@
 
 ## Prerequisites
 
-- **NPM v7.0.0 (or higher),** which comes with Node.js v15.0.0 (or higher)
+- **NPM v6.x.x,** which comes with Node.js LTS.
 
-  This is because we store the `package-lock.json` file in the repository.
-  Since NPM v7.0.0 they changed the format of it. When users mix and match the
-  formats by using NPM v6 and v7, then this file becomes completely impossible
-  to review.
+  This is because Angular does not support Node.js Current, and recently they
+  got an incompatability with Node.js v16 / NPM v7.
 
-  At time of writing (2021-03-25), Node.js v15 is only available when
-  installing using the "Current" version branch over at
-  <https://nodejs.org/en/download/>.
+  Read more about it here:
+  <https://github.com/angular/angular-cli/issues/19957#issuecomment-775407654>
 
 ## Building project
 

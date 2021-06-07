@@ -144,7 +144,7 @@ export class TabPanelExtendedComponent extends TabPanel implements AfterContentI
      </div>
   `,
   styleUrls: [
-    './tabview.scss',
+    './tabview.css',
     './tabview-x.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

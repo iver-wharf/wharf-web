@@ -1,4 +1,4 @@
-import { Input, Component, Output, EventEmitter } from '@angular/core';
+import { Input, Component, Output, EventEmitter, Directive } from '@angular/core';
 import { ProjectRefreshedEvent } from './project-refresh.event';
 import { ProvidersService } from 'src/app/providers/providers.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
@@ -6,6 +6,7 @@ import { WharfProject } from 'src/app/models/main-project.model';
 import { tap } from 'rxjs/operators';
 import { Messages } from 'src/app/shared/messages.enum';
 
+@Directive()
 export abstract class ProjectRefreshBaseComponent {
   @Output() refreshed = new EventEmitter<ProjectRefreshedEvent>();
 

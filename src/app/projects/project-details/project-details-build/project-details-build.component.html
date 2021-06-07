@@ -21,7 +21,7 @@
   <ng-template pTemplate="body" let-build>
     <tr role="button" (click)="navigateToBuild(build)">
       <td class="col-id">{{build.buildId}}</td>
-      <td class="col-stage">{{build.stage?.toUpperCase()=="ALL" ? "Run All" : build.stage}}</td>
+      <td class="col-stage">{{build.stage?.toUpperCase()==="ALL" ? "Run All" : build.stage}}</td>
       <td class="col-environment">{{build.environment}}</td>
       <td class="col-status">
         <span [class]="this.getStatusCssClass(build.statusId)">{{build.status}}</span>

@@ -28,7 +28,6 @@ import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { RippleModule } from 'primeng/ripple';
 import {
-  PrimeTemplate,
   SharedModule,
 } from 'primeng/api';
 import {

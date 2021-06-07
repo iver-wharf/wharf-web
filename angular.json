@@ -22,7 +22,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -31,7 +30,13 @@
               "src/styles.scss",
               "src/scss/imports.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -44,7 +49,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -128,7 +132,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/api-client/tsconfig.lib.json",
             "project": "projects/api-client/ng-package.json"
@@ -156,7 +160,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/import-gitlab-client/tsconfig.lib.json",
             "project": "projects/import-gitlab-client/ng-package.json"
@@ -184,7 +188,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/import-github-client/tsconfig.lib.json",
             "project": "projects/import-github-client/ng-package.json"
@@ -212,7 +216,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/import-azuredevops-client/tsconfig.lib.json",
             "project": "projects/import-azuredevops-client/ng-package.json"
