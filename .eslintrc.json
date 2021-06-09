@@ -48,7 +48,8 @@
           { "selector": "variable", "format": ["camelCase", "UPPER_CASE"], "leadingUnderscore": "allow", "trailingUnderscore": "allow" },
           { "selector": "typeLike", "format": ["PascalCase"], "leadingUnderscore": "allow", "trailingUnderscore": "allow" },
           { "selector": "enumMember", "format": ["PascalCase"] }
-        ]
+        ],
+        "comma-dangle": ["error", "always-multiline"]
       }
     },
     {

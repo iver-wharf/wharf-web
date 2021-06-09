@@ -22,11 +22,11 @@ import { TabViewExtendedModule } from '../shared/tabview-x/tabview-x.module';
     TabMenuModule,
     TabViewExtendedModule,
     ArtifactsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ProjectService,
-    BuildService
-  ]
+    BuildService,
+  ],
 })
 export class BuildsModule { }

@@ -25,12 +25,12 @@ export class GitlabComponent {
       url: this.providerForm.value.url,
       token: this.providerForm.value.token,
       group: this.providerForm.value.group,
-      project: this.providerForm.value.project
+      project: this.providerForm.value.project,
     };
 
     this.gitlabService.gitlabPost(providerData)
       .pipe(
-        finalize(() => this.providersService.triggerCloseForm(this.providerForm))
+        finalize(() => this.providersService.triggerCloseForm(this.providerForm)),
       )
       .subscribe();
   }

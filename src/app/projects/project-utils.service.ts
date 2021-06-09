@@ -5,14 +5,14 @@ import { WharfProject } from '../models/main-project.model';
 import { ActionsModalStore } from './actions-modal/actions-modal.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectUtilsService {
   readonly runAllActionName = 'Run all';
   readonly noEnvironmentActionName = '*Only stages without environments filter*';
   readonly noEnvironment = {
     label: this.noEnvironmentActionName,
-    value: null
+    value: null,
   } as Environment;
   readonly actionsExcludedElements = ['environments', 'inputs'];
 
@@ -53,7 +53,7 @@ export class ProjectUtilsService {
         project: proj,
         isVisible: true,
         actionName: label,
-      }
+      },
     );
   }
 }

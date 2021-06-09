@@ -11,7 +11,7 @@ export interface ProjectFavoriteClickEvent {
 
 @Component({
   selector: 'wh-project-list-item',
-  templateUrl: './project-list-item.component.html'
+  templateUrl: './project-list-item.component.html',
 })
 export class ProjectListItemComponent implements OnChanges {
   @Input() project: WharfProject;

@@ -4,7 +4,7 @@ import { ErrorHandler, Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalErrorHandler implements ErrorHandler {
 

@@ -39,12 +39,12 @@ import { NavModule } from './nav/nav.module';
       useFactory: configServiceProvider,
       deps: [
         HttpClient,
-        ConfigService
+        ConfigService,
       ],
-      multi: true
+      multi: true,
     },
     SyntaxHighlightService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -39,6 +39,6 @@ import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLa
   providers: [],
   exports: [
     ProviderComponent,
-  ]
+  ],
 })
 export class ProvidersModule { }

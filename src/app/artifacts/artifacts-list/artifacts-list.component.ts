@@ -4,7 +4,7 @@ import { MainArtifact, ArtifactService } from 'api-client';
 
 @Component({
   selector: 'wh-artifacts-list',
-  templateUrl: './artifacts-list.component.html'
+  templateUrl: './artifacts-list.component.html',
 })
 export class ArtifactsListComponent implements OnInit {
   @Input() buildId: number;

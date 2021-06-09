@@ -18,7 +18,7 @@ export const configServiceProvider = (http: HttpClient, configService: ConfigSer
           catchError(() => {
             resolve(false);
             return of({});
-          })
+          }),
         )
         .subscribe();
     });

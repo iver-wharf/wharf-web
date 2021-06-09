@@ -14,7 +14,7 @@ import {
 import { ProviderType } from './provider-type.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProvidersService {
   formClosedSource$ = new Subject<FormGroup>();
@@ -38,7 +38,7 @@ export class ProvidersService {
           tokenId: project.provider.tokenId,
           group: project.groupName,
           project: project.name,
-          providerId: project.provider.providerId
+          providerId: project.provider.providerId,
         });
       case ProviderType.GitHub.toLowerCase():
         return this.gitHubService.githubPost({
@@ -55,7 +55,7 @@ export class ProvidersService {
           tokenId: project.provider.tokenId,
           group: project.groupName,
           project: project.name,
-          providerId: project.provider.providerId
+          providerId: project.provider.providerId,
         });
     }
   }

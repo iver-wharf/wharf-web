@@ -84,7 +84,7 @@ import { SharedModule } from '../shared/pipes/shared.module';
     LocalStorageProjectsService,
     LocalStorageService,
     ProjectService,
-    TitleCasePipe
-  ]
+    TitleCasePipe,
+  ],
 })
 export class ProjectsModule { }

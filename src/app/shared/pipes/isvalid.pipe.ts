@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'whIsValidString'
+  name: 'whIsValidString',
 })
 export class IsValidStringPipe implements PipeTransform {
   transform(value: any): boolean {
@@ -10,7 +10,7 @@ export class IsValidStringPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'whIsValidBuildRef'
+  name: 'whIsValidBuildRef',
 })
 export class IsValidBuildRefPipe implements PipeTransform {
   transform(value: any): boolean {
@@ -19,7 +19,7 @@ export class IsValidBuildRefPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'whIsValidDate'
+  name: 'whIsValidDate',
 })
 export class IsValidDatePipe implements PipeTransform {
   transform(value: any): boolean {

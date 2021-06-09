@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'wh-provider',
-  templateUrl: './provider.component.html'
+  templateUrl: './provider.component.html',
 })
 export class ProviderComponent implements OnInit, OnDestroy {
   providers: MenuItem[];

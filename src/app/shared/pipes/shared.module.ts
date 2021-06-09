@@ -14,6 +14,6 @@ import { IsValidBuildRefPipe, IsValidDatePipe, IsValidStringPipe } from './isval
     IsValidBuildRefPipe,
     IsValidDatePipe,
     IsValidStringPipe,
-  ]
+  ],
 })
 export class SharedModule { }

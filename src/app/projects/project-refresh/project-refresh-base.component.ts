@@ -30,7 +30,7 @@ export abstract class ProjectRefreshBaseComponent {
     }
     this.isRefreshing = true;
     this.providersService.refreshProject(this.project).pipe(
-      tap(() => this.refreshed.emit({ projectId: this.project.projectId }))
+      tap(() => this.refreshed.emit({ projectId: this.project.projectId })),
     )
       .subscribe(
         () => this.notificationService.showSuccess(Messages.SuccessProjectRefresh),

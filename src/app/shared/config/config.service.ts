@@ -41,7 +41,7 @@ export const lowClone = <T>(obj: T): T => {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
   private config: Config;
@@ -58,25 +58,25 @@ export class ConfigService {
 
   getApiConfig(): Configuration {
     return new Configuration({
-      basePath: upGet(upGet(this.config, 'backendUrls'), 'api')
+      basePath: upGet(upGet(this.config, 'backendUrls'), 'api'),
     });
   }
 
   getGitlabImportConfig(): GitlabConfiguration {
     return new GitlabConfiguration({
-      basePath: upGet(upGet(this.config, 'backendUrls'), 'gitlabImport')
+      basePath: upGet(upGet(this.config, 'backendUrls'), 'gitlabImport'),
     });
   }
 
   getGitHubImportConfig(): GitlabConfiguration {
     return new GitlabConfiguration({
-      basePath: upGet(upGet(this.config, 'backendUrls'), 'githubImport')
+      basePath: upGet(upGet(this.config, 'backendUrls'), 'githubImport'),
     });
   }
 
   getAzureDevOpsImportConfig(): AzureDevOpsConfiguration {
     return new AzureDevOpsConfiguration({
-      basePath: upGet(upGet(this.config, 'backendUrls'), 'azureDevopsImport')
+      basePath: upGet(upGet(this.config, 'backendUrls'), 'azureDevopsImport'),
     });
   }
 }
