@@ -32,7 +32,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added versions of remote services to the version panel in the sidebar. (#24)
 
-- Changed version of Angular from v9 to v12. Nothing major for end users. (#27)
+- Changed version of Angular from v9 to v12. Nothing major for end users.
+  (#27, #32)
 
 - Changed version of PrimeNG from v11 to v12 and PrimeIcons from v2 to v4.
   The interface looks the same, but the new icons might take time to getting
