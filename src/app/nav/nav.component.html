@@ -2,10 +2,7 @@
   <div>
     <div id="logo">
       <a href="#">
-        <h3>
-          WHARF
-          <a class="docs-link" href="https://iver-wharf.github.io/#/" target="_blank">📘</a>
-        </h3>
+        <h3>WHARF</h3>
       </a>
 
       <button class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
@@ -78,6 +75,7 @@
     <div pTooltip='This feature has not yet been implemented. Stay tuned!' tooltipPosition="bottom">
       <p-menu styleClass="menu-item" [model]="items"></p-menu>
     </div>
+    <p-menu styleClass="menu-item" [model]="documentationItem"></p-menu>
   </div>
    <p-menu styleClass="menu-item" [model]="userItem" pTooltip='This feature has not yet been implemented. Stay tuned!' tooltipPosition="top"></p-menu>
 </nav>
