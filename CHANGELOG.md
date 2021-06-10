@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.3.0 (WIP)
+## v1.3.0 (2021-06-10)
 
 - Added logic to the empty GitHub post service. This will now post form
   contents to the github-provider. (#8)
