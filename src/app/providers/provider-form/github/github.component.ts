@@ -18,7 +18,8 @@ export class GithubComponent {
     public gitHubService: GitHubService,
     private formBuilder: FormBuilder,
     private providersService: ProvidersService,
-    private globalErrorHandler: GlobalErrorHandler) {
+    private globalErrorHandler: GlobalErrorHandler,
+  ) {
     this.providerForm = this.formBuilder.group(new GithubFormModel());
   }
 
@@ -38,9 +39,9 @@ export class GithubComponent {
           this.providerForm.enable();
         },
         err => {
+          this.providerForm.enable();
           this.globalErrorHandler.handleError(err);
           console.log(err);
-          this.providerForm.enable();
         },
       );
   }

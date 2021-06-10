@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainImport } from 'projects/import-gitlab-client/src/model/models';
-import { finalize } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { DefaultService as GitlabService } from 'import-gitlab-client';
 import { ProvidersService } from '../../providers.service';
 import { GitlabFormModel } from './gitlab-form.model';
+import { GlobalErrorHandler } from '../../../shared/error/global-error-handler';
 
 @Component({
   selector: 'wh-gitlab',
@@ -16,11 +17,14 @@ export class GitlabComponent {
   constructor(
     public gitlabService: GitlabService,
     private formBuilder: FormBuilder,
-    private providersService: ProvidersService) {
+    private providersService: ProvidersService,
+    private globalErrorHandler: GlobalErrorHandler,
+  ) {
     this.providerForm = this.formBuilder.group(new GitlabFormModel());
   }
 
   onSubmit() {
+    this.providerForm.disable();
     const providerData: MainImport = {
       url: this.providerForm.value.url,
       token: this.providerForm.value.token,
@@ -29,10 +33,16 @@ export class GitlabComponent {
     };
 
     this.gitlabService.gitlabPost(providerData)
-      .pipe(
-        finalize(() => this.providersService.triggerCloseForm(this.providerForm)),
-      )
-      .subscribe();
+      .pipe(first())
+      .subscribe(() => {
+          this.providersService.triggerCloseForm(this.providerForm);
+          this.providerForm.enable();
+        },
+        err => {
+          this.providerForm.enable();
+          this.globalErrorHandler.handleError(err);
+          console.log(err);
+        });
   }
 }
 
