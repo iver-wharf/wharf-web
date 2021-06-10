@@ -13,6 +13,7 @@ import { AzureDevOpsComponent } from './provider-form/azuredevops/azuredevops.co
 import { MenuModule } from 'primeng/menu';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLabApiModule } from 'projects/projects.module';
+import {TagModule} from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLa
     ConfiguredAzureDevOpsModule,
     ConfiguredGitHubApiModule,
     ConfiguredGitLabApiModule,
+    TagModule,
   ],
   providers: [],
   exports: [
