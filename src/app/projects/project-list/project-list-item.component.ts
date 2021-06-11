@@ -28,13 +28,11 @@ export class ProjectListItemComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: NgChanges<ProjectListItemComponent>): void {
-    if (changes.project && this.project) {
+    if (changes.project && this.project?.provider?.url) {
       try {
-        this.providerHostname = this.project.provider?.url
-          ? new URL(this.project.provider.url).hostname
-          : null;
+        this.providerHostname = new URL(this.project.provider.url).hostname;
       } catch (e) {
-        this.providerHostname = null;
+        this.providerHostname = this.project.provider.url;
       }
     }
   }
