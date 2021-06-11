@@ -3,11 +3,13 @@
     <h5><label>URL <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('url').validator"></span>
     <input pInputText type="text" placeholder="URL" formControlName="url" class="form-input">
+    <p-tag *ngIf="!providerForm.controls.url.valid && providerForm.controls.url.enabled" severity="danger" value="The url '{{providerForm.controls.url.value}}' is not valid!"></p-tag>
   </div>
   <div class="form-control">
     <h5><label>Token <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('token').validator"></span>
     <input pInputText type="text" placeholder="Token" formControlName="token" class="form-input">
+    <p-tag *ngIf="!providerForm.controls.token.valid && providerForm.controls.token.enabled" severity="danger" value="A token is required!"></p-tag>
   </div>
   <div class="form-control">
     <h5><label>Group </label></h5>
