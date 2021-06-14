@@ -36,12 +36,14 @@ export class AzureDevOpsComponent {
       .pipe(first())
       .subscribe(() => {
           this.providersService.triggerCloseForm(this.providerForm);
-          this.providerForm.enable();
         },
         err => {
-          this.providerForm.enable();
           this.globalErrorHandler.handleError(err);
           console.log(err);
-        });
+        },
+        () => {
+          this.providerForm.enable();
+        },
+      );
   }
 }
