@@ -14,7 +14,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.3.1 (WIP)
 
-- Adds a URL validator to the add project/provider forms. (#6)
+- Added a URL validator to the add project/provider forms. (#6)
 
 - Added newly generated code for each Swagger-based API clients inside
   `projects` directory inside repository: (#34)
