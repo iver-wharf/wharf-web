@@ -27,7 +27,7 @@ export class ConfiguredApiModule { }
 @NgModule({
   imports: [{
     ngModule: GitHubApiModule,
-    providers: [apiProviderWithConfig(GitHubConfiguration, c => c.getApiConfig())],
+    providers: [apiProviderWithConfig(GitHubConfiguration, c => c.getGitHubImportConfig())],
   }],
   exports: [GitHubApiModule],
 })
@@ -36,7 +36,7 @@ export class ConfiguredGitHubApiModule { }
 @NgModule({
   imports: [{
     ngModule: GitLabApiModule,
-    providers: [apiProviderWithConfig(GitLabConfiguration, c => c.getApiConfig())],
+    providers: [apiProviderWithConfig(GitLabConfiguration, c => c.getGitlabImportConfig())],
   }],
   exports: [GitLabApiModule],
 })
@@ -45,7 +45,7 @@ export class ConfiguredGitLabApiModule { }
 @NgModule({
   imports: [{
     ngModule: AzureApiModule,
-    providers: [apiProviderWithConfig(AzureConfiguration, c => c.getApiConfig())],
+    providers: [apiProviderWithConfig(AzureConfiguration, c => c.getAzureDevOpsImportConfig())],
   }],
   exports: [AzureApiModule],
 })
