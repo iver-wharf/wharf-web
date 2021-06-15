@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { WharfProject } from 'src/app/models/main-project.model';
@@ -8,12 +8,14 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
+import { ProjectTabType } from './project-tab-types';
 
 @Component({
   selector: 'wh-project-details',
   templateUrl: './project-details.component.html',
+  styleUrls: ['./project-details.component.scss'],
 })
-export class ProjectDetailsComponent implements OnInit {
+export class ProjectDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('refreshButton') refreshButton;
 
   project: WharfProject;
@@ -22,6 +24,8 @@ export class ProjectDetailsComponent implements OnInit {
   buildsTotalCount = 0;
   rowsCount = 10;
   destroyed$ = new Subject<void>();
+
+  public activeTab: ProjectTabType;
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
@@ -34,6 +38,10 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadProject();
+  }
+
+  ngAfterViewInit(): void {
+    this.activeTab = this.route.snapshot.queryParams?.tab as ProjectTabType || ProjectTabType.BUILDS;
   }
 
   reloadProject() {
@@ -68,4 +76,5 @@ export class ProjectDetailsComponent implements OnInit {
     }
     selection.removeAllRanges();
   }
+
 }
