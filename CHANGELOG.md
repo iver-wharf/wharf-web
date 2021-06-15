@@ -25,6 +25,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   Cleaned up old files, where some collided on case-insensitive file systems,
   such as `mainAzureDevOpsPrResource.ts` vs `mainAzureDevOpsPRResource.ts`.
 
+- Fixed provider APIs getting main API's config, leading to all provider API
+  requests pointing to wrong base URL. (#35)
+
 ## v1.3.0 (2021-06-10)
 
 - Added logic to the empty GitHub post service. This will now post form
