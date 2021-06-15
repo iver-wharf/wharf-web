@@ -1,5 +1,5 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'api-client';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Table } from 'primeng/table';
@@ -10,12 +10,14 @@ import { ProvidersService } from 'src/app/providers/providers.service';
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectRefreshedEvent } from '../project-refresh';
 import { LocalStorageProjectsService } from './../local-storage-projects.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'wh-project-list',
   templateUrl: './project-list.component.html',
+  styleUrls: ['./project-list.component.scss'],
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, AfterViewInit {
   // Need ViewChildren instead of ViewChild because the ng-container actually
   // creates two data tables that it switches between.
   @ViewChildren(Table) dts: QueryList<Table>;
@@ -36,6 +38,8 @@ export class ProjectListComponent implements OnInit {
     private providersService: ProvidersService,
     private actionsModalStore: ActionsModalStore,
     private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +47,24 @@ export class ProjectListComponent implements OnInit {
     this.loadProjects();
     this.providersService.formClosed$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.loadProjects());
     this.actionsModalStore.isVisible$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.isActionsFormVisible = x);
-    this.viewFavoritesTabIfAny();
+    this.activeTabIndex = this.route.snapshot.queryParams?.tab || 0;
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  public updateQueryParamsWithTabIndex(index: number): void {
+    const queryParams = {
+      tab: this.activeTabIndex,
+    };
+    const urlTree = this.router.createUrlTree(
+      [],
+      {
+        queryParams,
+        relativeTo: this.route,
+      },
+    );
+    this.location.replaceState(urlTree.toString());
   }
 
   onSearchKeyUp(event: KeyboardEvent) {
@@ -61,11 +82,6 @@ export class ProjectListComponent implements OnInit {
     this.replaceProject(event.projectId);
   }
 
-  viewFavoritesTabIfAny() {
-    if (this.localStorageProjectsService.getFavoriteProjectsIds().length > 0) {
-      this.activeTabIndex = 1;
-    }
-  }
 
   initFavoriteProjects() {
     const favoriteProjectsIds = this.localStorageProjectsService.getFavoriteProjectsIds();

@@ -7,8 +7,9 @@ import { LocalStorageProjectsService } from '../local-storage-projects.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectTabType } from './project-tab-types';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'wh-project-details',
@@ -20,12 +21,10 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit {
 
   project: WharfProject;
   isActionsFormVisible = false;
-  editedProjectInstance: WharfProject;
-  buildsTotalCount = 0;
   rowsCount = 10;
   destroyed$ = new Subject<void>();
 
-  public activeTab: ProjectTabType;
+  public activeTabIndex: ProjectTabType;
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
@@ -33,7 +32,9 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit {
     private notificationService: NotificationService,
     private actionsModalStore: ActionsModalStore,
     private projectService: ProjectService,
+    private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +42,21 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.activeTab = this.route.snapshot.queryParams?.tab as ProjectTabType || ProjectTabType.BUILDS;
+    this.activeTabIndex = this.route.snapshot.queryParams?.tab as ProjectTabType || ProjectTabType.BUILDS;
+  }
+
+  public updateQueryParamsWithTabIndex(index: number): void {
+    const queryParams = {
+      tab: this.activeTabIndex,
+    };
+    const urlTree = this.router.createUrlTree(
+      [],
+      {
+        queryParams,
+        relativeTo: this.route,
+      },
+    );
+    this.location.replaceState(urlTree.toString());
   }
 
   reloadProject() {

@@ -1,5 +1,5 @@
 <section>
-  <wh-tabview-x [(activeIndex)]="activeTabIndex">
+  <wh-tabview-x [(activeIndex)]="activeTabIndex" (activeIndexChange)="updateQueryParamsWithTabIndex($event)">
     <wh-tabpanel-x header="All Projects">
       <ng-container *ngTemplateOutlet="template;context:{projects:
         this.projects}"></ng-container>
