@@ -12,6 +12,19 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.3.1 (WIP)
+
+- Added newly generated code for each Swagger-based API clients inside
+  `projects` directory inside repository: (#34)
+
+  - `api-client`: v4.1.0
+  - `import-github-client`: v2.0.0-rc
+  - `import-gitlab-client`: v1.2.0-rc
+  - `import-azuredevops-client`: v1.2.0-rc
+
+  Cleaned up old files, where some collided on case-insensitive file systems,
+  such as `mainAzureDevOpsPrResource.ts` vs `mainAzureDevOpsPRResource.ts`.
+
 ## v1.3.0 (2021-06-10)
 
 - Added logic to the empty GitHub post service. This will now post form
