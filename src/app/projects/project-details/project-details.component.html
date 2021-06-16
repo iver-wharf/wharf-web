@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="project-page-body">
-      <wh-tabview-x *ngIf="project.buildHistory" [(activeIndex)]="activeTabIndex" (activeIndexChange)="updateQueryParamsWithTabIndex($event)">
+      <wh-tabview-x *ngIf="project.buildHistory" [(activeIndex)]="activeTabIndex" (activeIndexChange)="tabviewTrackerService.updateQueryParamsWithTabIndex($event)">
         <wh-tabpanel-x header="Builds">
           <ng-template pTemplate="side-header-override">
             <p-splitButton *ngIf="project.actions"

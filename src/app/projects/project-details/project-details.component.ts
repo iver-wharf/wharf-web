@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { WharfProject } from 'src/app/models/main-project.model';
@@ -9,14 +9,15 @@ import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectTabType } from './project-tab-types';
-import { Location } from '@angular/common';
+import { TabviewIndexTrackerService } from '../../shared/tabview-x/tabview-index-tracker.service';
 
 @Component({
   selector: 'wh-project-details',
   templateUrl: './project-details.component.html',
   styleUrls: ['./project-details.component.scss'],
+  providers: [TabviewIndexTrackerService],
 })
-export class ProjectDetailsComponent implements OnInit, AfterViewInit {
+export class ProjectDetailsComponent implements OnInit {
   @ViewChild('refreshButton') refreshButton;
 
   project: WharfProject;
@@ -32,31 +33,13 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit {
     private notificationService: NotificationService,
     private actionsModalStore: ActionsModalStore,
     private projectService: ProjectService,
-    private router: Router,
     private route: ActivatedRoute,
-    private location: Location,
+    public tabviewTrackerService: TabviewIndexTrackerService,
   ) { }
 
   ngOnInit(): void {
     this.reloadProject();
-  }
-
-  ngAfterViewInit(): void {
-    this.activeTabIndex = this.route.snapshot.queryParams?.tab as ProjectTabType || ProjectTabType.BUILDS;
-  }
-
-  public updateQueryParamsWithTabIndex(index: number): void {
-    const queryParams = {
-      tab: this.activeTabIndex,
-    };
-    const urlTree = this.router.createUrlTree(
-      [],
-      {
-        queryParams,
-        relativeTo: this.route,
-      },
-    );
-    this.location.replaceState(urlTree.toString());
+    this.activeTabIndex = this.tabviewTrackerService.getTabIndexFromQueryParams();
   }
 
   reloadProject() {
