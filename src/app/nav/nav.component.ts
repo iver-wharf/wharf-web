@@ -40,6 +40,7 @@ enum ServiceName {
 export class NavComponent implements OnInit {
   projectItem: MenuItem[];
   items: MenuItem[];
+  documentationItem: MenuItem[];
   userItem: MenuItem[];
 
   remoteVersionStatus = RemoteVersionStatus;
@@ -73,6 +74,10 @@ export class NavComponent implements OnInit {
     this.items = [
       { label: 'BUILDS', disabled: true, icon: 'pi pi-share-alt' },
       { label: 'SETTINGS', disabled: true, icon: 'pi pi-cog' },
+    ];
+
+    this.documentationItem = [
+      { label: 'DOCS', icon: 'pi pi-external-link', url: 'https://iver-wharf.github.io/#/', target: '_blank' },
     ];
 
     this.userItem = [
