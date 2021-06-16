@@ -3,16 +3,19 @@
     <h5><label>URL <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('url').validator"></span>
     <input pInputText type="text" placeholder="URL" formControlName="url" required class="form-input">
+    <p-tag *ngIf="!providerForm.controls.url.valid && providerForm.controls.url.enabled" severity="danger" value="The url is not valid!"></p-tag>
   </div>
   <div class="form-control">
     <h5><label>Token <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('token').validator"></span>
     <input pInputText type="text" placeholder="Token" formControlName="token" class="form-input">
+    <p-tag *ngIf="!providerForm.controls.token.valid && providerForm.controls.token.enabled" severity="danger" value="A token is required!"></p-tag>
   </div>
   <div class="form-control">
     <h5><label>Group <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('group').validator" ></span>
     <input pInputText type="text" placeholder="Group" formControlName="group" class="form-input">
+    <p-tag *ngIf="!providerForm.controls.group.valid && providerForm.controls.group.enabled" severity="danger" value="A group is required!"></p-tag>
   </div>
   <div class="form-control">
     <h5><label>Project </label></h5>
@@ -22,6 +25,7 @@
     <h5><label>User <span class="required">*</span></label></h5>
     <span *ngIf="providerForm.get('user').validator"></span>
     <input pInputText type="text" placeholder="User" formControlName="user" class="form-input">
+    <p-tag *ngIf="!providerForm.controls.user.valid && providerForm.controls.user.enabled" severity="danger" value="A user is required!"></p-tag>
   </div>
   <div class="bottom-part">
     <p-button label="IMPORT" type="submit"[disabled]="!providerForm.valid"></p-button>

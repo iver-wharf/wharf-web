@@ -12,7 +12,12 @@ import { GithubComponent } from './provider-form/github/github.component';
 import { AzureDevOpsComponent } from './provider-form/azuredevops/azuredevops.component';
 import { MenuModule } from 'primeng/menu';
 import { InputTextModule } from 'primeng/inputtext';
-import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLabApiModule } from 'projects/projects.module';
+import {
+  ConfiguredAzureDevOpsModule,
+  ConfiguredGitHubApiModule,
+  ConfiguredGitLabApiModule,
+} from 'projects/projects.module';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLa
   imports: [
     ButtonModule,
     CommonModule,
+    ConfiguredAzureDevOpsModule,
+    ConfiguredGitHubApiModule,
+    ConfiguredGitLabApiModule,
     DialogModule,
     DropdownModule,
     FormsModule,
@@ -32,13 +40,12 @@ import { ConfiguredAzureDevOpsModule, ConfiguredGitHubApiModule, ConfiguredGitLa
     MenuModule,
     ReactiveFormsModule,
     SplitButtonModule,
-    ConfiguredAzureDevOpsModule,
-    ConfiguredGitHubApiModule,
-    ConfiguredGitLabApiModule,
+    TagModule,
   ],
   providers: [],
   exports: [
     ProviderComponent,
   ],
 })
-export class ProvidersModule { }
+export class ProvidersModule {
+}
