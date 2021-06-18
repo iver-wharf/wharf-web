@@ -31,6 +31,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   Cleaned up old files, where some collided on case-insensitive file systems,
   such as `mainAzureDevOpsPrResource.ts` vs `mainAzureDevOpsPRResource.ts`.
 
+- Changed version of PrimeNG from v12.0.0-rc to v12.0.0. (#42)
+
 - Fixed provider APIs getting main API's config, leading to all provider API
   requests pointing to wrong base URL. (#35)
 
@@ -57,7 +59,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed version of Angular from v9 to v12. Nothing major for end users.
   (#27, #32)
 
-- Changed version of PrimeNG from v11 to v12 and PrimeIcons from v2 to v4.
+- Changed version of PrimeNG from v11 to v12-rc and PrimeIcons from v2 to v4.
   The interface looks the same, but the new icons might take time to getting
   used to. (#28)
 
