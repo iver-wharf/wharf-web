@@ -1,4 +1,4 @@
-FROM node:14.17.0-alpine3.11 AS build
+FROM node:14.17.1-alpine3.11 AS build
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -27,7 +27,7 @@ RUN deploy/update-typescript-environments.sh src/environments/environment.prod.t
     && npm run build-clients \
     && npm run build-prod
 
-FROM nginx:1.19.10-alpine
+FROM nginx:1.21.0-alpine
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
 
