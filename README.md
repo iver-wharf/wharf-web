@@ -2,6 +2,8 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/89402a769e2d4b70ba15ff29992ae6ed)](https://www.codacy.com/gh/iver-wharf/wharf-web/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=iver-wharf/wharf-web&amp;utm_campaign=Badge_Grade)
 
+![Wharf web screenshot](docs/screenshot.jpg)
+
 ## Prerequisites
 
 - **NPM v6.x.x,** which comes with Node.js LTS.
