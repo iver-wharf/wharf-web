@@ -19,6 +19,31 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   of importance as Clair in Quay.io noticed a HIGH vulnerability in it:
   <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3517> (#43)
 
+- Changed version of numerous packages: (#45)
+
+  - Dependencies:
+
+    - `@angular/...` from v12.0.2 to v12.1.1
+    - `fortawesome/fontawesome-free` from v5.13.0 to v5.15.3
+    - `prismjs` from v1.23.0 to v1.24.1
+    - `rxjs` from v6.5.4 to v7.2.0
+    - `tslib` from v2.0.0 to 2.3.0
+
+  - Development dependencies:
+
+    - `@angular/...` from v12.0.2 to v12.1.1
+    - `@angular-devkit/...` from v12.0.2 to v12.1.1
+    - `@angular-eslint/...` from v12.1.1 to v12.2.0
+    - `eslint` from v7.27.0 to v7.30.0
+    - `eslint-plugin-jsdoc` from v35.1.2 to v35.4.2
+    - `jasmine-core` from v3.6.0 to v3.8.0
+    - `jasmine-spec-reporter` from v5.0.0 to v7.0.0
+    - `karma` from v6.3.3 to v6.3.4
+    - `karma-jasmine-html-reporter` from v1.5.0 to v1.6.0
+    - `ng-packagr` from v12.0.2 to v12.1.1
+    - `ts-node` from 8.3.0 to 10.0.0
+    - `typescript` from v4.2.4 to v4.3.5
+
 ## v1.3.1 (2021-07-02)
 
 - Added missing file
