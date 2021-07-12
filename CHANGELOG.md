@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.3.2 (WIP)
+## v1.3.2 (2021-07-12)
 
 - Changed version of nginx base image in Dockerfile from 1.19.10 to 1.21.0 and
   node build image from 14.17.0 to 14.17.1. The nginx base image is more
