@@ -27,7 +27,7 @@ RUN deploy/update-typescript-environments.sh src/environments/environment.prod.t
     && npm run build-clients \
     && npm run build-prod
 
-FROM nginx:1.21.0-alpine
+FROM nginx:1.21.1-alpine
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
 

@@ -12,12 +12,20 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.3.3 (WIP)
+
+- Security fix by changing version of nginx base image in Dockerfile from
+  1.21.0-alpine to 1.21.1-alpine. Update in v1.3.2 was meant to resolve this
+  but didn't, and have now been confirmed to be fixed by using the
+  1.21.1-alpine image tag:
+  <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3517> (#49)
+
 ## v1.3.2 (2021-07-12)
 
-- Changed version of nginx base image in Dockerfile from 1.19.10 to 1.21.0 and
-  node build image from 14.17.0 to 14.17.1. The nginx base image is more
-  of importance as Clair in Quay.io noticed a HIGH vulnerability in it:
-  <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3517> (#43)
+- Changed version of nginx base image in Dockerfile: (#43)
+
+  - `nginx` from 1.19.10 to 1.21.0.
+  - `node` from 14.17.0 to 14.17.1.
 
 - Changed version of numerous packages: (#45)
 
