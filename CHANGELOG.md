@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.3.3 (2021-07-12)
+## v1.3.3 (2021-07-13)
 
 - Security fix by changing version of nginx base image in Dockerfile from
   1.21.0-alpine to 1.21.1-alpine. Update in v1.3.2 was meant to resolve this
