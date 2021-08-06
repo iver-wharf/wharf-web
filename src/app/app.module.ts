@@ -17,10 +17,17 @@ import { SharedModule } from './shared/pipes/shared.module';
 import { NavModule } from './nav/nav.module';
 import { LicensesModule } from './licenses/licenses.module';
 import { AuthConfigModule } from './auth/auth-config.module';
+import { DialogModule } from 'primeng/dialog';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './auth/login-modal/login.component';
+import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { filter } from 'rxjs/operators';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +43,9 @@ import { AuthConfigModule } from './auth/auth-config.module';
     TooltipModule,
     SharedModule,
     AuthConfigModule,
+    DialogModule,
+    RouterModule,
+    ButtonModule,
   ],
   providers: [
     {
@@ -52,4 +62,4 @@ import { AuthConfigModule } from './auth/auth-config.module';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LicensesService } from '../shared/licenses/licenses.service';
+import { Router } from '@angular/router';
 
 enum RemoteVersionStatus {
   Pending,
@@ -43,6 +44,7 @@ export class NavComponent implements OnInit {
   projectItem: MenuItem[];
   items: MenuItem[];
   documentationItem: MenuItem[];
+  loginItem: MenuItem[];
   userItem: MenuItem[];
 
   remoteVersionStatus = RemoteVersionStatus;
@@ -63,6 +65,7 @@ export class NavComponent implements OnInit {
     private apiMeta: ApiMeta,
     private ref: ChangeDetectorRef,
     private licensesService: LicensesService,
+    private router: Router,
   ) { }
 
   get env() {
@@ -82,6 +85,9 @@ export class NavComponent implements OnInit {
     this.documentationItem = [
       { label: 'DOCS', icon: 'pi pi-external-link', url: 'https://iver-wharf.github.io/#/', target: '_blank' },
     ];
+    this.loginItem = [
+      { label: 'LOGIN', icon: 'pi pi-sign-in', command: ()  => this.router.navigate(['/login'])},
+    ]
 
     this.userItem = [
       { label: 'user.name', disabled: true, icon: 'pi pi-user' },
