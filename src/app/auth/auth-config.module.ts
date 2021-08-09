@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AuthModule, EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
-import { LogLevel } from '../../../../angular-auth-oidc-client/dist/angular-auth-oidc-client';
-import { filter } from 'rxjs/operators';
+import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 
 
 @NgModule({
@@ -28,7 +26,7 @@ import { filter } from 'rxjs/operators';
   ],
   exports: [AuthModule],
   declarations: [],
-  providers: []
+  providers: [],
 })
 export class AuthConfigModule {
 

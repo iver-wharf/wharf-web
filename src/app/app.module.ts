@@ -19,7 +19,7 @@ import { LicensesModule } from './licenses/licenses.module';
 import { AuthConfigModule } from './auth/auth-config.module';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './auth/login-modal/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
 import { filter } from 'rxjs/operators';
 import { ButtonModule } from 'primeng/button';

@@ -4,7 +4,7 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { BuildDetailsComponent } from './builds/build-details/build-details.component';
 import { LicensesComponent } from './licenses/licenses.component';
-import { LoginComponent } from './auth/login-modal/login.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [
