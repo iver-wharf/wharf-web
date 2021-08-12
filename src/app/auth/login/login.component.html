@@ -1,5 +1,6 @@
 <!-- From https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app -->
 <div *ngIf="isAuthenticated; else noAuth">
+  <p-button (click)="fetchConfig()">Fetch Config</p-button>
   <p-button (click)="logout()">Logout</p-button>
   <p-button (click)="logoffAndRevokeTokens()">Logout and revoke tokens</p-button>
   <p-button (click)="revokeAccessToken()">Revoke access token</p-button>
@@ -19,7 +20,8 @@
 </div>
 
 <ng-template #noAuth>
-  <button (click)="login()">Login</button>
+  <p-button (click)="fetchConfig()">Fetch Config</p-button>
+  <p-button (click)="login()">Login</p-button>
   <hr />
 </ng-template>
 

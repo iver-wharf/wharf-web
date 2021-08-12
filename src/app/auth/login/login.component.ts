@@ -27,12 +27,23 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.fetchConfig();
+  }
+
+  fetchConfig() {
+    this.oidcSecurityService.
     this.configuration = this.oidcSecurityService.getConfiguration();
     this.userData$ = this.oidcSecurityService.userData$;
+    this.userData$.subscribe(userData => {
+      if (userData.userData == null) {
+        console.warn('User data is null.');
+        return;
+      }
+      debugger;
+    });
 
     this.oidcSecurityService.isAuthenticated$.subscribe(({ isAuthenticated }) => {
       this.isAuthenticated = isAuthenticated;
-
       console.warn('authenticated: ', isAuthenticated);
     });
   }
