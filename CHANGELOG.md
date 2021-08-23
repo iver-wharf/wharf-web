@@ -12,6 +12,12 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.4.0 (WIP)
+
+- Added toast message support for IETF RFC-7807 formatted error responses.
+  These toasts provide better help for resolving issues, and include a link to
+  the error in question's documentation page. (#54)
+
 ## v1.3.3 (2021-07-13)
 
 - Security fix by changing version of nginx base image in Dockerfile from
