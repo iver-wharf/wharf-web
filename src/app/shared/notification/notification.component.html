@@ -2,7 +2,7 @@
   <p-toast sticky="true" (onClose)="clear()">
     <ng-template let-message pTemplate="message">
       <ng-container
-        *ngTemplateOutlet="message.severity === 'error' ? errorToastContent : toastContent;context:{message: message}">
+        *ngTemplateOutlet="getToastTemplate(message);context:{message:message}">
       </ng-container>
     </ng-template>
   </p-toast>
@@ -24,6 +24,15 @@
   </button>
 </ng-template>
 
-
-
-
+<ng-template #problemToastContent let-message="message">
+  <h3>{{message.summary}}</h3>
+  <p id="message-details">{{message.detail}}</p>
+  <div id="message-errors" *ngFor="let error of message.data.errors">
+    <p>{{error}}</p>
+  </div>
+  <a href={{message.data.type}} target="_blank"><button pButton type="button" label="Read more"
+      class="p-button-secondary"></button></a>
+  <button pButton type="button" (click)="copyToClipboard(message.detail)" label="Copy error message"
+    class="p-button-secondary">
+  </button>
+</ng-template>
