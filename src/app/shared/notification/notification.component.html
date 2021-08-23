@@ -30,8 +30,9 @@
   <div id="message-errors" *ngFor="let error of message.data.errors">
     <p>{{error}}</p>
   </div>
-  <a href={{message.data.type}} target="_blank"><button pButton type="button" label="Read more"
-      class="p-button-secondary"></button></a>
+  <a pButton class="p-button-secondary"
+    *ngIf="message.data.type !== '' && message.data.type !== undefined && message.data.type !== 'about:blank'"
+    href={{message.data.type}} target="_blank" label="Read more"></a>
   <button pButton type="button" (click)="copyToClipboard(message.detail)" label="Copy error message"
     class="p-button-secondary">
   </button>

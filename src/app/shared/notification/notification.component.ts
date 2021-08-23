@@ -7,9 +7,9 @@ import { Message } from 'primeng/api';
   templateUrl: './notification.component.html',
 })
 export class NotificationComponent implements OnInit {
-  @ViewChild('toastContent') private normalToastTemplate: TemplateRef<object>;
-  @ViewChild('errorToastContent') private errorToastTemplate: TemplateRef<object>;
-  @ViewChild('problemToastContent') private problemToastTemplate: TemplateRef<object>;
+  @ViewChild('toastContent') private normalToastTemplate: TemplateRef<any>;
+  @ViewChild('errorToastContent') private errorToastTemplate: TemplateRef<any>;
+  @ViewChild('problemToastContent') private problemToastTemplate: TemplateRef<any>;
 
   constructor(private notificationService: NotificationService) { }
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class NotificationComponent implements OnInit {
   }
 
   getToastTemplate(message: Message) {
-    if (message.data !== undefined) {
+    if (message.data?.messageType === 'problem') {
       return this.problemToastTemplate;
     } else if (message.severity === 'error') {
       return this.errorToastTemplate;

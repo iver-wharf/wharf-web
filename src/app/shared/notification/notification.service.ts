@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ProblemResponse } from 'src/app/models/problem-response.model';
+import { ProblemResponse } from 'api-client';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +53,7 @@ export class NotificationService {
         errors,
         status,
         instance,
+        messageType: 'problem',
       },
     });
   }

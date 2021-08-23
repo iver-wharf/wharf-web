@@ -24,8 +24,15 @@ body .p-toast .p-toast-message {
   &.p-toast-message-error {
     background-color: $wharf_status_red !important;
 
+    a,
     button {
       margin-right: 0.8em;
+    }
+
+    a:hover {
+      text-decoration: none;
+      background: #546e7a;
+      color: #fff;
     }
   }
 }
