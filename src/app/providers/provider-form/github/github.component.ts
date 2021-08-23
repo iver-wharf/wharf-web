@@ -38,8 +38,9 @@ export class GithubComponent {
           this.providersService.triggerCloseForm(this.providerForm);
         },
         err => {
-          this.globalErrorHandler.handleError(err);
           console.log(err);
+          this.globalErrorHandler.handleError(err);
+          this.providerForm.enable();
         },
         () => {
           this.providerForm.enable();
