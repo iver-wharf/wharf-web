@@ -31,7 +31,7 @@
     <p>{{error}}</p>
   </div>
   <a pButton class="p-button-secondary"
-    *ngIf="message.data.type !== '' && message.data.type !== undefined && message.data.type !== 'about:blank'"
+    *ngIf="message.data.type && message.data.type !== 'about:blank'"
     href={{message.data.type}} target="_blank" label="Read more"></a>
   <button pButton type="button" (click)="copyToClipboard(message.detail)" label="Copy error message"
     class="p-button-secondary">
