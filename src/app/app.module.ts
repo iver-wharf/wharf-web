@@ -23,6 +23,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
 import { filter } from 'rxjs/operators';
 import { ButtonModule } from 'primeng/button';
+import { WharfAuthInterceptor } from './auth/wharf-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ButtonModule } from 'primeng/button';
       ],
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true },
     SyntaxHighlightService,
     Title,
   ],

@@ -19,10 +19,11 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
         logLevel: LogLevel.Debug,
         maxIdTokenIatOffsetAllowedInSeconds: 600,
         issValidationOff: false,
-        autoUserInfo: false,
+        autoUserInfo: true,
         customParamsAuthRequest: {
           prompt: 'select_account', // login, consent
         },
+        storage: localStorage,
       },
     }),
   ],
