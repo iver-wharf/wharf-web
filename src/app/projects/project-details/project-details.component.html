@@ -4,9 +4,8 @@
       <div class="top">
         <span class="breadcrumbs"><a routerLink="/">Projects &gt;</a>
           <h4>{{project.name}}</h4>
-          <i [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
-            ? 'pi pi-star favorite-project-icon' : 'pi pi-star-o favorite-project-icon'">
-          </i>
+          <i class="icon" (click)="onFavoriteIconClicked($event)" [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
+            ? 'pi pi-star favorite-project-icon' : 'pi pi-star-o favorite-project-icon'"></i>
         </span>
         <div class="top-right">
           <div class="id">
@@ -32,8 +31,7 @@
       <wh-tabview-x *ngIf="project.buildHistory">
         <wh-tabpanel-x header="Builds">
           <ng-template pTemplate="side-header-override">
-            <p-splitButton *ngIf="project.actions"
-              class="button-container"
+            <p-splitButton *ngIf="project.actions" class="button-container"
               label="{{projectUtilsService.runAllActionName}}"
               [model]="projectUtilsService.getActionsMenuItems(project)"
               (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName,project)">
@@ -43,15 +41,13 @@
         </wh-tabpanel-x>
         <wh-tabpanel-x>
           <ng-template pTemplate="header">
-            <span class="p-tabview-title">Configuration <i class="pi pi-exclamation-circle" *ngIf="!project.buildDefinition"></i></span>
+            <span class="p-tabview-title">Configuration <i class="pi pi-exclamation-circle"
+                *ngIf="!project.buildDefinition"></i></span>
           </ng-template>
           <ng-container *ngTemplateOutlet="configuration"></ng-container>
           <ng-template pTemplate="side-header-override">
-            <wh-project-refresh-button
-              #refreshButton
-              (refreshed)="reloadProject()"
-              [project]="project"
-              ></wh-project-refresh-button>
+            <wh-project-refresh-button #refreshButton (refreshed)="reloadProject()" [project]="project">
+            </wh-project-refresh-button>
           </ng-template>
         </wh-tabpanel-x>
         <wh-tabpanel-x header="Schedule" disabled="true" tooltip='This feature has not yet been implemented.
@@ -67,7 +63,8 @@
   </ng-template>
 
   <ng-template #configuration>
-    <wh-project-details-configuration [project]="project" (wantToRefresh)="refreshProject()"></wh-project-details-configuration>
+    <wh-project-details-configuration [project]="project" (wantToRefresh)="refreshProject()">
+    </wh-project-details-configuration>
   </ng-template>
 
   <ng-template #schedule>

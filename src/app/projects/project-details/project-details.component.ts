@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { WharfProject } from 'src/app/models/main-project.model';
@@ -9,11 +9,17 @@ import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
 
+export interface ProjectFavoriteClickEvent {
+  projectId: number;
+}
+
 @Component({
   selector: 'wh-project-details',
   templateUrl: './project-details.component.html',
 })
 export class ProjectDetailsComponent implements OnInit {
+  @Output() favoriteClick = new EventEmitter<ProjectFavoriteClickEvent>();
+
   @ViewChild('refreshButton') refreshButton;
 
   project: WharfProject;
@@ -67,5 +73,11 @@ export class ProjectDetailsComponent implements OnInit {
       this.notificationService.showWarning('Failed to copy to clipboard');
     }
     selection.removeAllRanges();
+  }
+
+  onFavoriteIconClicked(event: MouseEvent) {
+    event.stopPropagation();
+    this.localStorageProjectsService.handleFavoriteButtonClick(this.project.projectId);
+    this.favoriteClick.emit({ projectId: this.project.projectId });
   }
 }
