@@ -13,9 +13,14 @@ export class WharfAuthInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes(this.configService.getConfig().backendUrls.api)) {
-      req.params.set('Authorization', 'Bearer ' + 'asd');//this.oidcSecurityService.getIdToken());
+    if (this.configService.hasConfig()){
+      const apiUrl = this.configService.getApiConfig().basePath;
+      if (req.url.includes(apiUrl)) {
+        // TODO This still needs work after token validation is in place. Should be base 64encoded somehow.
+        req.params.set('Authorization', 'Bearer ' + this.oidcSecurityService.getIdToken());
+      }
     }
+
     return next.handle(req);
   }
 }
