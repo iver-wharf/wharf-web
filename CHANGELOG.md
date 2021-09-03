@@ -12,6 +12,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.3.4 (WIP)
+
+- Fixed page not scrolling down when new build logs arrive in bulk and the page
+  is scrolled to the bottom. (#60)
+
 ## v1.3.3 (2021-07-13)
 
 - Security fix by changing version of nginx base image in Dockerfile from
