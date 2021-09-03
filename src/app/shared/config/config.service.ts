@@ -56,6 +56,10 @@ export class ConfigService {
     return this.config;
   }
 
+  hasConfig(): boolean {
+    return  !! this.config;
+  }
+
   getApiConfig(): Configuration {
     return new Configuration({
       basePath: upGet(upGet(this.config, 'backendUrls'), 'api'),
