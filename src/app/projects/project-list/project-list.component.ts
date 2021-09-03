@@ -106,10 +106,13 @@ export class ProjectListComponent implements OnInit {
   }
 
   private updateTitle() {
-    if (this.activeTabIndex === 1) {
-      this.titleService.setTitle('Favorite projects - Wharf');
-    } else {
-      this.titleService.setTitle('All projects - Wharf');
+    switch (this.activeTabIndex) {
+      case 0:
+        return this.titleService.setTitle('All projects - Wharf');
+      case 1:
+        return this.titleService.setTitle('Favorite projects - Wharf');
+      default:
+        return this.titleService.setTitle('Wharf');
     }
   }
 }

@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'wh-project-details',
@@ -22,6 +23,7 @@ export class ProjectDetailsComponent implements OnInit {
   buildsTotalCount = 0;
   rowsCount = 10;
   destroyed$ = new Subject<void>();
+  activeTabIndex = 0;
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
@@ -30,10 +32,16 @@ export class ProjectDetailsComponent implements OnInit {
     private actionsModalStore: ActionsModalStore,
     private projectService: ProjectService,
     private route: ActivatedRoute,
+    private titleService: Title,
   ) { }
 
   ngOnInit(): void {
     this.reloadProject();
+    this.updateTitle();
+  }
+
+  onTabChanged() {
+    this.updateTitle();
   }
 
   reloadProject() {
@@ -42,6 +50,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.project = project;
       // Temporary initialization to render table, after that loadBuildsLazy handles builds fetching
       this.project.buildHistory = [];
+      this.updateTitle();
     });
 
     this.actionsModalStore.isVisible$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.isActionsFormVisible = x);
@@ -67,5 +76,18 @@ export class ProjectDetailsComponent implements OnInit {
       this.notificationService.showWarning('Failed to copy to clipboard');
     }
     selection.removeAllRanges();
+  }
+
+  private updateTitle() {
+    switch (this.activeTabIndex) {
+      case 0:
+        return this.titleService.setTitle(`Builds - ${this.project.name} - Wharf`);
+      case 1:
+        return this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
+      case 2:
+        return this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
+      default:
+        return this.titleService.setTitle(`${this.project.name} - Wharf`);
+    }
   }
 }

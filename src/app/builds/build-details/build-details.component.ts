@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BuildService, MainLog } from 'api-client';
 import { WharfProject } from 'src/app/models/main-project.model';
 import { BuildStatus } from '../../models/build-status';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'wh-build-details',
@@ -18,11 +19,13 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   listener: any = null;
   logEvents: MainLog[] = [];
   container: HTMLElement;
+  activeTabIndex = 0;
 
   constructor(
     private route: ActivatedRoute,
     private buildService: BuildService,
-    private configService: ConfigService) { }
+    private configService: ConfigService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
     this.buildId = this.route.snapshot.paramMap.get('buildId');
@@ -30,6 +33,8 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
       this.buildStatus = build.statusId;
       this.connect();
     });
+
+    this.updateTitle();
   }
 
   ngAfterViewChecked(): void {
@@ -68,6 +73,10 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     this.source?.removeEventListener('message', this.listener);
   }
 
+  onTabChanged() {
+    this.updateTitle();
+  }
+
   private stayScrolledToBottom(): void {
     if (this.isScrolledToBottom()) {
       this.scrollToBottom();
@@ -81,5 +90,16 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   private isScrolledToBottom(): boolean {
     // The -2 is to have some margin for error
     return (window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 2;
+  }
+
+  private updateTitle() {
+    switch (this.activeTabIndex) {
+      case 0:
+        return this.titleService.setTitle('Logs - Wharf');
+      case 1:
+        return this.titleService.setTitle('Artifacts - Wharf');
+      default:
+        return this.titleService.setTitle('Wharf');
+    }
   }
 }
