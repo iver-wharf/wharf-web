@@ -79,6 +79,19 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   private updateTitle() {
+    if (!this.project) {
+      switch (this.activeTabIndex) {
+        case 0:
+          return this.titleService.setTitle(`Builds - Wharf`);
+        case 1:
+          return this.titleService.setTitle(`Configuration - Wharf`);
+        case 2:
+          return this.titleService.setTitle(`Schedule - Wharf`);
+        default:
+          return this.titleService.setTitle(`Project - Wharf`);
+      }
+    }
+
     switch (this.activeTabIndex) {
       case 0:
         return this.titleService.setTitle(`Builds - ${this.project.name} - Wharf`);

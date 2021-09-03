@@ -1,7 +1,7 @@
 import { ConfigService } from './../../shared/config/config.service';
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BuildService, MainLog } from 'api-client';
+import { BuildService, MainLog, ProjectService } from 'api-client';
 import { WharfProject } from 'src/app/models/main-project.model';
 import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './build-details.component.html',
 })
 export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecked {
-  buildId: string;
+  buildId: number;
   project: WharfProject;
   buildStatus?: BuildStatus;
   myData: any;
@@ -23,18 +23,22 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
 
   constructor(
     private route: ActivatedRoute,
+    private projectService: ProjectService,
     private buildService: BuildService,
     private configService: ConfigService,
     private titleService: Title) { }
 
   ngOnInit(): void {
-    this.buildId = this.route.snapshot.paramMap.get('buildId');
-    this.buildService.buildBuildidGet(Number(this.buildId)).subscribe(build => {
+    this.buildId = Number(this.route.snapshot.paramMap.get('buildId'));
+    this.buildService.buildBuildidGet(this.buildId).subscribe(build => {
       this.buildStatus = build.statusId;
       this.connect();
     });
-
-    this.updateTitle();
+    const projectId = Number(this.route.snapshot.paramMap.get('projectId'));
+    this.projectService.projectProjectidGet(projectId).subscribe(project => {
+      this.project = project;
+      this.updateTitle();
+    });
   }
 
   ngAfterViewChecked(): void {
@@ -63,7 +67,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
         console.warn(`Unknown build status ID '${this.buildStatus}' on build ID '${this.buildId}'.`);
       }
     }
-    this.buildService.buildBuildidLogGet(Number(this.buildId)).subscribe(log => {
+    this.buildService.buildBuildidLogGet(this.buildId).subscribe(log => {
       this.logEvents = log;
       this.logEvents.sort((a, b) => a.logId - b.logId);
     });
@@ -93,13 +97,24 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   private updateTitle() {
+    if (!this.project?.name) {
+      switch (this.activeTabIndex) {
+        case 0:
+          return this.titleService.setTitle(`Logs - Wharf`);
+        case 1:
+          return this.titleService.setTitle(`Artifacts - Wharf`);
+        default:
+          return this.titleService.setTitle(`Build - Wharf`);
+      }
+    }
+
     switch (this.activeTabIndex) {
       case 0:
-        return this.titleService.setTitle('Logs - Wharf');
+        return this.titleService.setTitle(`Logs - ${this.project.name} - Wharf`);
       case 1:
-        return this.titleService.setTitle('Artifacts - Wharf');
+        return this.titleService.setTitle(`Artifacts - ${this.project.name} - Wharf`);
       default:
-        return this.titleService.setTitle('Wharf');
+        return this.titleService.setTitle(`Build - ${this.project.name} - Wharf`);
     }
   }
 }
