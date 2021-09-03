@@ -12,6 +12,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.4.0 (WIP)
+
+- Added functionality for favoriting/unfavoriting a project in the project
+  details view. (#58)
+
 ## v1.3.3 (2021-07-13)
 
 - Security fix by changing version of nginx base image in Dockerfile from
