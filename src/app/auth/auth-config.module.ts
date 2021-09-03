@@ -23,7 +23,6 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
         customParamsAuthRequest: {
           prompt: 'select_account', // login, consent
         },
-        storage: localStorage,
       },
     }),
   ],
