@@ -1,0 +1,22 @@
+button[icon-only] {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+
+  ::placeholder {
+    color: transparent;
+  }
+
+  .icon {
+    &:hover {
+      cursor: pointer;
+    }
+
+    margin: 0 0.62rem 0 0.62rem;
+    color: $wharf_table_icon_color;
+
+    &.pi {
+      font-size: 1.1rem !important;
+    }
+  }
+}
