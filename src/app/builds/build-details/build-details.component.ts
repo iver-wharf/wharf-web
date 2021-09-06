@@ -1,10 +1,14 @@
 import { ConfigService } from './../../shared/config/config.service';
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BuildService, MainLog, ProjectService } from 'api-client';
-import { WharfProject } from 'src/app/models/main-project.model';
+import { BuildService, MainLog } from 'api-client';
 import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
+
+const enum Tabs {
+  LOGS = 0,
+  ARTIFACTS,
+}
 
 @Component({
   selector: 'wh-build-details',
@@ -12,7 +16,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecked {
   buildId: number;
-  project: WharfProject;
   buildStatus?: BuildStatus;
   myData: any;
   source: EventSource;
@@ -23,7 +26,6 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
 
   constructor(
     private route: ActivatedRoute,
-    private projectService: ProjectService,
     private buildService: BuildService,
     private configService: ConfigService,
     private titleService: Title) { }
@@ -33,11 +35,6 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     this.buildService.buildBuildidGet(this.buildId).subscribe(build => {
       this.buildStatus = build.statusId;
       this.connect();
-    });
-    const projectId = Number(this.route.snapshot.paramMap.get('projectId'));
-    this.projectService.projectProjectidGet(projectId).subscribe(project => {
-      this.project = project;
-      this.updateTitle();
     });
   }
 
@@ -97,24 +94,10 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   private updateTitle() {
-    if (!this.project?.name) {
-      switch (this.activeTabIndex) {
-        case 0:
-          return this.titleService.setTitle(`Logs - Wharf`);
-        case 1:
-          return this.titleService.setTitle(`Artifacts - Wharf`);
-        default:
-          return this.titleService.setTitle(`Build - Wharf`);
-      }
-    }
-
-    switch (this.activeTabIndex) {
-      case 0:
-        return this.titleService.setTitle(`Logs - ${this.project.name} - Wharf`);
-      case 1:
-        return this.titleService.setTitle(`Artifacts - ${this.project.name} - Wharf`);
-      default:
-        return this.titleService.setTitle(`Build - ${this.project.name} - Wharf`);
+    if (this.activeTabIndex === Tabs.LOGS) {
+      this.titleService.setTitle(`Build ${this.buildId} - Wharf`);
+    } else if (this.activeTabIndex === Tabs.ARTIFACTS) {
+      this.titleService.setTitle(`Artifacts - Build ${this.buildId} - Wharf`);
     }
   }
 }

@@ -12,6 +12,11 @@ import { ProjectRefreshedEvent } from '../project-refresh';
 import { LocalStorageProjectsService } from './../local-storage-projects.service';
 import { Title } from '@angular/platform-browser';
 
+const enum Tabs {
+  ALL = 0,
+  FAVORITES,
+}
+
 @Component({
   selector: 'wh-project-list',
   templateUrl: './project-list.component.html',
@@ -106,10 +111,10 @@ export class ProjectListComponent implements OnInit {
   }
 
   private updateTitle() {
-    if (this.activeTabIndex === 1) {
-      this.titleService.setTitle('Favorite projects - Wharf');
-    } else {
+    if (this.activeTabIndex === Tabs.ALL) {
       this.titleService.setTitle('All projects - Wharf');
+    } else if (this.activeTabIndex === Tabs.FAVORITES) {
+      this.titleService.setTitle('Favorite projects - Wharf');
     }
   }
 }

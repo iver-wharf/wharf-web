@@ -10,6 +10,12 @@ import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
+const enum Tabs {
+  BUILDS = 0,
+  CONFIGURATION,
+  SCHEDULE,
+}
+
 @Component({
   selector: 'wh-project-details',
   templateUrl: './project-details.component.html',
@@ -80,27 +86,15 @@ export class ProjectDetailsComponent implements OnInit {
 
   private updateTitle() {
     if (!this.project) {
-      switch (this.activeTabIndex) {
-        case 0:
-          return this.titleService.setTitle(`Builds - Wharf`);
-        case 1:
-          return this.titleService.setTitle(`Configuration - Wharf`);
-        case 2:
-          return this.titleService.setTitle(`Schedule - Wharf`);
-        default:
-          return this.titleService.setTitle(`Project - Wharf`);
+      this.titleService.setTitle(`Loading... - Wharf`);
+    } else {
+      if (this.activeTabIndex === Tabs.BUILDS) {
+        this.titleService.setTitle(`${this.project.name} - Wharf`);
+      } else if (this.activeTabIndex === Tabs.CONFIGURATION) {
+        this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
+      } else if (this.activeTabIndex === Tabs.SCHEDULE) {
+        this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
       }
-    }
-
-    switch (this.activeTabIndex) {
-      case 0:
-        return this.titleService.setTitle(`Builds - ${this.project.name} - Wharf`);
-      case 1:
-        return this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
-      case 2:
-        return this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
-      default:
-        return this.titleService.setTitle(`${this.project.name} - Wharf`);
     }
   }
 }
