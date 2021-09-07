@@ -87,14 +87,12 @@ export class ProjectDetailsComponent implements OnInit {
   private updateTitle() {
     if (!this.project) {
       this.titleService.setTitle(`Loading... - Wharf`);
-    } else {
-      if (this.activeTabIndex === Tabs.BUILDS) {
-        this.titleService.setTitle(`${this.project.name} - Wharf`);
-      } else if (this.activeTabIndex === Tabs.CONFIGURATION) {
-        this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
-      } else if (this.activeTabIndex === Tabs.SCHEDULE) {
-        this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
-      }
+    } else if (this.activeTabIndex === Tabs.BUILDS) {
+      this.titleService.setTitle(`${this.project.name} - Wharf`);
+    } else if (this.activeTabIndex === Tabs.CONFIGURATION) {
+      this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
+    } else if (this.activeTabIndex === Tabs.SCHEDULE) {
+      this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
     }
   }
 }
