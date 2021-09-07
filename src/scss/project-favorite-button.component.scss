@@ -1,0 +1,19 @@
+wh-project-favorite-button {
+  button {
+    background: transparent;
+    border: none !important;
+
+    &>i {
+      &:hover {
+        cursor: pointer;
+      }
+
+      margin: 0 0.62rem 0 0.62rem;
+      color: $wharf_table_icon_color;
+
+      &.pi {
+        font-size: 1.1rem !important;
+      }
+    }
+  }
+}

@@ -11,8 +11,5 @@
 </td>
 <td class="col-quickactions">
   <wh-project-refresh-icon (refreshed)="refreshed.emit($event)" [project]="project"></wh-project-refresh-icon>
-  <button icon-only (click)="onFavoriteIconClicked($event)" aria-label="Toggle project as favorite">
-    <i [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
-    ? 'icon pi pi-star' : 'icon pi pi-star-o'"></i>
-  </button>
+  <wh-project-favorite-button [projectId]="project.projectId"></wh-project-favorite-button>
 </td>
