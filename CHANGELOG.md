@@ -12,10 +12,13 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.3.4 (WIP)
+## v1.4.0 (WIP)
 
 - Fixed page not scrolling down when new build logs arrive in bulk and the page
   is scrolled to the bottom. (#60)
+
+- Changed tab title to be descriptive, changing based on what view you're in.
+  Previously it was just `wharf` no matter the view. (#59)
 
 ## v1.3.3 (2021-07-13)
 

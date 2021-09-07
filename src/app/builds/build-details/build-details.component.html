@@ -1,5 +1,5 @@
 <section class="projects-container">
-  <wh-tabview-x>
+  <wh-tabview-x [(activeIndex)]="activeTabIndex" (onChange)="onTabChanged()">
     <wh-tabpanel-x id="build-logs" header="Logs">
       <ng-container *ngTemplateOutlet="buildDataView"></ng-container>
     </wh-tabpanel-x>
@@ -8,7 +8,7 @@
     </wh-tabpanel-x>
   </wh-tabview-x>
 
-  <ng-template #buildDataView >
+  <ng-template #buildDataView>
     <div id="console-log">
       <div>
         <span class="no-logs" *ngIf="logEvents.length === 0">
@@ -21,7 +21,7 @@
       </div>
     </div>
   </ng-template>
-  <ng-template #artifactsView >
+  <ng-template #artifactsView>
     <wh-artifacts-list [buildId]="buildId"></wh-artifacts-list>
   </ng-template>
 </section>
