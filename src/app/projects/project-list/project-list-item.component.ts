@@ -2,12 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core
 import { WharfProject } from 'src/app/models/main-project.model';
 import { NgChanges } from 'src/app/shared/util/ngchanges';
 import { LocalStorageProjectsService } from '../local-storage-projects.service';
+import { ProjectFavoriteClickEvent } from '../project-favorite/project-favorite-button.component';
 import { ProjectRefreshedEvent } from '../project-refresh';
 import { ProjectUtilsService } from '../project-utils.service';
-
-export interface ProjectFavoriteClickEvent {
-  projectId: number;
-}
 
 @Component({
   selector: 'wh-project-list-item',
@@ -37,9 +34,7 @@ export class ProjectListItemComponent implements OnChanges {
     }
   }
 
-  onFavoriteIconClicked(event: MouseEvent) {
-    event.stopPropagation();
-    this.localStorageProjectsService.handleFavoriteButtonClick(this.project.projectId);
-    this.favoriteClick.emit({ projectId: this.project.projectId });
+  onFavoriteClick(event: ProjectFavoriteClickEvent) {
+    this.favoriteClick.emit(event);
   }
 }

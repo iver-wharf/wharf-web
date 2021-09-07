@@ -4,9 +4,7 @@
       <div class="top">
         <span class="breadcrumbs"><a routerLink="/">Projects &gt;</a>
           <h4>{{project.name}}</h4>
-          <i [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
-            ? 'pi pi-star favorite-project-icon' : 'pi pi-star-o favorite-project-icon'">
-          </i>
+          <wh-project-favorite-button [projectId]="project.projectId" ></wh-project-favorite-button>
         </span>
         <div class="top-right">
           <div class="id">

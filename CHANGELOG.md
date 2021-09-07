@@ -14,6 +14,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.4.0 (WIP)
 
+- Added functionality for favoriting/unfavoriting a project in the project
+  details view. (#58)
+
 - Fixed page not scrolling down when new build logs arrive in bulk and the page
   is scrolled to the bottom. (#60)
 
