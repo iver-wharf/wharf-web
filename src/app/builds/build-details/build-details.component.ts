@@ -6,8 +6,8 @@ import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
 
 const enum Tabs {
-  LOGS = 0,
-  ARTIFACTS,
+  Logs = 0,
+  Artifacts,
 }
 
 @Component({
@@ -96,9 +96,9 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   private updateTitle() {
-    if (this.activeTabIndex === Tabs.LOGS) {
+    if (this.activeTabIndex === Tabs.Logs) {
       this.titleService.setTitle(`Build ${this.buildId} - Wharf`);
-    } else if (this.activeTabIndex === Tabs.ARTIFACTS) {
+    } else if (this.activeTabIndex === Tabs.Artifacts) {
       this.titleService.setTitle(`Artifacts - Build ${this.buildId} - Wharf`);
     }
   }

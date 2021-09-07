@@ -13,8 +13,8 @@ import { LocalStorageProjectsService } from './../local-storage-projects.service
 import { Title } from '@angular/platform-browser';
 
 const enum Tabs {
-  ALL = 0,
-  FAVORITES,
+  All = 0,
+  Favorites,
 }
 
 @Component({
@@ -111,9 +111,9 @@ export class ProjectListComponent implements OnInit {
   }
 
   private updateTitle() {
-    if (this.activeTabIndex === Tabs.ALL) {
+    if (this.activeTabIndex === Tabs.All) {
       this.titleService.setTitle('All projects - Wharf');
-    } else if (this.activeTabIndex === Tabs.FAVORITES) {
+    } else if (this.activeTabIndex === Tabs.Favorites) {
       this.titleService.setTitle('Favorite projects - Wharf');
     }
   }

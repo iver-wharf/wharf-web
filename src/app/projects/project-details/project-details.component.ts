@@ -11,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 const enum Tabs {
-  BUILDS = 0,
-  CONFIGURATION,
-  SCHEDULE,
+  Builds = 0,
+  Configuration,
+  Schedule,
 }
 
 @Component({
@@ -87,11 +87,11 @@ export class ProjectDetailsComponent implements OnInit {
   private updateTitle() {
     if (!this.project) {
       this.titleService.setTitle(`Loading... - Wharf`);
-    } else if (this.activeTabIndex === Tabs.BUILDS) {
+    } else if (this.activeTabIndex === Tabs.Builds) {
       this.titleService.setTitle(`${this.project.name} - Wharf`);
-    } else if (this.activeTabIndex === Tabs.CONFIGURATION) {
+    } else if (this.activeTabIndex === Tabs.Configuration) {
       this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
-    } else if (this.activeTabIndex === Tabs.SCHEDULE) {
+    } else if (this.activeTabIndex === Tabs.Schedule) {
       this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
     }
   }
