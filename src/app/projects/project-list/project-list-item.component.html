@@ -11,5 +11,5 @@
 </td>
 <td class="col-quickactions">
   <wh-project-refresh-icon (refreshed)="refreshed.emit($event)" [project]="project"></wh-project-refresh-icon>
-  <wh-project-favorite-button [projectId]="project.projectId"></wh-project-favorite-button>
+  <wh-project-favorite-button (favoriteClick)="onFavoriteClick($event)" [projectId]="project.projectId"></wh-project-favorite-button>
 </td>
