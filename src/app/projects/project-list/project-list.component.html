@@ -20,7 +20,12 @@
   </wh-tabview-x>
 
   <ng-template #template let-projects="projects">
-    <p-table #dt class="project-list" [value]="projects" [paginator]="true" [rows]="14"
+    <p-table
+      #dt
+      class="project-list"
+      [value]="projects"
+      [paginator]="true"
+      [rows]="14"
       [globalFilterFields]="['name', 'groupName', 'gitUrl']">
       <ng-template pTemplate="header">
         <tr>
@@ -33,9 +38,12 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-project>
-        <wh-project-list-item [project]="project" (refreshed)="onProjectRefreshed($event)"
-          (favoriteClick)="initFavoriteProjects()" role="button" (click)="onProjectRowClicked($event, project)">
-        </wh-project-list-item>
+        <wh-project-list-item
+          [project]="project"
+          (refreshed)="onProjectRefreshed($event)"
+          (favoriteClick)="initFavoriteProjects()"
+          role="button"
+          (click)="onProjectRowClicked($event, project)"></wh-project-list-item>
       </ng-template>
     </p-table>
   </ng-template>
