@@ -4,8 +4,8 @@
       <div class="top">
         <span class="breadcrumbs"><a routerLink="/">Projects &gt;</a>
           <h4>{{project.name}}</h4>
-          <button icon-only (click)="onFavoriteIconClicked($event)">
-            <i aria-label="Favorite button" [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
+          <button icon-only (click)="onFavoriteIconClicked($event)" aria-label="Toggle project as favorite">
+            <i [ngClass]="(localStorageProjectsService.projectIsFavorite(project.projectId))
             ? 'icon pi pi-star' : 'icon pi pi-star-o'"></i>
           </button>
         </span>
