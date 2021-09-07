@@ -23,6 +23,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   logEvents: MainLog[] = [];
   container: HTMLElement;
   activeTabIndex = 0;
+  wasScrolledToBottom: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +51,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
       }
       if (!!window.EventSource && !this.listener) {
         this.source.addEventListener('message', (message: MessageEvent) => {
+          this.wasScrolledToBottom = this.isScrolledToBottom();
           // When it comes to SSE, the MessageEvent.data is always a string
           const data = JSON.parse(message.data);
           this.logEvents.push(data);
@@ -79,7 +81,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   private stayScrolledToBottom(): void {
-    if (this.isScrolledToBottom()) {
+    if (this.wasScrolledToBottom) {
       this.scrollToBottom();
     }
   }
