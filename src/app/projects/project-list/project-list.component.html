@@ -1,5 +1,5 @@
 <section>
-  <wh-tabview-x [(activeIndex)]="activeTabIndex">
+  <wh-tabview-x [(activeIndex)]="activeTabIndex" (onChange)="onTabChanged()">
     <wh-tabpanel-x header="All Projects">
       <ng-container *ngTemplateOutlet="template;context:{projects:
         this.projects}"></ng-container>
@@ -12,7 +12,7 @@
       <div class="project-search">
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-          <input type="text" pInputText placeholder="Search" (keyup)="onSearchKeyUp($event)"/>
+          <input type="text" pInputText placeholder="Search" (keyup)="onSearchKeyUp($event)" />
         </div>
       </div>
       <wh-provider></wh-provider>
