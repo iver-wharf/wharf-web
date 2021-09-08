@@ -2,7 +2,7 @@ import { ProvidersModule } from './providers/providers.module';
 import { BuildsModule } from './builds/builds.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProjectsModule } from './projects/projects.module';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,7 @@ import { NavModule } from './nav/nav.module';
       multi: true,
     },
     SyntaxHighlightService,
+    Title,
   ],
   bootstrap: [AppComponent],
 })

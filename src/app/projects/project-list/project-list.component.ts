@@ -10,6 +10,12 @@ import { ProvidersService } from 'src/app/providers/providers.service';
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectRefreshedEvent } from '../project-refresh';
 import { LocalStorageProjectsService } from './../local-storage-projects.service';
+import { Title } from '@angular/platform-browser';
+
+const enum Tabs {
+  All = 0,
+  Favorites,
+}
 
 @Component({
   selector: 'wh-project-list',
@@ -36,6 +42,7 @@ export class ProjectListComponent implements OnInit {
     private providersService: ProvidersService,
     private actionsModalStore: ActionsModalStore,
     private router: Router,
+    private titleService: Title,
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +51,7 @@ export class ProjectListComponent implements OnInit {
     this.providersService.formClosed$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.loadProjects());
     this.actionsModalStore.isVisible$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.isActionsFormVisible = x);
     this.viewFavoritesTabIfAny();
+    this.updateTitle();
   }
 
   onSearchKeyUp(event: KeyboardEvent) {
@@ -59,6 +67,10 @@ export class ProjectListComponent implements OnInit {
 
   onProjectRefreshed(event: ProjectRefreshedEvent) {
     this.replaceProject(event.projectId);
+  }
+
+  onTabChanged() {
+    this.updateTitle();
   }
 
   viewFavoritesTabIfAny() {
@@ -96,5 +108,13 @@ export class ProjectListComponent implements OnInit {
       this.projects = val;
       this.initFavoriteProjects();
     });
+  }
+
+  private updateTitle() {
+    if (this.activeTabIndex === Tabs.All) {
+      this.titleService.setTitle('All projects - Wharf');
+    } else if (this.activeTabIndex === Tabs.Favorites) {
+      this.titleService.setTitle('Favorite projects - Wharf');
+    }
   }
 }

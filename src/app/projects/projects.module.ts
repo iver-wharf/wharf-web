@@ -36,6 +36,7 @@ import {
   ProjectRefreshIconComponent,
   ProjectRefreshButtonComponent,
 } from './project-refresh';
+import { ProjectFavoriteButtonComponent } from './project-favorite/project-favorite-button.component';
 import { TabViewExtendedModule } from '../shared/tabview-x/tabview-x.module';
 import { TimerComponent } from '../shared/timer/timer.component';
 import { SharedModule } from '../shared/pipes/shared.module';
@@ -51,6 +52,7 @@ import { SharedModule } from '../shared/pipes/shared.module';
     ProjectListItemComponent,
     ProjectRefreshButtonComponent,
     ProjectRefreshIconComponent,
+    ProjectFavoriteButtonComponent,
     SyntaxHighlightComponent,
     TimerComponent,
     WharfSpinnerAnimationComponent,

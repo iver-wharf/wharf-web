@@ -1,6 +1,6 @@
 # Wharf Angular frontend
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/89402a769e2d4b70ba15ff29992ae6ed)](https://www.codacy.com/gh/iver-wharf/wharf-web/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=iver-wharf/wharf-web&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/89402a769e2d4b70ba15ff29992ae6ed)](https://www.codacy.com/gh/iver-wharf/wharf-web/dashboard?utm_source=github.com\&utm_medium=referral\&utm_content=iver-wharf/wharf-web\&utm_campaign=Badge_Grade)
 
 ![Wharf web screenshot](docs/screenshot.jpg)
 
@@ -21,40 +21,34 @@ built first.
 
 1. Get dependencies
 
-   ```bash
-   npm install
+   ```console
+   $ npm install
    ```
 
 2. Build API client libraries
 
-   ```bash
-   npm run build-clients
+   ```console
+   $ npm run build-clients
    ```
 
 3. Build and start server
 
-   ```bash
-   npm start
+   ```console
+   $ npm start
    ```
 
 ## Generate models and services
 
 In case you need to regenerate the api clients:
 
-1. Go to backend directory api
+1. Start up the container compose [wharf-docker-compose](https://github.com/iver-wharf/wharf-docker-compose)
+   locally to run the APIs through a reverse proxy on port 5000.
 
-2. Regenerate swagger api.
-
-   ```powershell
-   swag init
+   ```console
+   $ docker-compose up --abort-on-container-exit
    ```
 
-3. Do steps `1.` and `2.` for github and gitlab and azuredevops
-
-4. Run the api on the default 5000 port on your localhost
-
-5. After that you just have to run the `./generate-rest-client.ps1` script in
-   powershell:
+2. Run the `./generate-rest-client.ps1` script in powershell:
 
    - Windows:
 
@@ -64,26 +58,19 @@ In case you need to regenerate the api clients:
 
    - Linux:
 
-     1. Install .NET SDK: <https://dotnet.microsoft.com/download?initial-os=linux>
+     1. Install PowerShell Core, for example by following a guide from <https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux>
+        or by installing .NET SDK and installing it via the `dotnet` CLI
+        (installed via <https://dotnet.microsoft.com/download?initial-os=linux>)
+        by running:
 
-     2. Make sure you add the path to .NET tools to your `$PATH` by adding the
-        following to your `~/.bashrc`, `~/.zshenv`, etc:
-
-        ```sh
-        # Dotnet tools
-        export PATH="$PATH:$HOME/.dotnet/tools"
+        ```console
+        $ dotnet tool install --global powershell
         ```
 
-     3. Install PowerShell Core via `dotnet tool`
+     2. Now you can run the script:
 
-        ```sh
-        dotnet tool install --global powershell
-        ```
-
-     4. Now you can run the script:
-
-        ```sh
-        ./generate-rest-client.ps1
+        ```console
+        $ ./generate-rest-client.ps1
         ```
 
 ## Linting from command-line
