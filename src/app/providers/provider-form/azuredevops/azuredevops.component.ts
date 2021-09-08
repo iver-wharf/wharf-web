@@ -1,7 +1,7 @@
 import { DefaultService as AzureService, MainImportBody } from 'import-azuredevops-client';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { AzureDevOpsFormModel } from './azuredevops-form.model';
 import { ProvidersService } from '../../providers.service';
 import { GlobalErrorHandler } from '../../../shared/error/global-error-handler';
@@ -33,18 +33,20 @@ export class AzureDevOpsComponent {
     };
 
     this.azureService.azuredevopsPost(providerData)
-      .pipe(first())
-      .subscribe(() => {
+      .pipe(
+        first(),
+        finalize(() => {
+          this.providerForm.enable()
+        }),
+      )
+      .subscribe({
+        next: () => {
           this.providersService.triggerCloseForm(this.providerForm);
         },
-        err => {
+        error: err => {
           console.log(err);
           this.globalErrorHandler.handleError(err);
-          this.providerForm.enable();
         },
-        () => {
-          this.providerForm.enable();
-        },
-      );
+      });
   }
 }

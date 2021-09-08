@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainImport } from 'projects/import-gitlab-client/src/model/models';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { DefaultService as GitlabService } from 'import-gitlab-client';
 import { ProvidersService } from '../../providers.service';
 import { GitlabFormModel } from './gitlab-form.model';
@@ -33,18 +33,20 @@ export class GitlabComponent {
     };
 
     this.gitlabService.gitlabPost(providerData)
-      .pipe(first())
-      .subscribe(() => {
+      .pipe(
+        first(),
+        finalize(() => {
+          this.providerForm.enable()
+        }),
+      )
+      .subscribe({
+        next: () => {
           this.providersService.triggerCloseForm(this.providerForm);
         },
-        err => {
+        error: err => {
           console.log(err);
           this.globalErrorHandler.handleError(err);
-          this.providerForm.enable();
         },
-        () => {
-          this.providerForm.enable();
-        },
-      );
+      });
   }
 }

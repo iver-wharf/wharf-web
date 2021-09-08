@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { GithubFormModel } from './github-form.model';
 import { DefaultService as GitHubService } from 'import-github-client';
 import { ProvidersService } from '../../providers.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { MainImport } from 'projects/import-gitlab-client/src/model/models';
 import { GlobalErrorHandler } from '../../../shared/error/global-error-handler';
 
@@ -31,20 +31,22 @@ export class GithubComponent {
       group: this.providerForm.value.group,
       project: this.providerForm.value.project,
     };
+
     this.gitHubService.githubPost(providerData)
-      .pipe(first())
-      .subscribe(
-        success => {
+      .pipe(
+        first(),
+        finalize(() => {
+          this.providerForm.enable()
+        }),
+      )
+      .subscribe({
+        next: () => {
           this.providersService.triggerCloseForm(this.providerForm);
         },
-        err => {
+        error: err => {
           console.log(err);
           this.globalErrorHandler.handleError(err);
-          this.providerForm.enable();
         },
-        () => {
-          this.providerForm.enable();
-        },
-      );
+      });
   }
 }

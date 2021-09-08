@@ -14,7 +14,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     let message: string;
     if (errorResponse instanceof HttpErrorResponse) {
       if (this.isProblemResponse(errorResponse)) {
-        this.notifier.showProblem(this.makeProblem(errorResponse.error));
+        this.notifier.showProblem(this.createProblemFromError(errorResponse.error));
         return;
       } else {
         message = errorResponse.message;
@@ -29,7 +29,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     return errorResponse.headers.get('Content-Type') === 'application/problem+json';
   }
 
-  private makeProblem(error: any): ProblemResponse {
+  private createProblemFromError(error: any): ProblemResponse {
     const { detail, errors, instance, status, title, type } = error;
     return {
       detail,
