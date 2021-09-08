@@ -14,6 +14,10 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.4.0 (WIP)
 
+- Added toast message support for IETF RFC-7807 formatted error responses.
+  These toasts provide better help for resolving issues, and include a link to
+  the error in question's documentation page. (#54)
+  
 - Added functionality for favoriting/unfavoriting a project in the project
   details view. (#58)
 
