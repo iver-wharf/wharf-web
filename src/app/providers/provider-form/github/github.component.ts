@@ -36,7 +36,7 @@ export class GithubComponent {
       .pipe(
         first(),
         finalize(() => {
-          this.providerForm.enable()
+          this.providerForm.enable();
         }),
       )
       .subscribe({
