@@ -39,6 +39,7 @@ export class ProvidersService {
           group: project.groupName,
           project: project.name,
           providerId: project.provider.providerId,
+          projectId: project.projectId,
         });
       case ProviderType.GitHub.toLowerCase():
         return this.gitHubService.githubPost({
@@ -48,6 +49,7 @@ export class ProvidersService {
           project: project.name,
           providerId: project.provider.providerId,
           uploadUrl: project.provider.uploadUrl,
+          projectId: project.projectId,
         });
       case ProviderType.AzureDevOps.toLowerCase():
         return this.azureDevOpsService.azuredevopsPost({
@@ -56,6 +58,7 @@ export class ProvidersService {
           group: project.groupName,
           project: project.name,
           providerId: project.provider.providerId,
+          projectId: project.projectId,
         });
     }
   }
