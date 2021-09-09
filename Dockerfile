@@ -3,11 +3,6 @@ FROM node:14.17-alpine3.14 AS build
 # Set working directory
 WORKDIR /usr/src/app
 
-# Install dependencies
-RUN apk add --no-cache \
-    python2=~2.7 \
-    make=~4.3
-
 # node_modules to path
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 ENV HOME /tmp
