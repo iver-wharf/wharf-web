@@ -17,7 +17,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Added toast message support for IETF RFC-7807 formatted error responses.
   These toasts provide better help for resolving issues, and include a link to
   the error in question's documentation page. (#54)
-  
+
 - Added functionality for favoriting/unfavoriting a project in the project
   details view. (#58)
 
@@ -26,6 +26,19 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Changed tab title to be descriptive, changing based on what view you're in.
   Previously it was just `wharf` no matter the view. (#59)
+
+- Changed version of Docker base images, relying on "latest" patch version:
+
+  - `nginx` from 1.21.0 to 1.21. (#66)
+  - `node` from 14.17.1 to 14.17. (#66)
+
+- Removed build dependencies `python` and `make` inside Dockerfile as they do
+  not seem relevant any more. (#66)
+
+- Security fix by changing version of `libgcrypt` from v1.9.3 to v1.9.4 in
+  `nginx` Docker base image to resolve [CVE-2021-33560](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-33560),
+  as that package has not yet been updated in the remote `nginx` Docker image.
+  (#66)
 
 ## v1.3.3 (2021-07-13)
 
