@@ -73,6 +73,52 @@ In case you need to regenerate the api clients:
         $ ./generate-rest-client.ps1
         ```
 
+## Run locally via Docker
+
+Use [GNU Make](https://www.gnu.org/software/make/) or [GNUWin32](http://gnuwin32.sourceforge.net/install.html).
+
+1. Build the docker image:
+
+   ```console
+   $ make docker
+   ```
+
+2. Run the built docker image:
+
+   ```console
+   $ make docker-run
+   ```
+
+Visit <http://localhost:8080/>
+
+## Releasing
+
+Replace the "v2.0.0" in `make docker version=v2.0.0` with the new version. Full
+documentation can be found at [Releasing a new version](https://iver-wharf.github.io/#/development/releasing-a-new-version).
+
+Below are just how to create the Docker images using [GNU Make](https://www.gnu.org/software/make/)
+or [GNUWin32](http://gnuwin32.sourceforge.net/install.html):
+
+```console
+$ make docker version=v2.0.0
+[1/2] STEP 1/13: FROM node:14.17.1-alpine3.11 AS build
+Trying to pull docker.io/library/node:14.17.1-alpine3.11...
+Getting image source signatures
+Copying blob ed2a3f372ee3 skipped: already exists
+Copying blob 5ec9f1d3bd97 skipped: already exists
+Copying blob d222216fa792 skipped: already exists
+Copying blob ddad3d7c1e96 [--------------------------------------] 0.0b / 0.0b
+Copying config 58466d7cb9 done
+Writing manifest to image destination
+Storing signatures
+[1/2] STEP 2/13: WORKDIR /usr/src/app
+...
+
+Push the image by running:
+docker push quay.io/iver-wharf/wharf-web:latest
+docker push quay.io/iver-wharf/wharf-web:v2.0.0
+```
+
 ## Linting from command-line
 
 ```sh
@@ -202,19 +248,6 @@ this `npm run lint-fix` command. For those, you'll have to fix them manually.
 - Do not set public members explicitly
 - If you can define as many members as possible as private
 - If possible use interface instead of class for data contract
-
-## Run locally via Docker
-
-```sh
-docker build . -t wharf_web-ng \
-  --build-arg WHARF_WEB_VERSION='local docker' \
-  --build-arg WHARF_WEB_CI_GIT_COMMIT=$(git log -n 1 --format=%H) \
-  --build-arg WHARF_WEB_CI_BUILD_REF=0
-
-docker run --rm -it -p 8080:8080 wharf_web-ng
-```
-
-Visit <http://localhost:8080/>
 
 ---
 
