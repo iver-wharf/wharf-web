@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.4.0 (WIP)
+## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
   These toasts provide better help for resolving issues, and include a link to
