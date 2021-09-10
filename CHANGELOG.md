@@ -17,7 +17,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Added toast message support for IETF RFC-7807 formatted error responses.
   These toasts provide better help for resolving issues, and include a link to
   the error in question's documentation page. (#54)
-  
+
 - Added functionality for favoriting/unfavoriting a project in the project
   details view. (#58)
 
@@ -26,6 +26,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Changed tab title to be descriptive, changing based on what view you're in.
   Previously it was just `wharf` no matter the view. (#59)
+
+- Added Makefile to simplify building and developing the project locally. (#67)
 
 ## v1.3.3 (2021-07-13)
 
