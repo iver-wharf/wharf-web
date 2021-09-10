@@ -1,4 +1,4 @@
-FROM node:14.17-alpine3.14 AS build
+FROM node:14-alpine AS build
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -22,7 +22,7 @@ RUN deploy/update-typescript-environments.sh src/environments/environment.prod.t
     && npm run build-clients \
     && npm run build-prod
 
-FROM nginx:1.21-alpine
+FROM nginx:1-alpine
 
 RUN apk add --upgrade --no-cache \
     libgcrypt>=1.9.4 # Resolves CVE-2021-33560, as it's not yet upgraded in upstream image
