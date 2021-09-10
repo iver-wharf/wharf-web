@@ -1,5 +1,5 @@
 <section class="projects-container">
-  <wh-tabview-x [(activeIndex)]="activeTabIndex" (onChange)="onTabChanged()">
+  <wh-tabview-x (onChange)="onTabChanged()">
     <wh-tabpanel-x id="build-logs" header="Logs">
       <ng-container *ngTemplateOutlet="buildDataView"></ng-container>
     </wh-tabpanel-x>
