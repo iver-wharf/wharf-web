@@ -11,15 +11,15 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
         redirectUrl: window.location.origin,
         postLogoutRedirectUri: window.location.origin,
         clientId: 'bf171d26-c5df-4da7-b2e6-d30f39c11863', // Application (client) ID
-        scope: 'openid profile email',
-        responseType: 'code',
+        scope: 'openid profile email', //  profile email
+        responseType: 'id_token token',
         ignoreNonceAfterRefresh: true,
         silentRenew: true,
         useRefreshToken: true,
         logLevel: LogLevel.Debug,
         maxIdTokenIatOffsetAllowedInSeconds: 600,
         issValidationOff: false,
-        autoUserInfo: true,
+        autoUserInfo: false,
         customParamsAuthRequest: {
           prompt: 'select_account', // login, consent
         },
