@@ -12,6 +12,15 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.4.1 (WIP)
+
+- Removed per-tab titles on project details page. Title is now either
+  `Loading... - Wharf` or `{project name} - Wharf`, no matter which tab
+  you're on. (#69)
+
+- Removed per-tab titles on build details page. Title is now
+  `Build {build ID} - Wharf`, no matter which tab you're on. (#69)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
