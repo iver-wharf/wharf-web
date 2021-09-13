@@ -36,10 +36,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed tab title to be descriptive, changing based on what view you're in.
   Previously it was just `wharf` no matter the view. (#59)
 
-- Changed version of Docker base images, relying on "latest" patch version:
+- Changed version of Docker base images, relying on "latest" minor and patch
+  version:
 
-  - `nginx` from 1.21.0 to 1.21. (#66)
-  - `node` from 14.17.1 to 14.17. (#66)
+  - `nginx` from 1.21.0 to 1. (#66)
+  - `node` from 14.17.1 to 14. (#66)
 
 - Removed build dependencies `python` and `make` inside Dockerfile as they do
   not seem relevant any more. (#66)
