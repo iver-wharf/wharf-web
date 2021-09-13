@@ -1,12 +1,7 @@
-FROM node:14.17.1-alpine3.11 AS build
+FROM node:14-alpine AS build
 
 # Set working directory
 WORKDIR /usr/src/app
-
-# Install dependencies
-RUN apk add --no-cache \
-    python=~2.7.18 \
-    make=~4.2.1
 
 # node_modules to path
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
@@ -28,7 +23,11 @@ RUN deploy/update-typescript-environments.sh src/environments/environment.prod.t
     && npm run build-clients \
     && npm run build-prod
 
-FROM nginx:1.21.1-alpine
+FROM nginx:1-alpine
+
+RUN apk add --upgrade --no-cache \
+    libgcrypt>=1.9.4 # Resolves CVE-2021-33560, as it's not yet upgraded in upstream image
+
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
 

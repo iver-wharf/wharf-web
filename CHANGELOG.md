@@ -12,7 +12,18 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.4.0 (WIP)
+## v1.4.1 (WIP)
+
+- Removed per-tab titles on project details page. Title is now either
+  `Loading... - Wharf` or `{project name} - Wharf`, no matter which tab
+  you're on. (#69)
+
+- Removed per-tab titles on build details page. Title is now
+  `Build {build ID} - Wharf`, no matter which tab you're on. (#69)
+
+- Added Makefile to simplify building and developing the project locally. (#67)
+
+## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
   These toasts provide better help for resolving issues, and include a link to
@@ -27,7 +38,19 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed tab title to be descriptive, changing based on what view you're in.
   Previously it was just `wharf` no matter the view. (#59)
 
-- Added Makefile to simplify building and developing the project locally. (#67)
+- Changed version of Docker base images, relying on "latest" minor and patch
+  version:
+
+  - `nginx` from 1.21.0 to 1. (#66)
+  - `node` from 14.17.1 to 14. (#66)
+
+- Removed build dependencies `python` and `make` inside Dockerfile as they do
+  not seem relevant any more. (#66)
+
+- Security fix by changing version of `libgcrypt` from v1.9.3 to v1.9.4 in
+  `nginx` Docker base image to resolve [CVE-2021-33560](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-33560),
+  as that package has not yet been updated in the remote `nginx` Docker image.
+  (#66)
 
 ## v1.3.3 (2021-07-13)
 

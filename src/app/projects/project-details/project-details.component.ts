@@ -10,12 +10,6 @@ import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-const enum Tabs {
-  Builds = 0,
-  Configuration,
-  Schedule,
-}
-
 @Component({
   selector: 'wh-project-details',
   templateUrl: './project-details.component.html',
@@ -29,7 +23,6 @@ export class ProjectDetailsComponent implements OnInit {
   buildsTotalCount = 0;
   rowsCount = 10;
   destroyed$ = new Subject<void>();
-  activeTabIndex = 0;
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
@@ -87,12 +80,8 @@ export class ProjectDetailsComponent implements OnInit {
   private updateTitle() {
     if (!this.project) {
       this.titleService.setTitle(`Loading... - Wharf`);
-    } else if (this.activeTabIndex === Tabs.Builds) {
+    } else {
       this.titleService.setTitle(`${this.project.name} - Wharf`);
-    } else if (this.activeTabIndex === Tabs.Configuration) {
-      this.titleService.setTitle(`Configuration - ${this.project.name} - Wharf`);
-    } else if (this.activeTabIndex === Tabs.Schedule) {
-      this.titleService.setTitle(`Schedule - ${this.project.name} - Wharf`);
     }
   }
 }
