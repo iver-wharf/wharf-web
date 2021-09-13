@@ -15,9 +15,10 @@ RUN NG_CLI_ANALYTICS=ci npm ci
 
 # add app
 COPY . .
-ARG WHARF_WEB_VERSION="v0.0.0"
-ARG WHARF_WEB_CI_GIT_COMMIT="HEAD"
-ARG WHARF_WEB_CI_BUILD_REF="0"
+ARG BUILD_VERSION="local docker"
+ARG BUILD_GIT_COMMIT="HEAD"
+ARG BUILD_REF="0"
+ARG BUILD_DATE=""
 RUN deploy/update-typescript-environments.sh src/environments/environment.prod.ts \
     && npm run build-clients \
     && npm run build-prod
@@ -34,3 +35,20 @@ EXPOSE 8080
 
 ENTRYPOINT []
 CMD ["nginx", "-g", "daemon off;"]
+
+ARG BUILD_VERSION
+ARG BUILD_GIT_COMMIT
+ARG BUILD_REF
+ARG BUILD_DATE
+# The added labels are based on this: https://github.com/projectatomic/ContainerApplicationGenericLabels
+LABEL name="iver-wharf/wharf-web" \
+    url="https://github.com/iver-wharf/wharf-web" \
+    release=${BUILD_REF} \
+    build-date=${BUILD_DATE} \
+    vendor="Iver" \
+    version=${BUILD_VERSION} \
+    vcs-type="git" \
+    vcs-url="https://github.com/iver-wharf/wharf-web" \
+    vcs-ref=${BUILD_GIT_COMMIT} \
+    changelog-url="https://github.com/iver-wharf/wharf-web/blob/${BUILD_VERSION}/CHANGELOG.md" \
+    authoritative-source-url="quay.io"
