@@ -16,8 +16,8 @@ export class WharfAuthInterceptor implements HttpInterceptor {
     if (this.configService.hasConfig()){
       const apiUrl = this.configService.getApiConfig().basePath;
       if (req.url.includes(apiUrl)) {
-        // TODO This still needs work after token validation is in place. Should be base 64encoded somehow.
-        req.params.set('Authorization', 'Bearer ' + this.oidcSecurityService.getIdToken());
+        // TODO This still needs work after token validation is in place. Should be verified base 64 encoded.
+        req.params.set('Authorization', 'Bearer ' + this.oidcSecurityService.getAccessToken());
       }
     }
 
