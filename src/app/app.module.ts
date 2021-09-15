@@ -20,15 +20,12 @@ import { AuthConfigModule } from './auth/auth-config.module';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
-import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
-import { filter } from 'rxjs/operators';
-import { ButtonModule } from 'primeng/button';
 import { WharfAuthInterceptor } from './auth/wharf-auth.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,10 +40,7 @@ import { WharfAuthInterceptor } from './auth/wharf-auth.interceptor';
     MenuModule,
     TooltipModule,
     SharedModule,
-    AuthConfigModule,
-    DialogModule,
-    RouterModule,
-    ButtonModule,
+    AuthModule,
   ],
   providers: [
     {
@@ -64,13 +58,4 @@ import { WharfAuthInterceptor } from './auth/wharf-auth.interceptor';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(private readonly eventService: PublicEventsService) {
-    this.eventService
-      .registerForEvents()
-      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
-      .subscribe((config) => {
-        console.log('ConfigLoaded', config);
-      });
-  }
-}
+export class AppModule { }

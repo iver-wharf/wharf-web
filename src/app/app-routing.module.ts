@@ -5,6 +5,8 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
 import { BuildDetailsComponent } from './builds/build-details/build-details.component';
 import { LicensesComponent } from './licenses/licenses.component';
 import { LoginComponent } from './auth/login/login.component';
+import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.component';
+import { ForbiddenComponent } from './auth/forbidden/forbidden.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'build/:projectId/:buildId', component: BuildDetailsComponent },
   { path: 'third-party-licenses', component: LicensesComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent},
+  { path: 'forbidden', component: ForbiddenComponent},
 ];
 
 @NgModule({
