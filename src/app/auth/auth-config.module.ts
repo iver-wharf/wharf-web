@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 // eslint-disable-next-line max-len
 import { OpenIdConfiguration } from '../../../../angular-auth-oidc-client/projects/angular-auth-oidc-client/src/lib/config/openid-configuration';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { WharfAuthInterceptor } from './wharf-auth.interceptor';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { OpenIdConfiguration } from '../../../../angular-auth-oidc-client/projec
   ],
   exports: [AuthModule],
   declarations: [],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true },
+  ],
 })
 export class AuthConfigModule {
 

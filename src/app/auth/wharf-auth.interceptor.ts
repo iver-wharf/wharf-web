@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 import { ConfigService } from '../shared/config/config.service';
@@ -16,11 +16,20 @@ export class WharfAuthInterceptor implements HttpInterceptor {
     if (this.configService.hasConfig()){
       const apiUrl = this.configService.getApiConfig().basePath;
       if (req.url.includes(apiUrl)) {
-        // TODO This still needs work after token validation is in place. Should be verified base 64 encoded.
-        req.params.set('Authorization', 'Bearer ' + this.oidcSecurityService.getAccessToken());
+        const token = this.oidcSecurityService.getAccessToken();
+        const authHeaderValue = `Bearer ${token}`;
+        req = req.clone({
+          setHeaders: {
+            /* eslint-disable @typescript-eslint/naming-convention */
+            Authorization: authHeaderValue,
+            /*eslint-enable @typescript-eslint/naming-convention */
+          },
+          withCredentials: true,
+        });
+
+        return next.handle(req);
       }
     }
-
     return next.handle(req);
   }
 }

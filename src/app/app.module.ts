@@ -16,11 +16,6 @@ import { SyntaxHighlightService } from './shared/syntax-highlight/syntax-highlig
 import { SharedModule } from './shared/pipes/shared.module';
 import { NavModule } from './nav/nav.module';
 import { LicensesModule } from './licenses/licenses.module';
-import { AuthConfigModule } from './auth/auth-config.module';
-import { DialogModule } from 'primeng/dialog';
-import { RouterModule } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { WharfAuthInterceptor } from './auth/wharf-auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -52,7 +47,6 @@ import { AuthModule } from './auth/auth.module';
       ],
       multi: true,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true },
     SyntaxHighlightService,
     Title,
   ],
