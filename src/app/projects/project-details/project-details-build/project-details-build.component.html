@@ -1,5 +1,10 @@
-<p-table class="build-list" [value]="project?.buildHistory" [lazy]="true" (onLazyLoad)="loadBuildsLazy($event)"
-  [paginator]="true" [rows]="rowsCount" [totalRecords]="buildsTotalCount">
+<p-table class="build-list"
+         [value]="project?.buildHistory"
+         [lazy]="true"
+         (onLazyLoad)="loadBuildsLazy($event)"
+         [paginator]="true"
+         [rows]="rowsCount"
+         [totalRecords]="buildsTotalCount">
   <ng-template pTemplate="header">
     <tr>
       <th class="col-id">ID</th>
@@ -13,14 +18,18 @@
     </tr>
   </ng-template>
 
-  <ng-template pTemplate="body" let-build>
-    <tr role="button" (click)="navigateToBuild(build)">
+  <ng-template pTemplate="body"
+               let-build>
+    <tr role="button"
+        (click)="navigateToBuild(build)">
       <td class="col-id">{{build.buildId}}</td>
       <td class="col-stage">{{build.stage?.toUpperCase()==="ALL" ? "Run All" : build.stage}}</td>
       <td class="col-environment">{{build.environment}}</td>
       <td class="col-status">
         <span [class]="this.getStatusCssClass(build.statusId)">{{build.status}}</span>
-        <p-progressSpinner *ngIf="isBuildRunning(build)" class="status-progress-spinner" strokeWidth="4">
+        <p-progressSpinner *ngIf="isBuildRunning(build)"
+                           class="status-progress-spinner"
+                           strokeWidth="4">
         </p-progressSpinner>
       </td>
       <td class="col-tests">
@@ -31,7 +40,8 @@
       <td class="col-branch">{{build.gitBranch}}</td>
       <td class="col-started">{{build.scheduledOn | whDate}}</td>
       <td class="col-duration">
-        <wh-timer [start]="build.scheduledOn" [end]="build.finishedOn"></wh-timer>
+        <wh-timer [start]="build.scheduledOn"
+                  [end]="build.finishedOn"></wh-timer>
       </td>
     </tr>
   </ng-template>

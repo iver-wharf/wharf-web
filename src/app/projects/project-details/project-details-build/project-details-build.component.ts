@@ -23,6 +23,8 @@ export class ProjectDetailsBuildComponent {
   isActionsFormVisible = false;
   destroyed$ = new Subject<void>();
 
+  private numberFormat = new Intl.NumberFormat('en-US');
+
   constructor(
     public projectUtilsService: ProjectUtilsService,
     private buildService: BuildService,
@@ -83,7 +85,7 @@ export class ProjectDetailsBuildComponent {
   }
 
   numberWithCommas(num: number) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return this.numberFormat.format(num);
   }
 
   private fillProjectActions(proj: WharfProject): WharfProject {
