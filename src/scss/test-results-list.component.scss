@@ -1,4 +1,9 @@
-div#test-results-list {
+.p-accordion .p-accordion-content {
+  background-color: transparent;
+  border: none;
+}
+
+#test-results-list {
   th {
     &.col-id {
       width: 6rem;

@@ -14,9 +14,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
-- Changed to use the new endpoints for test results from wharf-api. This allows
-  us to display the number of failed/skipped/passed tests in the builds list, as
-  well as any messages from failed tests in the build details view. (#53)
+- Added test results failed/skipped/passed numbers to each build in a project's
+  build list. (#53)
+
+- Added test result details, showing test messages and per-artifact test
+  results, to the build details page. (#53)
 
 ## v1.5.0 (2021-11-15)
 

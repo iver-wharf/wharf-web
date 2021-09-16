@@ -1,0 +1,18 @@
+<p-accordion [multiple]="true">
+  <p-accordionTab>
+    <ng-template pTemplate="header" style="display: flex">
+      <span>{{summary.fileName}}</span>
+      <span style="flex: 1; text-align: right; white-space: nowrap">
+        <span [ngStyle]="{'color': (summary.failed) ? 'red' : 'green'}">{{summary.failed ? "Failed" : "Passed" }}</span> |
+        {{numberWithCommas(summary.failed)}}<i class="pi pi-times" [ngStyle]="{'color': (summary.failed) ? 'red' : 'gray'}"></i>
+        {{numberWithCommas(summary.skipped)}}<i class="pi pi-circle-on" [ngStyle]="{'color': (summary.skipped) ? 'orange' : 'gray'}"></i>
+        {{numberWithCommas(summary.passed)}}<i class="pi pi-check" [ngStyle]="{'color': (summary.passed) ? 'green' : 'gray'}"></i>
+      </span>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <wh-test-results-detail-list
+        [buildId]="summary.buildId"
+        [summaryId]="summary.artifactId"></wh-test-results-detail-list>
+    </ng-template>
+  </p-accordionTab>
+</p-accordion>
