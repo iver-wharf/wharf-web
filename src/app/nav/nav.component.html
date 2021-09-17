@@ -66,7 +66,10 @@
             </li>
             <hr />
             <li>
-              <button (click)="fetchLicenses()">Third-party licenses</button>
+              <span class="label">Licenses:</span>
+              <span class="value">
+                <a routerLink="/third-party-licenses" (click)="versionPanel.hide()">Third-party licenses</a>
+              </span>
             </li>
             <ng-template #invalidValue>
               <span class="not-available" pTooltip="Value is invalid or has not been set.">N/A</span>
