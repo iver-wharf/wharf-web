@@ -1,0 +1,20 @@
+body .p-accordion {
+  .p-accordion-header .p-accordion-header-link,
+  .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+    background-color: $wharf_accordion_header_background_color;
+    color: $wharf_accordion_header_text_color;
+    border-color: $wharf_accordion_header_border_color;
+  }
+
+  .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link,
+  .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+    background-color: $wharf_accordion_header_hover_background_color;
+    color: $wharf_accordion_header_hover_text_color;
+    border-color: $wharf_accordion_header_border_color;
+  }
+
+  .p-accordion-content {
+    background-color: $wharf_accordion_content_background_color;
+    color: $wharf_accordion_content_text_color;
+  }
+}
