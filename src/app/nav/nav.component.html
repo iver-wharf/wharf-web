@@ -44,7 +44,7 @@
                 </ng-container>
               </span>
             </li>
-            <hr/>
+            <hr />
             <li *ngFor="let state of serviceStates">
               <span class="label">Version of {{state.service}}:</span>
               <ng-container [ngSwitch]="state.status">
@@ -52,7 +52,8 @@
                   {{state.version}}
                 </span>
                 <span class="value version-not-found" *ngSwitchCase="remoteVersionStatus.NotFound">
-                  <span class="not-available" pTooltip="The service seems to be missing or it has not implemented the version check endpoint.">N/A</span>
+                  <span class="not-available"
+                    pTooltip="The service seems to be missing or it has not implemented the version check endpoint.">N/A</span>
                 </span>
                 <span class="value version-error" *ngSwitchCase="remoteVersionStatus.Error">
                   <i class="pi pi-exclamation-triangle"></i>
@@ -62,6 +63,10 @@
                   <p-progressSpinner strokeWidth="8"></p-progressSpinner> Fetching...
                 </span>
               </ng-container>
+            </li>
+            <hr />
+            <li>
+              <button (click)="fetchLicenses()">Third-party licenses</button>
             </li>
             <ng-template #invalidValue>
               <span class="not-available" pTooltip="Value is invalid or has not been set.">N/A</span>
@@ -77,5 +82,6 @@
     </div>
     <p-menu styleClass="menu-item" [model]="documentationItem"></p-menu>
   </div>
-   <p-menu styleClass="menu-item" [model]="userItem" pTooltip='This feature has not yet been implemented. Stay tuned!' tooltipPosition="top"></p-menu>
+  <p-menu styleClass="menu-item" [model]="userItem" pTooltip='This feature has not yet been implemented. Stay tuned!'
+    tooltipPosition="top"></p-menu>
 </nav>

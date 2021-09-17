@@ -68,10 +68,16 @@ checker.init({
   }
 
   console.log();
-  console.log('Found licenses:', pkgArr.map(printablePackage));
+  console.log('Found licenses:');
+  console.table(pkgArr.map(printablePackage));
+  console.log();
 
   const jsonContent = JSON.stringify(pkgArr.map(p => ({
     name: p.name,
+    version: p.version,
+    repository: p.repository,
+    url: p.url,
+    publisher: p.publisher,
     licenses: typeof p.licenses === 'string' ? p.licenses : p.licenses.join(', '),
     licenseText: p.licenseText,
   })), null, 2);
