@@ -21,6 +21,7 @@ checker.init({
   customFormat: {
     name: '',
     version: '',
+    description: '',
   },
   excludePrivatePackages: true,
   exclude: [
@@ -75,10 +76,11 @@ checker.init({
   const jsonContent = JSON.stringify(pkgArr.map(p => ({
     name: p.name,
     version: p.version,
+    description: p.description,
     repository: p.repository,
     url: p.url,
     publisher: p.publisher,
-    licenses: typeof p.licenses === 'string' ? p.licenses : p.licenses.join(', '),
+    licenses: typeof p.licenses === 'string' ? [p.licenses] : p.licenses,
     licenseText: p.licenseText,
   })), null, 2);
 

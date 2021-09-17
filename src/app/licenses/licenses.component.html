@@ -1,0 +1,64 @@
+<section>
+  <h1>Third-party licenses</h1>
+  <div *ngIf="licenses else notLoaded">
+    <ng-container *ngIf="licenses.length > 0 else noLicenses">
+      <p>
+        Development of Wharf has been made possible with the help of open source software.
+        Without them, we would not have gotten as far as we have.
+        Much love <i class="pi pi-heart"></i>
+      </p>
+      <p-accordion>
+        <p-accordionTab header="{{package.name}}@{{package.version}}" *ngFor="let package of licenses">
+          <p *ngIf="package.description">{{package.description}}</p>
+          <ul>
+            <li *ngIf="package.publisher">Publisher: <strong>{{package.publisher}}</strong></li>
+            <li *ngIf="!package.publisher">
+              Publisher:
+              <em
+                pTooltip="The package {{package.name}}@{{package.version}} has not specified an author in their package.json file."
+                tooltipPosition="top">
+                none specified
+              </em>
+            </li>
+            <li>Repository: <a href="{{package.repository}}" target="about:blank">{{package.repository}}</a></li>
+            <li>License:
+              <span *ngFor="let spdx of package.licenses">
+                <a href="https://spdx.org/licenses/{{spdx}}">{{spdx}}</a>
+              </span>
+            </li>
+          </ul>
+          <pre class="code-block"><code>{{package.licenseText}}</code></pre>
+        </p-accordionTab>
+      </p-accordion>
+    </ng-container>
+    <ng-template #noLicenses>
+      <p>
+        No licenses were found.
+      </p>
+    </ng-template>
+  </div>
+  <ng-template #notLoaded>
+    <ng-container *ngIf="loadError else loading">
+      <ng-container *ngIf="loadHttpError else unknownError">
+        <div>
+          <p>
+            Failed to fetch licenses due to HTTP
+            <samp>{{loadHttpError.status}} {{loadHttpError.statusText}}</samp> error:
+          </p>
+          <pre class="code-block"><samp>{{loadError.message}}</samp></pre>
+        </div>
+      </ng-container>
+      <ng-template #unknownError>
+        <div>
+          <p>Unexpected error when loading licenses:</p>
+          <pre class="code-block"><samp>{{loadError.message}}</samp></pre>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+  <ng-template #loading>
+    <div>
+      <p-progressSpinner strokeWidth="8"></p-progressSpinner>
+    </div>
+  </ng-template>
+</section>

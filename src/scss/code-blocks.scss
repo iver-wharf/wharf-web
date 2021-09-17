@@ -1,6 +1,6 @@
 
 /* Inline code block */
-code {
+code, samp {
   margin: 0 0.15em;
   padding: 0.125em 0.4em;
   border-radius: 2px;
@@ -11,7 +11,7 @@ code {
 }
 
 /* Full-width code block */
-pre[class*=language-] {
+pre[class*=language-], pre.code-block {
   background: $wharf_code_block_background;
   border-radius: 4px;
   padding: 0;
@@ -27,7 +27,7 @@ pre[class*=language-] {
   hyphens: none;
   text-align: left;
 
-  code {
+  code, samp {
     display: block;
     overflow: auto;
     padding: 1.75em 1.5em 1.5em 1.5em;

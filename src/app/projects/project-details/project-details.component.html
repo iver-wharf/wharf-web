@@ -52,7 +52,7 @@
               [project]="project"></wh-project-refresh-button>
           </ng-template>
         </wh-tabpanel-x>
-        <wh-tabpanel-x header="Schedule" disabled="true" tooltip='This feature has not yet been implemented.
+        <wh-tabpanel-x header="Schedule" [disabled]="true" tooltip='This feature has not yet been implemented.
         Stay tuned!' tooltipPosition="top">
           <ng-container *ngTemplateOutlet="schedule"></ng-container>
         </wh-tabpanel-x>
