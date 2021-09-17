@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-prod": "ng build -c production",
+    "build-prod": "\"$npm_execpath\" run collect-licenses && ng build -c production",
     "build-clients": "ng build api-client && ng build import-gitlab-client && ng build import-github-client && ng build import-azuredevops-client",
     "collect-licenses": "tsc --build deploy/collect-licenses/tsconfig.json && node deploy/collect-licenses/dist/main.js",
     "test": "ng test",
