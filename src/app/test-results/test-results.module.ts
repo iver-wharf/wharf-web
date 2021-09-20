@@ -1,5 +1,4 @@
 import { AppUtilsService } from './../app-utils.service';
-
 import { TableModule } from 'primeng/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
