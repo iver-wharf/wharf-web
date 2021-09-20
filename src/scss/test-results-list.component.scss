@@ -1,61 +1,17 @@
-.p-accordion .p-accordion-content {
+wh-test-results-summary-list .p-accordion .p-accordion-content {
   background-color: transparent;
   border: none;
 }
 
-#test-results-list {
-  th {
-    &.col-id {
-      width: 6rem;
-    }
-
-    &.col-name,
-    &.col-status {
-      width: 15rem;
-    }
-  }
-}
-
-table.detail-list {
-  font-size: 0.88rem;
-  font-weight: 0.85rem;
-  padding: 1rem;
-
-  th {
-    padding: 0.7rem 1.2rem;
-  }
-
-  tr {
-    border-bottom: 0.05rem solid gray;
-
-    &[role="button"]:hover {
-      background-color: #292d30;
-      cursor: pointer;
-    }
-  }
-
-  td {
-    padding: 0.2rem 1.2rem;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-
-    &.detail-message {
-      column-span: all;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      background-color: black;
-      color: white;
-      font-family: monospace;
-      padding: 0;
-      border-radius: 0.3rem;
-      width: 100%;
-
-      div {
-        font-size: 0.85em;
-        padding: 1rem;
-        overflow-x: auto;
-        white-space: pre;
-      }
-    }
-  }
+.detail-message {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  background-color: $wharf_code_inline_background;
+  color: white;
+  font-family: monospace;
+  padding: 0.1em;
+  border-radius: 0.3em;
+  overflow: auto;
 }

@@ -15,9 +15,9 @@ export class ArtifactsListComponent implements OnInit {
     private configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.artifactService.getBuildArtifactList(this.buildId, 0)
-      .subscribe(paginatedArtifacts => {
-        this.artifacts = paginatedArtifacts.list;
+    this.artifactService.getBuildArtifactList(this.buildId)
+      .subscribe(data => {
+        this.artifacts = data.list;
       });
   }
 

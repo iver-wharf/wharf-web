@@ -62,7 +62,7 @@ export class TestResultService {
 
 
     /**
-     * Get all test result details for specified build
+     * Post test result data
      * 
      * @param buildId Build ID
      * @param files Test result file
@@ -94,6 +94,7 @@ export class TestResultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'multipart/form-data'
         ];
 
         const canConsumeForm = this.canConsumeForm(consumes);
@@ -126,7 +127,7 @@ export class TestResultService {
     }
 
     /**
-     * Get test result list summary of all tests for specified build
+     * Get all test result details for specified build
      * 
      * @param buildId Build ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -166,7 +167,7 @@ export class TestResultService {
     }
 
     /**
-     * Post test result data
+     * Get test result list summary of all tests for specified build
      * 
      * @param buildId Build ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -193,7 +194,6 @@ export class TestResultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'multipart/form-data'
         ];
 
         return this.httpClient.get<ResponseTestResultListSummary>(`${this.basePath}/build/${encodeURIComponent(String(buildId))}/test-result/list-summary`,

@@ -1,22 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MainTestResultSummary, TestResultService } from 'api-client';
+import { Component, Input } from '@angular/core';
+import { ResponseBuild } from 'api-client';
 
 @Component({
   selector: 'wh-test-results-summary-list',
   templateUrl: './test-results-summary-list.component.html',
 })
-export class TestResultsSummaryListComponent implements OnInit {
-  @Input() buildId: number;
-  summaries: MainTestResultSummary[];
+export class TestResultsSummaryListComponent {
+  @Input() build: ResponseBuild;
 
-  constructor(
-    private testResultService: TestResultService) { }
-
-  ngOnInit(): void {
-    this.testResultService
-      .buildBuildIdTestResultSummaryGet(this.buildId)
-      .subscribe(summaries => {
-        this.summaries = summaries;
-      });
-  }
+  constructor() { }
 }

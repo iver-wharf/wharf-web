@@ -1,11 +1,11 @@
-import { ResponseProject, ResponseProvider, ResponseBuild } from 'api-client';
-import { WharfBranch } from './wharf-branch.model';
+import { ResponseProject, ResponseBuild, ResponseProvider } from 'api-client';
+import { ResponseBranch } from './wharf-branch.model';
 import { ProjectBuild } from './project-build.model';
 import { ProjectAction } from './project-action.model';
 
 export class WharfProject implements ResponseProject {
     avatarUrl?: string;
-    branches?: WharfBranch[];
+    branches?: ResponseBranch[];
     buildDefinition?: string;
     buildHistory?: ResponseBuild[];
     description?: string;
