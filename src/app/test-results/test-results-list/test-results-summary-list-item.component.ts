@@ -7,13 +7,6 @@ import { MainTestResultSummary } from 'api-client';
 })
 export class TestResultsSummaryListItemComponent {
   @Input() summary: MainTestResultSummary;
-  visible: boolean;
-
-  private numberFormat = new Intl.NumberFormat('en-US');
 
   constructor() { }
-
-  numberWithCommas(num: number) {
-    return this.numberFormat.format(num);
-  }
 }

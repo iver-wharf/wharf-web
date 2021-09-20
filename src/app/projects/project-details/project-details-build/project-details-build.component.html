@@ -33,9 +33,9 @@
           ></p-progressSpinner>
       </td>
       <td class="col-tests">
-        {{numberWithCommas(build.testResultListSummary.failed)}}<i class="pi pi-times"></i>
-        {{numberWithCommas(build.testResultListSummary.skipped)}}<i class="pi pi-circle-on"></i>
-        {{numberWithCommas(build.testResultListSummary.passed)}}<i class="pi pi-check"></i>
+        {{build.testResultListSummary.failed | number:'1.0-0'}}<i class="pi pi-times"></i>
+        {{build.testResultListSummary.skipped | number:'1.0-0'}}<i class="pi pi-circle-on"></i>
+        {{build.testResultListSummary.passed | number:'1.0-0'}}<i class="pi pi-check"></i>
       </td>
       <td class="col-branch">{{build.gitBranch}}</td>
       <td class="col-started">{{build.scheduledOn | whDate}}</td>
