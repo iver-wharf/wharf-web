@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import {
-  DefaultService as GitlabService,
+  DefaultService as GitlabService, MainImport,
 } from 'import-gitlab-client';
 import {
   DefaultService as GitHubService,
@@ -31,31 +31,20 @@ export class ProvidersService {
   }
 
   refreshProject(project: WharfProject): Observable<any> {
+    const importBody: MainImport = {
+      url: project.provider.url,
+      tokenId: project.provider.tokenId,
+      group: project.groupName,
+      project: project.name,
+      providerId: project.provider.providerId,
+    };
     switch (project.provider.name) {
       case ProviderType.GitLab.toLowerCase():
-        return this.gitlabService.gitlabPost({
-          url: project.provider.url,
-          tokenId: project.provider.tokenId,
-          group: project.groupName,
-          project: project.name,
-          providerId: project.provider.providerId,
-        });
+        return this.gitlabService.gitlabPost(importBody);
       case ProviderType.GitHub.toLowerCase():
-        return this.gitHubService.githubPost({
-          url: project.provider.url,
-          tokenId: project.provider.tokenId,
-          group: project.groupName,
-          project: project.name,
-          providerId: project.provider.providerId,
-        });
+        return this.gitHubService.githubPost(importBody);
       case ProviderType.AzureDevOps.toLowerCase():
-        return this.azureDevOpsService.azuredevopsPost({
-          url: project.provider.url,
-          tokenId: project.provider.tokenId,
-          group: project.groupName,
-          project: project.name,
-          providerId: project.provider.providerId,
-        });
+        return this.azureDevOpsService.azuredevopsPost(importBody);
     }
   }
 }
