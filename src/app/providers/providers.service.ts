@@ -47,7 +47,6 @@ export class ProvidersService {
           group: project.groupName,
           project: project.name,
           providerId: project.provider.providerId,
-          uploadUrl: project.provider.uploadUrl,
         });
       case ProviderType.AzureDevOps.toLowerCase():
         return this.azureDevOpsService.azuredevopsPost({
