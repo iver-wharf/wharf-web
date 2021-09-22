@@ -23,7 +23,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
-- Removed all references to `MainProvider.uploadUrl`. (#?)
+- Removed all references to `MainProvider.uploadUrl`. (#72)
 
 ## v1.4.0 (2021-09-10)
 
