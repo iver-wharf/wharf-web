@@ -23,6 +23,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
+- Removed all references to `MainProvider.uploadUrl`. (#?)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
