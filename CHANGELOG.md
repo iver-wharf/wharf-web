@@ -23,6 +23,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
+- Updated `package-lock.json` to lockfile version 2 with `npm install`, using
+  npm@7.24.1. (#74)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
