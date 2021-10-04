@@ -22,6 +22,9 @@ docker-run:
 serve: clients
 	npm start
 
+clients-force:
+	npm run build-clients
+
 clients:
 ifeq ("$(wildcard dist/api-client)","")
 	npx ng build api-client
