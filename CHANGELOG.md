@@ -23,12 +23,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
-- Fixed potential bugs caused by wrong use of `completed` callback in RxJS
+- Fixed potential bugs caused by wrong use of `complete` callback in RxJS
   `subscribe` calls. (#77)
 
-- Updated RxJS `subscribe` calls' signature that was deprecated in RxJS 6.4 to
-  new signature, making use of an object for any call not exclusively using the
-  `next` callback parameter. (#77)
+- Changed RxJS `subscribe` calls to use new signature in preparation for
+  RxJS v8. (#77)
 
 ## v1.4.0 (2021-09-10)
 
