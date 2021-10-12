@@ -6,6 +6,7 @@ import { MetaService as GitHubMetaService } from 'import-github-client';
 import { MetaService as AzureDevOpsMetaService } from 'import-azuredevops-client';
 import { MetaService as ApiMeta } from 'api-client';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
 enum RemoteVersionStatus {
@@ -105,12 +106,14 @@ export class NavComponent implements OnInit {
       return;
     }
     state.status = RemoteVersionStatus.Pending;
-    version$.subscribe(
-      version => {
+    version$.pipe(finalize(() => {
+      this.ref.markForCheck();
+    })).subscribe({
+      next: version => {
         state.status = RemoteVersionStatus.OK;
         state.version = version.version;
       },
-      err => {
+      error: err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 404) {
             state.status = RemoteVersionStatus.NotFound;
@@ -124,9 +127,6 @@ export class NavComponent implements OnInit {
           state.error = `Unknown error: ${err}`;
         }
       },
-      () => {
-        this.ref.markForCheck();
-      },
-    );
+    });
   }
 }
