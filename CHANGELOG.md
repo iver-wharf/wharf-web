@@ -23,6 +23,12 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
+- Fixed potential bugs caused by wrong use of `complete` callback in RxJS
+  `subscribe` calls. (#77)
+
+- Changed RxJS `subscribe` calls to use new signature in preparation for
+  RxJS v8. (#77)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
