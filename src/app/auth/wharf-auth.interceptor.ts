@@ -17,12 +17,17 @@ export class WharfAuthInterceptor implements HttpInterceptor {
       const apiUrl = this.configService.getApiConfig().basePath;
       if (req.url.includes(apiUrl)) {
         const token = this.oidcSecurityService.getAccessToken();
-        const authHeaderValue = `Bearer ${token}`;
+        if (!token) {
+          return next.handle(req);
+        }
+        const allowedOrigin = new URL(apiUrl).origin;
+        const bearerToken = `Bearer ${token}`;
         req = req.clone({
           setHeaders: {
             /* eslint-disable @typescript-eslint/naming-convention */
-            Authorization: authHeaderValue,
-            /*eslint-enable @typescript-eslint/naming-convention */
+            Authorization: bearerToken,
+            'Access-Control-Allow-Origin': allowedOrigin,
+            /* eslint-enable @typescript-eslint/naming-convention */
           },
           withCredentials: true,
         });
