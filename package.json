@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-local": "ng serve --proxy-config src/proxy/local.dev.conf.json",
     "build": "ng build",
     "build-prod": "node deploy/collect-licenses/collect-licenses.mjs && ng build -c production",
     "build-clients": "ng build api-client && ng build import-gitlab-client && ng build import-github-client && ng build import-azuredevops-client",

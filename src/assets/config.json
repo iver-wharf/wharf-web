@@ -6,9 +6,9 @@
     "updateLatency": 20000,
     "updateFrequency": 30000,
     "backendUrls": {
-        "Api": "http://localhost:5001/api",
-        "GitlabImport": "http://localhost:5002/import",
-        "GithubImport": "http://localhost:5003/import",
-        "AzureDevopsImport": "http://localhost:5004/import"
+        "Api": "http://localhost:4200/api",
+        "GitlabImport": "http://localhost:4200/import",
+        "GithubImport": "http://localhost:4200/import",
+        "AzureDevopsImport": "http://localhost:4200/import"
     }
 }

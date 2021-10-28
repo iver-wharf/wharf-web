@@ -1,0 +1,22 @@
+{
+  "/api/*": {
+    "target": "http://localhost:5001",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/import/gitlab/*": {
+    "target": "http://localhost:5002",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/import/github/*": {
+    "target": "http://localhost:5003",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/import/azuredevops/*": {
+    "target": "http://localhost:5004",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
