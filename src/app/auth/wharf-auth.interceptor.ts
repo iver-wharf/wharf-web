@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 import { ConfigService } from '../shared/config/config.service';
@@ -20,13 +20,14 @@ export class WharfAuthInterceptor implements HttpInterceptor {
         if (!token) {
           return next.handle(req);
         }
-        const allowedOrigin = new URL(apiUrl).origin;
+        // const allowedOrigin = new URL(apiUrl).origin;
         const bearerToken = `Bearer ${token}`;
         req = req.clone({
           setHeaders: {
             /* eslint-disable @typescript-eslint/naming-convention */
             Authorization: bearerToken,
-            'Access-Control-Allow-Origin': allowedOrigin,
+            //'Access-Control-Allow-Credentials': 'true',
+            //'Access-Control-Allow-Origin': allowedOrigin,
             /* eslint-enable @typescript-eslint/naming-convention */
           },
           withCredentials: true,
