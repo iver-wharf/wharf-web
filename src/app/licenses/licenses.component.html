@@ -8,7 +8,8 @@
         Much love <i class="pi pi-heart"></i>
       </p>
       <p-accordion>
-        <p-accordionTab header="{{package.name}}@{{package.version}}" *ngFor="let package of licenses">
+        <p-accordionTab header="{{package.name}}@{{package.version}}" *ngFor="let package of licenses"
+          class="licenses-package-tab">
           <p *ngIf="package.description">{{package.description}}</p>
           <dl class="licenses-package-info">
             <dt>Publisher:</dt>
