@@ -38,7 +38,7 @@
     "ng-event-source": "^1.0.14",
     "primeicons": "^4.1.0",
     "primeng": "^12.0.0",
-    "prismjs": "^1.24.1",
+    "prismjs": "^1.25.0",
     "rxjs": "^7.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
