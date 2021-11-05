@@ -19,8 +19,26 @@ endif
 docker-run:
 	docker run --rm -it quay.io/iver-wharf/wharf-web:$(version)
 
-serve: swag
+serve: clients
 	npm start
+
+clients-force:
+	npm run build-clients
+
+clients:
+ifeq ("$(wildcard dist/api-client)","")
+	npx ng build api-client
+endif
+ifeq ("$(wildcard dist/import-gitlab-client)","")
+	npx ng build import-gitlab-client
+endif
+ifeq ("$(wildcard dist/import-github-client)","")
+	npx ng build import-github-client
+endif
+ifeq ("$(wildcard dist/import-azuredevops-client)","")
+	npx ng build import-azuredevops-client
+endif
+	@# This comment silences warning "make: Nothing to be done for 'clients'."
 
 deps:
 	npm install

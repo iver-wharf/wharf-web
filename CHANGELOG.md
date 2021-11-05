@@ -27,6 +27,12 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   of packages we ship together with wharf-web and their respective license
   texts. This page is accessible from the "version" overlay panel. (#71)
 
+- Fixed potential bugs caused by wrong use of `complete` callback in RxJS
+  `subscribe` calls. (#77)
+
+- Changed RxJS `subscribe` calls to use new signature in preparation for
+  RxJS v8. (#77)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
