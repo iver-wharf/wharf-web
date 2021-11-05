@@ -10,23 +10,25 @@
       <p-accordion>
         <p-accordionTab header="{{package.name}}@{{package.version}}" *ngFor="let package of licenses">
           <p *ngIf="package.description">{{package.description}}</p>
-          <ul>
-            <li *ngIf="package.publisher">Publisher: <strong>{{package.publisher}}</strong></li>
-            <li *ngIf="!package.publisher">
-              Publisher:
-              <em
+          <dl class="licenses-package-info">
+            <dt>Publisher:</dt>
+            <dd>
+              <strong *ngIf="package.publisher">{{package.publisher}}</strong>
+              <em *ngIf="!package.publisher"
                 pTooltip="The package {{package.name}}@{{package.version}} has not specified an author in their package.json file."
                 tooltipPosition="top">
                 none specified
               </em>
-            </li>
-            <li>Repository: <a href="{{package.repository}}" target="about:blank">{{package.repository}}</a></li>
-            <li>License:
+            </dd>
+            <dt>Repository:</dt>
+            <dd><a href="{{package.repository}}" target="about:blank">{{package.repository}}</a></dd>
+            <dt>License:</dt>
+            <dd>
               <span *ngFor="let spdx of package.licenses">
                 <a href="https://spdx.org/licenses/{{spdx}}">{{spdx}}</a>
               </span>
-            </li>
-          </ul>
+            </dd>
+          </dl>
           <pre class="code-block"><code>{{package.licenseText}}</code></pre>
         </p-accordionTab>
       </p-accordion>
