@@ -8,6 +8,7 @@ import { MetaService as ApiMeta } from 'api-client';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LicensesService } from '../shared/licenses/licenses.service';
 
 enum RemoteVersionStatus {
   Pending,
@@ -61,6 +62,7 @@ export class NavComponent implements OnInit {
     private azureDevOpsMetaService: AzureDevOpsMetaService,
     private apiMeta: ApiMeta,
     private ref: ChangeDetectorRef,
+    private licensesService: LicensesService,
   ) { }
 
   get env() {
@@ -97,6 +99,13 @@ export class NavComponent implements OnInit {
     this.updateAppVersion(ServiceName.ProviderGitHub, this.gitHubMetaService.githubVersionGet());
     this.updateAppVersion(ServiceName.ProviderGitLab, this.gitLabMetaService.gitlabVersionGet());
     this.updateAppVersion(ServiceName.ProviderAzureDevOps, this.azureDevOpsMetaService.azuredevopsVersionGet());
+  }
+
+  fetchLicenses() {
+    this.licensesService.licenses$.subscribe({
+      next: console.log,
+      error: console.error,
+    });
   }
 
   private updateAppVersion(serviceName: ServiceName, version$: Observable<VersionResponse>) {
