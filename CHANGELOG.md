@@ -36,6 +36,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Fixed issue where all non-root URL paths returned 404 from Nginx in
   Dockerfile even through they were valid paths, such as `/projects/1`. (#80)
 
+- Changed side nav to have `position: fixed`, meaning it will no longer scroll
+  with the rest of the page. (#82)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.

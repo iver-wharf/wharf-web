@@ -1,90 +1,94 @@
-<nav>
-  <div>
-    <div id="logo">
-      <a href="#">
-        <h3>WHARF</h3>
-      </a>
+<nav class="sidenav">
+  <div class="nav-container">
+    <div>
+      <div id="logo">
+        <a href="#">
+          <h3>WHARF</h3>
+        </a>
 
-      <button class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
-        {{env.version}} <i class="pi pi-question-circle"></i>
-      </button>
+        <button class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
+          {{env.version}} <i class="pi pi-question-circle"></i>
+        </button>
 
-      <p-overlayPanel class="version-panel" #versionPanel (onShow)="fetchServiceVersions()">
-        <ng-template pTemplate>
-          <ul>
-            <li>
-              <span class="label">Wharf web version: </span>
-              <span class="value">
-                <ng-container *ngIf="env.version | whIsValidString; else invalidValue">
-                  {{env.version}}
-                </ng-container>
-              </span>
-            </li>
-            <li>
-              <span class="label">Build ID: </span>
-              <span class="value">
-                <ng-container *ngIf="env.ciBuildRef | whIsValidBuildRef; else invalidValue">
-                  {{env.ciBuildRef}}
-                </ng-container>
-              </span>
-            </li>
-            <li>
-              <span class="label">Build commit: </span>
-              <span class="value">
-                <ng-container *ngIf="env.ciGitCommit | whIsValidString; else invalidValue">
-                  {{env.ciGitCommit}}
-                </ng-container>
-              </span>
-            </li>
-            <li>
-              <span class="label">Build date: </span>
-              <span class="value">
-                <ng-container *ngIf="env.ciBuildDate | whIsValidDate; else invalidValue">
-                  {{env.ciBuildDate | whDate}}
-                </ng-container>
-              </span>
-            </li>
-            <hr />
-            <li *ngFor="let state of serviceStates">
-              <span class="label">Version of {{state.service}}:</span>
-              <ng-container [ngSwitch]="state.status">
-                <span class="value version-ok" *ngSwitchCase="remoteVersionStatus.OK">
-                  {{state.version}}
+        <p-overlayPanel class="version-panel" #versionPanel (onShow)="fetchServiceVersions()">
+          <ng-template pTemplate>
+            <ul>
+              <li>
+                <span class="label">Wharf web version: </span>
+                <span class="value">
+                  <ng-container *ngIf="env.version | whIsValidString; else invalidValue">
+                    {{env.version}}
+                  </ng-container>
                 </span>
-                <span class="value version-not-found" *ngSwitchCase="remoteVersionStatus.NotFound">
-                  <span class="not-available"
-                    pTooltip="The service seems to be missing or it has not implemented the version check endpoint.">N/A</span>
+              </li>
+              <li>
+                <span class="label">Build ID: </span>
+                <span class="value">
+                  <ng-container *ngIf="env.ciBuildRef | whIsValidBuildRef; else invalidValue">
+                    {{env.ciBuildRef}}
+                  </ng-container>
                 </span>
-                <span class="value version-error" *ngSwitchCase="remoteVersionStatus.Error">
-                  <i class="pi pi-exclamation-triangle"></i>
-                  <span pTooltip="Error received while fetching version: {{state.error}}">Error fetching version</span>
+              </li>
+              <li>
+                <span class="label">Build commit: </span>
+                <span class="value">
+                  <ng-container *ngIf="env.ciGitCommit | whIsValidString; else invalidValue">
+                    {{env.ciGitCommit}}
+                  </ng-container>
                 </span>
-                <span class="value version-pending" *ngSwitchDefault>
-                  <p-progressSpinner strokeWidth="8"></p-progressSpinner> Fetching...
+              </li>
+              <li>
+                <span class="label">Build date: </span>
+                <span class="value">
+                  <ng-container *ngIf="env.ciBuildDate | whIsValidDate; else invalidValue">
+                    {{env.ciBuildDate | whDate}}
+                  </ng-container>
                 </span>
-              </ng-container>
-            </li>
-            <hr />
-            <li>
-              <span class="label">Licenses:</span>
-              <span class="value">
-                <a routerLink="/third-party-licenses" (click)="versionPanel.hide()">Third-party licenses</a>
-              </span>
-            </li>
-            <ng-template #invalidValue>
-              <span class="not-available" pTooltip="Value is invalid or has not been set.">N/A</span>
-            </ng-template>
-          </ul>
-        </ng-template>
-      </p-overlayPanel>
+              </li>
+              <hr />
+              <li *ngFor="let state of serviceStates">
+                <span class="label">Version of {{state.service}}:</span>
+                <ng-container [ngSwitch]="state.status">
+                  <span class="value version-ok" *ngSwitchCase="remoteVersionStatus.OK">
+                    {{state.version}}
+                  </span>
+                  <span class="value version-not-found" *ngSwitchCase="remoteVersionStatus.NotFound">
+                    <span class="not-available"
+                      pTooltip="The service seems to be missing or it has not implemented the version check endpoint.">N/A</span>
+                  </span>
+                  <span class="value version-error" *ngSwitchCase="remoteVersionStatus.Error">
+                    <i class="pi pi-exclamation-triangle"></i>
+                    <span pTooltip="Error received while fetching version: {{state.error}}">Error fetching
+                      version</span>
+                  </span>
+                  <span class="value version-pending" *ngSwitchDefault>
+                    <p-progressSpinner strokeWidth="8"></p-progressSpinner> Fetching...
+                  </span>
+                </ng-container>
+              </li>
+              <hr />
+              <li>
+                <span class="label">Licenses:</span>
+                <span class="value">
+                  <a routerLink="/third-party-licenses" (click)="versionPanel.hide()">Third-party licenses</a>
+                </span>
+              </li>
+              <ng-template #invalidValue>
+                <span class="not-available" pTooltip="Value is invalid or has not been set.">N/A</span>
+              </ng-template>
+            </ul>
+          </ng-template>
+        </p-overlayPanel>
 
+      </div>
+      <p-menu styleClass="menu-item" [model]="projectItem"></p-menu>
+      <div pTooltip='This feature has not yet been implemented. Stay tuned!' tooltipPosition="bottom">
+        <p-menu styleClass="menu-item" [model]="items"></p-menu>
+      </div>
+      <p-menu styleClass="menu-item" [model]="documentationItem"></p-menu>
     </div>
-    <p-menu styleClass="menu-item" [model]="projectItem"></p-menu>
-    <div pTooltip='This feature has not yet been implemented. Stay tuned!' tooltipPosition="bottom">
-      <p-menu styleClass="menu-item" [model]="items"></p-menu>
-    </div>
-    <p-menu styleClass="menu-item" [model]="documentationItem"></p-menu>
+
+    <p-menu styleClass="menu-item" [model]="userItem" pTooltip='This feature has not yet been implemented. Stay tuned!'
+      tooltipPosition="top"></p-menu>
   </div>
-  <p-menu styleClass="menu-item" [model]="userItem" pTooltip='This feature has not yet been implemented. Stay tuned!'
-    tooltipPosition="top"></p-menu>
 </nav>
