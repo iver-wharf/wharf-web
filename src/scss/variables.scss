@@ -48,6 +48,15 @@ $wharf_button_text_color: $wharf_palette_cloud_white;
 $wharf_button_text_hover_color: $wharf_black;
 $wharf_splitbutton_icon_color: $wharf_palette_cloud_white;
 
+// Accordions
+$wharf_accordion_header_background_color: $wharf_palette_primary_gunmetal_black;
+$wharf_accordion_header_hover_background_color: $wharf_palette_neon_blue;
+$wharf_accordion_header_text_color: $wharf_palette_cloud_white;
+$wharf_accordion_header_hover_text_color: $wharf_black;
+$wharf_accordion_header_border_color: $wharf_palette_neon_blue;
+$wharf_accordion_content_background_color: $wharf_palette_primary_gunmetal_black;
+$wharf_accordion_content_text_color: $wharf_palette_cloud_white;
+
 //Menus
 $wharf_provider_menu_border_color: $wharf_palette_neon_blue;
 $wharf_provider_menu_hover_background_color: $wharf_palette_neon_blue;
@@ -152,6 +161,9 @@ $wharf_code_token_punctuation_color: $wharf_palette_cloud_white;
 
 // Links
 $wharf_link_color: $wharf_palette_neon_blue;
+
+// Text
+$wharf_text_muted: $wharf_palette_cloud_grey;
 
 // Typography
 $font-sans-serif: "Noto Sans", sans-serif;
