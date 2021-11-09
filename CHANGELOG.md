@@ -39,6 +39,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed side nav to have `position: fixed`, meaning it will no longer scroll
   with the rest of the page. (#82)
 
+- Fixed invalid ellipsis overflow in Git SSH clone URL on project details page
+  caused by wrapping characters (e.g dash `-`). (#87)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
