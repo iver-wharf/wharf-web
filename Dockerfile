@@ -27,7 +27,9 @@ RUN deploy/update-typescript-environments.sh src/environments/environment.prod.t
 FROM nginx:1-alpine
 
 RUN apk add --upgrade --no-cache \
-    libgcrypt>=1.9.4 # Resolves CVE-2021-33560, as it's not yet upgraded in upstream image
+    # Resolves CVE-2021-22945, as it's not yet upgraded in upstream image
+    curl>7.78.0 \
+    libcurl>7.78.0
 
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
