@@ -39,6 +39,14 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed side nav to have `position: fixed`, meaning it will no longer scroll
   with the rest of the page. (#82)
 
+- Fixed invalid ellipsis overflow in Git SSH clone URL on project details page
+  caused by wrapping characters (e.g dash `-`). (#87)
+
+- Security fix by changing version of `curl` and `libcurl` from v7.78.0 to
+  v7.79.1 in `nginx` Docker base image to resolve [CVE-2021-22945](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22945),
+  as that package has not yet been updated in the upstream `nginx` Docker image.
+  (#88)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
