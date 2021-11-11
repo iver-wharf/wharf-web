@@ -1,6 +1,6 @@
 /**
- * Wharf main API
- * Wharf backend API that manages data storage for projects, builds, providers, etc.
+ * Wharf provider API for Azure DevOps
+ * Wharf backend API for integrating Azure DevOps repositories with the Wharf main API.
  *
  * OpenAPI spec version: local docker-compose
  * Contact: wharf@iver.se
