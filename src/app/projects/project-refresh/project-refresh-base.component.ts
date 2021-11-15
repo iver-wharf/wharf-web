@@ -3,7 +3,7 @@ import { ProjectRefreshedEvent } from './project-refresh.event';
 import { ProvidersService } from 'src/app/providers/providers.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { WharfProject } from 'src/app/models/main-project.model';
-import { tap } from 'rxjs/operators';
+import { tap, finalize } from 'rxjs/operators';
 import { Messages } from 'src/app/shared/messages.enum';
 
 @Directive()
@@ -31,11 +31,10 @@ export abstract class ProjectRefreshBaseComponent {
     this.isRefreshing = true;
     this.providersService.refreshProject(this.project).pipe(
       tap(() => this.refreshed.emit({ projectId: this.project.projectId })),
-    )
-      .subscribe(
-        () => this.notificationService.showSuccess(Messages.SuccessProjectRefresh),
-        (error) => (this.notificationService.showError(error.message), this.isRefreshing = false),
-        () => this.isRefreshing = false,
-      );
+      finalize(() => this.isRefreshing = false),
+    ).subscribe({
+      next: () => this.notificationService.showSuccess(Messages.SuccessProjectRefresh),
+      error: (error) => this.notificationService.showError(error.message),
+    });
   }
 }

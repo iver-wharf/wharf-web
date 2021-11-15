@@ -6,7 +6,9 @@ import { MetaService as GitHubMetaService } from 'import-github-client';
 import { MetaService as AzureDevOpsMetaService } from 'import-azuredevops-client';
 import { MetaService as ApiMeta } from 'api-client';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LicensesService } from '../shared/licenses/licenses.service';
 
 enum RemoteVersionStatus {
   Pending,
@@ -60,6 +62,7 @@ export class NavComponent implements OnInit {
     private azureDevOpsMetaService: AzureDevOpsMetaService,
     private apiMeta: ApiMeta,
     private ref: ChangeDetectorRef,
+    private licensesService: LicensesService,
   ) { }
 
   get env() {
@@ -98,6 +101,13 @@ export class NavComponent implements OnInit {
     this.updateAppVersion(ServiceName.ProviderAzureDevOps, this.azureDevOpsMetaService.azuredevopsVersionGet());
   }
 
+  fetchLicenses() {
+    this.licensesService.licenses$.subscribe({
+      next: console.log,
+      error: console.error,
+    });
+  }
+
   private updateAppVersion(serviceName: ServiceName, version$: Observable<VersionResponse>) {
     const state = this.serviceStates.find(s => s.service === serviceName);
     if (!state) {
@@ -105,12 +115,14 @@ export class NavComponent implements OnInit {
       return;
     }
     state.status = RemoteVersionStatus.Pending;
-    version$.subscribe(
-      version => {
+    version$.pipe(finalize(() => {
+      this.ref.markForCheck();
+    })).subscribe({
+      next: version => {
         state.status = RemoteVersionStatus.OK;
         state.version = version.version;
       },
-      err => {
+      error: err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 404) {
             state.status = RemoteVersionStatus.NotFound;
@@ -124,9 +136,6 @@ export class NavComponent implements OnInit {
           state.error = `Unknown error: ${err}`;
         }
       },
-      () => {
-        this.ref.markForCheck();
-      },
-    );
+    });
   }
 }

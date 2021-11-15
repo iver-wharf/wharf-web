@@ -12,7 +12,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.4.1 (WIP)
+## v1.6.0 (WIP)
+
+- Removed all references to `MainProvider.uploadUrl`. (#72)
+
+## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either
   `Loading... - Wharf` or `{project name} - Wharf`, no matter which tab
@@ -23,7 +27,29 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added Makefile to simplify building and developing the project locally. (#67)
 
-- Removed all references to `MainProvider.uploadUrl`. (#72)
+- Added page `/third-party-licenses` that shows an automatically generated list
+  of packages we ship together with wharf-web and their respective license
+  texts. This page is accessible from the "version" overlay panel. (#71)
+
+- Fixed potential bugs caused by wrong use of `complete` callback in RxJS
+  `subscribe` calls. (#77)
+
+- Changed RxJS `subscribe` calls to use new signature in preparation for
+  RxJS v8. (#77)
+
+- Fixed issue where all non-root URL paths returned 404 from Nginx in
+  Dockerfile even through they were valid paths, such as `/projects/1`. (#80)
+
+- Changed side nav to have `position: fixed`, meaning it will no longer scroll
+  with the rest of the page. (#82)
+
+- Fixed invalid ellipsis overflow in Git SSH clone URL on project details page
+  caused by wrapping characters (e.g dash `-`). (#87)
+
+- Security fix by changing version of `curl` and `libcurl` from v7.78.0 to
+  v7.79.1 in `nginx` Docker base image to resolve [CVE-2021-22945](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22945),
+  as that package has not yet been updated in the upstream `nginx` Docker image.
+  (#88)
 
 ## v1.4.0 (2021-09-10)
 

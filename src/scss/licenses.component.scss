@@ -1,0 +1,16 @@
+wh-licenses {
+  .p-accordion .licenses-package-tab .p-accordion-tab {
+    margin-bottom: 1rem;
+  }
+
+  .licenses-package-info {
+    dt {
+      color: $wharf_text_muted;
+      font-size: 0.8rem;
+    }
+
+    dd {
+      margin-inline-start: 1rem;
+    }
+  }
+}
