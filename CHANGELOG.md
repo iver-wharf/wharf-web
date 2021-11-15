@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.5.0 (2021-11-08)
+## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either
   `Loading... - Wharf` or `{project name} - Wharf`, no matter which tab
