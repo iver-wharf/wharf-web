@@ -22,14 +22,14 @@ export class TestResultsDetailListComponent implements OnInit {
         .getBuildTestResultDetailList(this.buildId, this.summaryId)
         .subscribe(details => {
           this.details = details.list;
-          this.details.forEach(d => d.message = this.removeHTMLEncodedCharacters(d.message));
+          this.details.forEach(d => d.message = this.unescapeHtml(d.message));
           this.failedDetails = this.details.filter(d => d.status === TestResultStatus.Failed);
         });
       this.fetched = true;
     }
   }
 
-  private removeHTMLEncodedCharacters(str: string): string {
-    return str?.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  private unescapeHtml(str: string): string {
+    return str?.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
   }
 }
