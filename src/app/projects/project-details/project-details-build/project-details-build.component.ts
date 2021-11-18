@@ -23,8 +23,6 @@ export class ProjectDetailsBuildComponent {
   isActionsFormVisible = false;
   destroyed$ = new Subject<void>();
 
-  private numberFormat = new Intl.NumberFormat('en-US');
-
   constructor(
     public projectUtilsService: ProjectUtilsService,
     private buildService: BuildService,
@@ -46,7 +44,6 @@ export class ProjectDetailsBuildComponent {
   navigateToBuild(build: ResponseBuild) {
     this.router.navigate(['/build', build.projectId, build.buildId]);
   }
-
 
   openActions(label) {
     this.selectedAction = label;
@@ -82,25 +79,6 @@ export class ProjectDetailsBuildComponent {
       default:
         return '';
     }
-  }
-
-  numberWithCommas(num: number) {
-    return this.numberFormat.format(num);
-  }
-
-  private fillProjectBuilds(proj: WharfProject): Observable<WharfProject> {
-    return forkJoin(
-      proj.buildHistory.map(x => this.testResultService
-        .buildBuildIdTestResultListSummaryGet(x.buildId),
-      ),
-    ).pipe(
-      map(testResultListSummaries => {
-        testResultListSummaries.forEach((listSummary, index) => {
-          this.project.buildHistory[index].testResultListSummary = listSummary;
-        });
-        return this.project;
-      }),
-    );
   }
 
   private fillProjectActions(proj: WharfProject): WharfProject {
