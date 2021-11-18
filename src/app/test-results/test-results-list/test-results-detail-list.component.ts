@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ResponseTestResultDetail, TestResultService } from 'api-client';
-import { TestResultStatus } from 'src/app/models/test-result-status';
 
 @Component({
   selector: 'wh-test-results-detail-list',
@@ -23,7 +22,7 @@ export class TestResultsDetailListComponent implements OnInit {
         .subscribe(details => {
           this.details = details.list;
           this.details.forEach(d => d.message = this.unescapeHtml(d.message));
-          this.failedDetails = this.details.filter(d => d.status === TestResultStatus.Failed);
+          this.failedDetails = this.details.filter(d => d.status === ResponseTestResultDetail.StatusEnum.Failed);
         });
       this.fetched = true;
     }
