@@ -23,10 +23,10 @@
         <p-progressSpinner *ngIf="isBuildRunning(build)" class="status-progress-spinner" strokeWidth="4">
         </p-progressSpinner>
       </td>
-      <td class="col-tests" *ngIf="build.summaryOfTests">
-        {{this.numberWithCommas(build.summaryOfTests.failed)}}<i class="pi pi-times"></i>&nbsp;
-        {{this.numberWithCommas(build.summaryOfTests.skipped)}}<i class="pi pi-circle-on"></i>&nbsp;
-        {{this.numberWithCommas(build.summaryOfTests.passed)}}<i class="pi pi-check"></i>
+      <td class="col-tests">
+        {{numberWithCommas(build.testResultListSummary.failed)}}<i class="pi pi-times"></i>&nbsp;
+        {{numberWithCommas(build.testResultListSummary.skipped)}}<i class="pi pi-circle-on"></i>&nbsp;
+        {{numberWithCommas(build.testResultListSummary.passed)}}<i class="pi pi-check"></i>
       </td>
       <td class="col-branch">{{build.gitBranch}}</td>
       <td class="col-started">{{build.scheduledOn | whDate}}</td>

@@ -12,6 +12,12 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.6.0 (WIP)
+
+- Changed to use the new endpoints for test results from wharf-api. This allows
+  us to display the number of failed/skipped/passed tests in the builds list, as
+  well as any messages from failed tests in the build details view. (#53)
+
 ## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either

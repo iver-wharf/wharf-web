@@ -34,14 +34,17 @@ wh-project-list-item {
         &.pi-times {
           color: red;
         }
+
         &.pi-circle-on {
           color: orange;
         }
+
         &.pi-check {
           color: green;
         }
       }
     }
+
     &.col-stage,
     &.col-environment,
     &.col-status,

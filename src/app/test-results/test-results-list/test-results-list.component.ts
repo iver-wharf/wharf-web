@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TestResultService, ResponseTestResultSummary, ResponseTestResultDetail } from 'api-client';
 
-const NO_SELECTION: number = -1;
+const NO_SELECTION = -1;
 @Component({
   selector: 'wh-test-results-list',
   templateUrl: './test-results-list.component.html',

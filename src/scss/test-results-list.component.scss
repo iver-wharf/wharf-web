@@ -3,6 +3,7 @@ div#test-results-list {
     &.col-id {
       width: 6rem;
     }
+
     &.col-name,
     &.col-status {
       width: 15rem;
@@ -21,7 +22,8 @@ table.detail-list {
 
   tr {
     border-bottom: 0.05rem solid gray;
-    &[role="button"]:hover{
+
+    &[role="button"]:hover {
       background-color: #292d30;
       cursor: pointer;
     }

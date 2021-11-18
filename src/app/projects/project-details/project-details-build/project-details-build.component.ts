@@ -82,8 +82,8 @@ export class ProjectDetailsBuildComponent {
     }
   }
 
-  numberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  numberWithCommas(num: number) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   private fillProjectActions(proj: WharfProject): WharfProject {
