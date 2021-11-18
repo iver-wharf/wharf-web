@@ -1,5 +1,5 @@
 import { ResponseProject, ResponseBuild, ResponseProvider } from 'api-client';
-import { ResponseBranch } from './wharf-branch.model';
+import { ResponseBranch } from './main-branch.model';
 import { ProjectBuild } from './project-build.model';
 import { ProjectAction } from './project-action.model';
 

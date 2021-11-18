@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ResponseBuild, BuildService } from 'api-client';
 import { LazyLoadEvent } from 'primeng/api';
 import { Subject } from 'rxjs';
-import { WharfProject } from 'src/app/models/wharf-project.model';
+import { WharfProject } from 'src/app/models/main-project.model';
 import { ActionsModalStore } from '../../actions-modal/actions-modal.service';
 import { LocalStorageProjectsService } from '../../local-storage-projects.service';
 import { ProjectUtilsService } from '../../project-utils.service';

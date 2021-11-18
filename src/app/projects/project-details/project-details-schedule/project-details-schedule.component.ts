@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WharfProject } from 'src/app/models/wharf-project.model';
+import { WharfProject } from 'src/app/models/main-project.model';
 
 interface Schedule {
   scheduleId: number;

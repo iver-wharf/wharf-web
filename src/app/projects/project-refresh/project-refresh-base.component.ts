@@ -2,7 +2,7 @@ import { Input, Component, Output, EventEmitter, Directive } from '@angular/core
 import { ProjectRefreshedEvent } from './project-refresh.event';
 import { ProvidersService } from 'src/app/providers/providers.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
-import { WharfProject } from 'src/app/models/wharf-project.model';
+import { WharfProject } from 'src/app/models/main-project.model';
 import { tap, finalize } from 'rxjs/operators';
 import { Messages } from 'src/app/shared/messages.enum';
 

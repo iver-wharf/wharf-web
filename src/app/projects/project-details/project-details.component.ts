@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { WharfProject } from 'src/app/models/wharf-project.model';
+import { WharfProject } from 'src/app/models/main-project.model';
 import { ProjectUtilsService } from '../project-utils.service';
 import { LocalStorageProjectsService } from '../local-storage-projects.service';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
