@@ -29,6 +29,19 @@ wh-project-list-item {
   }
 
   td {
+    &.col-tests {
+      i {
+        &.pi-times {
+          color: red;
+        }
+        &.pi-circle-on {
+          color: orange;
+        }
+        &.pi-check {
+          color: green;
+        }
+      }
+    }
     &.col-stage,
     &.col-environment,
     &.col-status,

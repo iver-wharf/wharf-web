@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil, tap } from 'rxjs/operators';
 import { Environment } from 'src/app/models/environment.model';
 import { InputField } from 'src/app/models/input-field.model';
-import { WharfProject } from 'src/app/models/main-project.model';
+import { WharfProject } from 'src/app/models/wharf-project.model';
 import { ProjectBuild } from 'src/app/models/project-build.model';
 import { ProjectUtilsService } from './../project-utils.service';
 import { ActionsModalStore } from './actions-modal.service';

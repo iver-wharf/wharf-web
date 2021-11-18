@@ -3,6 +3,9 @@
     <wh-tabpanel-x id="build-logs" header="Logs">
       <ng-container *ngTemplateOutlet="buildDataView"></ng-container>
     </wh-tabpanel-x>
+    <wh-tabpanel-x header="Test Results">
+      <ng-container *ngTemplateOutlet="testResultsView"></ng-container>
+    </wh-tabpanel-x>
     <wh-tabpanel-x header="Artifacts">
       <ng-container *ngTemplateOutlet="artifactsView"></ng-container>
     </wh-tabpanel-x>
@@ -21,7 +24,10 @@
       </div>
     </div>
   </ng-template>
-  <ng-template #artifactsView>
+  <ng-template #testResultsView>
+    <wh-test-results-list [buildId]="buildId"></wh-test-results-list>
+  </ng-template>
+  <ng-template #artifactsView >
     <wh-artifacts-list [buildId]="buildId"></wh-artifacts-list>
   </ng-template>
 </section>

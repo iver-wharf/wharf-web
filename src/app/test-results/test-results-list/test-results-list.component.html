@@ -1,0 +1,50 @@
+<div id="test-results-list">
+  <p-table [value]="summaries">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="col-id">ID</th>
+        <th class="col-name">FILENAME</th>
+        <th class="col-status">STATUS</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-summary>
+      <tr role="button" (click)="this.toggleDetails(summary)">
+        <td class="col-id">{{summary.testResultSummaryId}}</td>
+        <td class="col-name">{{summary.fileName}}</td>
+        <td class="col-status">{{summary.failed ? "Failed" : "Passed"}}</td>
+      </tr>
+      <tr *ngIf="summary.testResultSummaryId === this.selectedSummaryId">
+        <td colspan="3">
+          <div>
+            <a *ngIf="this.failedDetails?.length === 0">No messages</a>
+            <table class="detail-list" *ngIf="this.failedDetails?.length > 0">
+              <tr>
+                <th class="col-test-name">Name</th>
+                <th class="col-test-status">Status</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div>
+                    <table *ngFor="let detail of this.failedDetails">
+                      <tr role="button" (click)="this.showDetailMessage(detail)">
+                        <td class="col-test-name">{{detail.name}}</td>
+                        <td class="col-test-status">{{detail.status}}</td>
+                      </tr>
+                      <tr *ngIf="this.selectedDetailId === detail.testResultDetailId">
+                        <td colspan="2" class="detail-message">
+                          <div>
+                            {{detail.message}}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

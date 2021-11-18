@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
 import { Environment } from '../models/environment.model';
-import { WharfProject } from '../models/main-project.model';
+import { WharfProject } from '../models/wharf-project.model';
 import { ActionsModalStore } from './actions-modal/actions-modal.service';
 
 @Injectable({

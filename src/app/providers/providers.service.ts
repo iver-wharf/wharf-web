@@ -1,4 +1,4 @@
-import { WharfProject } from 'src/app/models/main-project.model';
+import { WharfProject } from 'src/app/models/wharf-project.model';
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';

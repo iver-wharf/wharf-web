@@ -5,7 +5,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { Table } from 'primeng/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { WharfProject } from 'src/app/models/main-project.model';
+import { WharfProject } from 'src/app/models/wharf-project.model';
 import { ProvidersService } from 'src/app/providers/providers.service';
 import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectRefreshedEvent } from '../project-refresh';

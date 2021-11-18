@@ -1,10 +1,11 @@
-import { Component,
+import {
+  Component,
   EventEmitter,
   Input,
   OnChanges,
   Output,
 } from '@angular/core';
-import { WharfProject } from 'src/app/models/main-project.model';
+import { WharfProject } from 'src/app/models/wharf-project.model';
 import { NgChanges } from 'src/app/shared/util/ngchanges';
 
 const NO_DEFAULT_BRANCH_NAME = '<unknown default branch>';

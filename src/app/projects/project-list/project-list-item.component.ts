@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { WharfProject } from 'src/app/models/main-project.model';
+import { WharfProject } from 'src/app/models/wharf-project.model';
 import { NgChanges } from 'src/app/shared/util/ngchanges';
 import { LocalStorageProjectsService } from '../local-storage-projects.service';
 import { ProjectFavoriteClickEvent } from '../project-favorite/project-favorite-button.component';

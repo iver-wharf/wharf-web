@@ -1,5 +1,5 @@
 
-export interface ResponseBranch {
+export interface WharfBranch {
   branchId?: number;
   default?: boolean;
   name?: string;
