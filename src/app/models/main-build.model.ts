@@ -1,12 +1,12 @@
 
-import { MainBuildParam } from 'api-client';
+import { ResponseBuildParam } from 'api-client';
 import { BuildStatus } from './build-status';
 import { TestsResults } from './tests-results.model';
 
-export interface MainBuild {
+export interface ResponseBuild {
     buildId?: number;
     finishedOn?: Date;
-    params?: Array<MainBuildParam>;
+    params?: Array<ResponseBuildParam>;
     projectId?: number;
     scheduledOn?: Date;
     startedOn?: Date;

@@ -1,5 +1,5 @@
 
-export interface MainBranch {
+export interface ResponseBranch {
   branchId?: number;
   default?: boolean;
   name?: string;

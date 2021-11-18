@@ -90,22 +90,22 @@ export class ProjectListComponent implements OnInit {
   private replaceProject(projectId: number) {
     const projectIndex = this.projects.findIndex(proj => proj.projectId === projectId);
     if (projectIndex !== -1) {
-      this.projectService.projectProjectidGet(projectId).subscribe(proj => {
+      this.projectService.getProject(projectId).subscribe(proj => {
         this.projects[projectIndex] = proj;
       });
     }
 
     const favoriteProjectIndex = this.favoriteProjects.findIndex(proj => proj.projectId === projectId);
     if (favoriteProjectIndex !== -1) {
-      this.projectService.projectProjectidGet(projectId).subscribe(proj => {
+      this.projectService.getProject(projectId).subscribe(proj => {
         this.favoriteProjects[favoriteProjectIndex] = proj;
       });
     }
   }
 
   private loadProjects() {
-    this.projectService.projectsGet().subscribe(val => {
-      this.projects = val;
+    this.projectService.getProjectList(null, 0).subscribe(paginatedProjects => {
+      this.projects = paginatedProjects.list;
       this.initFavoriteProjects();
     });
   }
