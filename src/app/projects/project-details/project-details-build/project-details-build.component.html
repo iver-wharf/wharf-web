@@ -1,11 +1,5 @@
-<p-table
-  class="build-list"
-  [value]="project?.buildHistory"
-  [lazy]="true"
-  (onLazyLoad)="loadBuildsLazy($event)"
-  [paginator]="true"
-  [rows]="rowsCount"
-  [totalRecords]="buildsTotalCount">
+<p-table class="build-list" [value]="project?.buildHistory" [lazy]="true" (onLazyLoad)="loadBuildsLazy($event)"
+  [paginator]="true" [rows]="rowsCount" [totalRecords]="buildsTotalCount">
   <ng-template pTemplate="header">
     <tr>
       <th class="col-id">ID</th>
@@ -26,11 +20,8 @@
       <td class="col-environment">{{build.environment}}</td>
       <td class="col-status">
         <span [class]="this.getStatusCssClass(build.statusId)">{{build.status}}</span>
-        <p-progressSpinner
-          *ngIf="isBuildRunning(build)"
-          class="status-progress-spinner"
-          strokeWidth="4"
-          ></p-progressSpinner>
+        <p-progressSpinner *ngIf="isBuildRunning(build)" class="status-progress-spinner" strokeWidth="4">
+        </p-progressSpinner>
       </td>
       <td class="col-tests">
         {{build.testResultListSummary.failed | number:'1.0-0'}}<i class="pi pi-times"></i>
