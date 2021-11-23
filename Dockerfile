@@ -21,7 +21,6 @@ ARG BUILD_REF="0"
 ARG BUILD_DATE=""
 RUN deploy/update-typescript-environments.sh src/environments/environment.prod.ts \
     && npm run build-clients \
-    && npm run collect-licenses \
     && npm run build-prod
 
 FROM nginx:1-alpine
