@@ -15,7 +15,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 ## v1.5.1 (WIP)
 
 - Changed rxjs behaviour on license module to allow cross 6-7 rxjs version
-  compatability. (#96)
+  compatibility. (#96)
 
 ## v1.5.0 (2021-11-15)
 
