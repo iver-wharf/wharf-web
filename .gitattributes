@@ -7,3 +7,6 @@
 
 # API guardian patch must always use LF for tests to work
 *.patch eol=lf
+
+# Handle line endings for docker scripts on Windows
+*.sh text eol=lf
