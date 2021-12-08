@@ -12,6 +12,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.5.1 (WIP)
+
+- Changed rxjs behaviour on license module to allow cross 6-7 rxjs version
+  compatability. (#96)
+
 ## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either
