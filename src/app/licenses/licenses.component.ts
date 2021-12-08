@@ -18,7 +18,7 @@ export class LicensesComponent implements OnInit {
     licenseService: LicensesService,
   ) {
     licenseService.licenses$.subscribe({
-      next: licenses => this.licenses = licenses,
+      next: (licenses: License[]) => this.licenses = licenses,
       error: err => {
         console.error(err);
         if (err instanceof HttpErrorResponse) {
