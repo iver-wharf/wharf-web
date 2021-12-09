@@ -47,7 +47,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   as that package has not yet been updated in the upstream `nginx` Docker image.
   (#88)
 
-- Changed docker-build scripts for easier windows building. (#95)
+- Changed Dockerfile for easier windows building. (#95)
 
 ## v1.4.0 (2021-09-10)
 
