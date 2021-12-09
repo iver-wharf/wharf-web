@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 file="${1:?'Environments TS file must be provided'}"
 

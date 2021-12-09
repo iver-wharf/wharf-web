@@ -20,7 +20,8 @@ ARG BUILD_VERSION="local docker"
 ARG BUILD_GIT_COMMIT="HEAD"
 ARG BUILD_REF="0"
 ARG BUILD_DATE=""
-RUN deploy/update-typescript-environments.sh src/environments/environment.prod.ts \
+RUN chmod +x deploy/update-typescript-environments.sh \
+    && deploy/update-typescript-environments.sh src/environments/environment.prod.ts \
     && npm run build-clients \
     && npm run build-prod
 

@@ -47,6 +47,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   as that package has not yet been updated in the upstream `nginx` Docker image.
   (#88)
 
+- Changed Dockerfile for easier windows building. (#95)
+
 ## v1.4.0 (2021-09-10)
 
 - Added toast message support for IETF RFC-7807 formatted error responses.
