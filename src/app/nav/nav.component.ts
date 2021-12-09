@@ -77,7 +77,7 @@ export class NavComponent implements OnInit, OnDestroy {
     return environment;
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.projectItem = [
       { label: 'PROJECTS', icon: 'pi pi-file-o', routerLink: ['/'] },
     ];
@@ -97,6 +97,11 @@ export class NavComponent implements OnInit, OnDestroy {
     ];
 
     this.setMenuOptsAuth();
+  }
+
+  public ngOnDestroy() {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
   }
 
   private setMenuOptsAuth(): void {
@@ -171,10 +176,5 @@ export class NavComponent implements OnInit, OnDestroy {
         }
       },
     });
-  }
-
-  ngOnDestroy() {
-    this.isDestroyed$.next(true);
-    this.isDestroyed$.complete();
   }
 }
