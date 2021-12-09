@@ -14,6 +14,10 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
+- Adds the ability to login. While logged in this will forward the OIDC
+  access token to the backend such that a secure user access control is
+  established. (#70)
+
 - Changed function calls and type names to match the regenerated rest clients
   using: (#91)
 
