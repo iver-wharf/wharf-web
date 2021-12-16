@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { MetaService as GitLabMetaService } from 'import-gitlab-client';
@@ -39,9 +39,7 @@ enum ServiceName {
   selector: 'wh-app-nav',
   templateUrl: './nav.component.html',
 })
-export class NavComponent implements OnInit, OnDestroy {
-  @ViewChild('versionButton') versionButton: ElementRef<HTMLButtonElement>;
-
+export class NavComponent implements OnInit {
   projectItem: MenuItem[];
   items: MenuItem[];
   documentationItem: MenuItem[];
@@ -57,7 +55,6 @@ export class NavComponent implements OnInit, OnDestroy {
   ];
 
   private isFetchingVersions = false;
-  private overlayStyleMutationObserver: MutationObserver;
 
   constructor(
     private gitLabMetaService: GitLabMetaService,
@@ -91,19 +88,6 @@ export class NavComponent implements OnInit, OnDestroy {
     ];
   }
 
-  ngOnDestroy() {
-    this.cleanupHackyFixOverlayObserver();
-  }
-
-  onOverlayShow() {
-    this.fetchServiceVersions();
-    this.hackyFixOverlayPosition();
-  }
-
-  onOverlayHide() {
-    this.cleanupHackyFixOverlayObserver();
-  }
-
   fetchLicenses() {
     this.licensesService.licenses$.subscribe({
       next: console.log,
@@ -111,7 +95,7 @@ export class NavComponent implements OnInit, OnDestroy {
     });
   }
 
-  private fetchServiceVersions() {
+  fetchServiceVersions() {
     if (this.isFetchingVersions) {
       return;
     }
@@ -153,46 +137,5 @@ export class NavComponent implements OnInit, OnDestroy {
         }
       },
     });
-  }
-
-  private hackyFixOverlayPosition() {
-    // There's a bug with PrimeNG's OverlayPanel combined with `position: fixed`
-    // where the window scroll position is always added to the `top: 123px`.
-    const panel = document.getElementsByClassName('version-panel-container')[0];
-    if (!panel) {
-      console.warn('Unable to find version overlay panel');
-      return;
-    }
-    if (!(panel instanceof HTMLDivElement)) {
-      console.warn('Expected overlay panel to be a <div>, but was not:', panel.nodeType);
-      return;
-    }
-
-    // We can't update the position here because the invalid positioning is
-    // applied after OverlayPanel.onShow is invoked:
-    // https://github.com/primefaces/primeng/blob/12.0.0/src/app/components/overlaypanel/overlaypanel.ts#L226-L228
-    this.cleanupHackyFixOverlayObserver();
-    this.overlayStyleMutationObserver = new MutationObserver(m => this.onOverlayStyleMutated(panel, m));
-    this.overlayStyleMutationObserver.observe(panel, {
-      attributes: true,
-      attributeFilter: ['style'],
-    });
-  }
-
-  private onOverlayStyleMutated(panel: HTMLDivElement, mutations: MutationRecord[]) {
-    const btn = this.versionButton.nativeElement;
-    const rect = btn.getBoundingClientRect();
-    const top = Math.floor(rect.bottom) + 'px';
-    if (panel.style.top !== top) {
-      panel.style.top = top;
-      this.cleanupHackyFixOverlayObserver(); // only need it once.
-    }
-  }
-
-  private cleanupHackyFixOverlayObserver() {
-    if (this.overlayStyleMutationObserver) {
-      this.overlayStyleMutationObserver.disconnect();
-      this.overlayStyleMutationObserver = null;
-    }
   }
 }

@@ -10,8 +10,7 @@
           {{env.version}} <i class="pi pi-question-circle"></i>
         </button>
 
-        <p-overlayPanel #versionPanel (onShow)="onOverlayShow()" (onHide)="onOverlayHide()"
-          styleClass="version-panel-container" appendTo="body">
+        <p-overlayPanel #versionPanel (onShow)="fetchServiceVersions()" styleClass="version-panel" appendTo="body">
           <ng-template pTemplate>
             <ul>
               <li>

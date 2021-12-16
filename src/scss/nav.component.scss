@@ -1,7 +1,12 @@
-.version-panel-container {
+.version-panel {
+  background-color: $wharf_sidenav_menu_version_details_background_color;
+  // PrimeNG's automatic position gets messed up by `position: fixed` as it
+  // always adds the window's scroll. This overrides that.
+  top: 5.6rem !important;
+
   &.p-overlaypanel {
-    background-color: $wharf_sidenav_menu_version_details_background_color;
     position: fixed;
+
     // There's a bug with PrimeNG's OverlayPanel combined with `position: fixed`
     // where it sets `display: none`.
     // https://github.com/primefaces/primeng/issues/5311
@@ -74,12 +79,15 @@
       display: flex;
       justify-content: center;
       margin-bottom: 0;
+      margin-top: 2rem;
+      height: 2rem;
     }
 
     .version-button {
       display: block;
       margin: 0 auto;
       padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+      height: 1.5rem;
       font-size: 0.8rem;
       color: $wharf_sidenav_menu_version_color;
       background-color: $wharf_sidenav_menu_version_background_color;
