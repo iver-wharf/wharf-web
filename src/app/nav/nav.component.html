@@ -6,11 +6,12 @@
           <h3>WHARF</h3>
         </a>
 
-        <button class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
+        <button #versionButton class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
           {{env.version}} <i class="pi pi-question-circle"></i>
         </button>
 
-        <p-overlayPanel class="version-panel" #versionPanel (onShow)="fetchServiceVersions()">
+        <p-overlayPanel #versionPanel (onShow)="onOverlayShow()" (onHide)="onOverlayHide()"
+          styleClass="version-panel-container" appendTo="body">
           <ng-template pTemplate>
             <ul>
               <li>
