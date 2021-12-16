@@ -88,13 +88,6 @@ export class NavComponent implements OnInit {
     ];
   }
 
-  fetchLicenses() {
-    this.licensesService.licenses$.subscribe({
-      next: console.log,
-      error: console.error,
-    });
-  }
-
   fetchServiceVersions() {
     if (this.isFetchingVersions) {
       return;
@@ -106,6 +99,13 @@ export class NavComponent implements OnInit {
     this.updateAppVersion(ServiceName.ProviderGitHub, this.gitHubMetaService.githubVersionGet());
     this.updateAppVersion(ServiceName.ProviderGitLab, this.gitLabMetaService.gitlabVersionGet());
     this.updateAppVersion(ServiceName.ProviderAzureDevOps, this.azureDevOpsMetaService.azuredevopsVersionGet());
+  }
+
+  fetchLicenses() {
+    this.licensesService.licenses$.subscribe({
+      next: console.log,
+      error: console.error,
+    });
   }
 
   private updateAppVersion(serviceName: ServiceName, version$: Observable<VersionResponse>) {
