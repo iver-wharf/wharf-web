@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.5.1 (WIP)
+## v1.5.1 (2022-01-10)
 
 - Fixed version panel misplacement on scrollable pages and being locked to the
   width of the side nav bar, a bug introduced in v1.5.0 by #82. (#97)
