@@ -17,6 +17,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Fixed version panel misplacement on scrollable pages and being locked to the
   width of the side nav bar, a bug introduced in v1.5.0 by #82. (#97)
 
+- Security: Changed version of `jsprim` to v1.4.2 and `json-schema` to v0.4.0
+  to resolve CVE-2021-3918. (#100)
+
 ## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either
