@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { EventTypes, OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
 import { AuthConfigModule } from './auth-config.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -27,7 +27,9 @@ import { CardModule } from 'primeng/card';
   ],
 })
 export class AuthModule {
-  constructor(private readonly eventService: PublicEventsService) {
+  constructor(
+    private readonly eventService: PublicEventsService,
+  ) {
     this.eventService
       .registerForEvents()
       .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))

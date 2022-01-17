@@ -1,5 +1,5 @@
 <!-- From https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app -->
-<div *ngIf="isAuthenticated; else noAuth">
+<div *ngIf="isAuthenticated$|async; else noAuth">
   <p-button (click)="logout()">Logout</p-button>
   <p-button (click)="logoffAndRevokeTokens()">Logout and revoke tokens</p-button>
   <p-button (click)="revokeAccessToken()">Revoke access token</p-button>
@@ -7,7 +7,7 @@
   <p-button (click)="refreshSession()">Refresh session</p-button>
   <hr />
   <br />
-  Is Authenticated: {{ isAuthenticated }}
+  Is Authenticated: {{ isAuthenticated$|async }}
   <br />
   userData
   <pre>{{ userData$ | async | json }}</pre>

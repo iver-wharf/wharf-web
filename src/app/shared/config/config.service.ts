@@ -100,9 +100,6 @@ export class ConfigService {
   public getOidcConfig$(): Observable<OpenIdConfiguration> {
     return this.getConfig$().pipe(
       map<Config,OpenIdConfiguration>((configuration: Config) => configuration.oidcConfig),
-      tap(configuration => {
-        debugger;
-      }),
     );
   }
 

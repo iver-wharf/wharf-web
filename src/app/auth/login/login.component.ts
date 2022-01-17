@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AuthenticatedResult,
   OidcSecurityService,
   OpenIdConfiguration,
   UserDataResult,
 } from 'angular-auth-oidc-client';
-import { Observable } from 'rxjs';
+import { Observable, pluck } from 'rxjs';
 
 /*
  * Largely from damienbod/angular-auth-oidc-client samples. See-
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   configuration: OpenIdConfiguration;
   userData$: Observable<UserDataResult>;
-  isAuthenticated = false;
+  isAuthenticated$: Observable<boolean>;
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
@@ -28,11 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.configuration = this.oidcSecurityService.getConfiguration();
     this.userData$ = this.oidcSecurityService.userData$;
-
-    this.oidcSecurityService.isAuthenticated$.subscribe(({ isAuthenticated }) => {
-      this.isAuthenticated = isAuthenticated;
-      console.warn('authenticated: ', isAuthenticated);
-    });
+    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$.pipe(pluck('isAuthenticated'));
   }
 
   login() {

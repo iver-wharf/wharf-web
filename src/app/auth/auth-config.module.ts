@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
-  AuthModule,
+  AuthModule, OidcSecurityService,
   StsConfigHttpLoader,
   StsConfigLoader,
 } from 'angular-auth-oidc-client';
