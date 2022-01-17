@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  OidcClientNotification,
   OidcSecurityService,
   OpenIdConfiguration,
   UserDataResult,
