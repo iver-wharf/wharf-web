@@ -14,11 +14,29 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
+- Regenerated rest clients for: (#91)
+
+  - `wharf-api` v5.0.0
+  - `wharf-provider-github` v2.0.0
+  - `wharf-provider-gitlab` v1.3.0
+  - `wharf-provider-azuredevops` v2.0.1
+
+- Changed function calls and object references to match new names in the
+  generated code. (#91)
+
 - Added test results failed/skipped/passed numbers to each build in a project's
   build list. (#53)
 
 - Added test result details, showing test messages and per-artifact test
   results, to the build details page. (#53)
+
+## v1.5.1 (2022-01-10)
+
+- Fixed version panel misplacement on scrollable pages and being locked to the
+  width of the side nav bar, a bug introduced in v1.5.0 by #82. (#97)
+
+- Security: Changed version of `jsprim` to v1.4.2 and `json-schema` to v0.4.0
+  to resolve CVE-2021-3918. (#100)
 
 ## v1.5.0 (2021-11-15)
 

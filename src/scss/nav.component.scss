@@ -1,3 +1,60 @@
+.version-panel {
+  background-color: $wharf_sidenav_menu_version_details_background_color;
+  // PrimeNG's automatic position gets messed up by `position: fixed` as it
+  // always adds the window's scroll. This overrides that.
+  top: 5.6rem !important;
+
+  &.p-overlaypanel {
+    position: fixed;
+
+    // There's a bug with PrimeNG's OverlayPanel combined with `position: fixed`
+    // where it sets `display: none`.
+    // https://github.com/primefaces/primeng/issues/5311
+    display: block !important;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    color: $wharf_sidenav_menu_version_details_label_color;
+  }
+
+  .value {
+    padding-inline-start: 1rem;
+    color: $wharf_sidenav_menu_version_details_value_color;
+  }
+
+  .label,
+  .value {
+    display: block;
+    overflow-wrap: break-word;
+  }
+
+  .version-pending {
+    color: $wharf_sidenav_menu_version_remote_pending_text_color;
+
+    .p-progress-spinner {
+      width: 0.8em;
+      height: 0.8em;
+      vertical-align: baseline;
+    }
+  }
+
+  .version-error {
+    color: $wharf_sidenav_menu_version_remote_error_text_color;
+
+    .pi {
+      vertical-align: middle;
+      margin-right: 0.3rem;
+    }
+  }
+}
+
 .sidenav {
   position: fixed;
   height: 100vh;
@@ -22,12 +79,15 @@
       display: flex;
       justify-content: center;
       margin-bottom: 0;
+      margin-top: 2rem;
+      height: 2rem;
     }
 
     .version-button {
       display: block;
       margin: 0 auto;
       padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+      height: 1.5rem;
       font-size: 0.8rem;
       color: $wharf_sidenav_menu_version_color;
       background-color: $wharf_sidenav_menu_version_background_color;
@@ -41,53 +101,6 @@
       .pi {
         vertical-align: text-bottom;
         font-size: 1em;
-      }
-    }
-
-    .version-panel {
-      .p-overlaypanel {
-        background-color: $wharf_sidenav_menu_version_details_background_color;
-      }
-
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .label {
-        font-size: 0.8rem;
-        color: $wharf_sidenav_menu_version_details_label_color;
-      }
-
-      .value {
-        padding-inline-start: 1rem;
-        color: $wharf_sidenav_menu_version_details_value_color;
-      }
-
-      .label,
-      .value {
-        display: block;
-        overflow-wrap: break-word;
-      }
-
-      .version-pending {
-        color: $wharf_sidenav_menu_version_remote_pending_text_color;
-
-        .p-progress-spinner {
-          width: 0.8em;
-          height: 0.8em;
-          vertical-align: baseline;
-        }
-      }
-
-      .version-error {
-        color: $wharf_sidenav_menu_version_remote_error_text_color;
-
-        .pi {
-          vertical-align: middle;
-          margin-right: 0.3rem;
-        }
       }
     }
   }
