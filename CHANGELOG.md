@@ -14,12 +14,15 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
-- Regenerated rest clients for:
+- Regenerated rest clients for: (#91)
 
   - `wharf-api` v5.0.0
   - `wharf-provider-github` v2.0.0
   - `wharf-provider-gitlab` v1.3.0
   - `wharf-provider-azuredevops` v2.0.1
+
+- Updated function calls and object references to match new names in the
+  generated code. (#91)
 
 ## v1.5.0 (2021-11-15)
 
