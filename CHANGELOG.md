@@ -21,8 +21,16 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   - `wharf-provider-gitlab` v1.3.0
   - `wharf-provider-azuredevops` v2.0.1
 
-- Updated function calls and object references to match new names in the
+- Changed function calls and object references to match new names in the
   generated code. (#91)
+
+## v1.5.1 (2022-01-10)
+
+- Fixed version panel misplacement on scrollable pages and being locked to the
+  width of the side nav bar, a bug introduced in v1.5.0 by #82. (#97)
+
+- Security: Changed version of `jsprim` to v1.4.2 and `json-schema` to v0.4.0
+  to resolve CVE-2021-3918. (#100)
 
 ## v1.5.0 (2021-11-15)
 
