@@ -12,6 +12,15 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.6.0 (WIP)
+
+- Regenerated rest clients for:
+
+  - `wharf-api` v5.0.0
+  - `wharf-provider-github` v2.0.0
+  - `wharf-provider-gitlab` v1.3.0
+  - `wharf-provider-azuredevops` v2.0.1
+
 ## v1.5.0 (2021-11-15)
 
 - Removed per-tab titles on project details page. Title is now either
