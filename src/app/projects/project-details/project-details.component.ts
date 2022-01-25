@@ -45,7 +45,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   reloadProject() {
     const projectId = this.route.snapshot.paramMap.get('projectId');
-    this.projectService.projectProjectidGet(Number(projectId)).subscribe(project => {
+    this.projectService.getProject(Number(projectId)).subscribe(project => {
       this.project = project;
       // Temporary initialization to render table, after that loadBuildsLazy handles builds fetching
       this.project.buildHistory = [];

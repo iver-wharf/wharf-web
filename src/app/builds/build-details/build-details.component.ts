@@ -1,7 +1,7 @@
 import { ConfigService } from './../../shared/config/config.service';
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BuildService, MainLog } from 'api-client';
+import { BuildService, ResponseLog } from 'api-client';
 import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
 
@@ -15,7 +15,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   myData: any;
   source: EventSource;
   listener: any = null;
-  logEvents: MainLog[] = [];
+  logEvents: ResponseLog[] = [];
   container: HTMLElement;
   wasScrolledToBottom: boolean;
 
@@ -27,7 +27,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
 
   ngOnInit(): void {
     this.buildId = Number(this.route.snapshot.paramMap.get('buildId'));
-    this.buildService.buildBuildidGet(this.buildId).subscribe(build => {
+    this.buildService.getBuild(this.buildId).subscribe(build => {
       this.buildStatus = build.statusId;
       this.connect();
     });
@@ -60,7 +60,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
         console.warn(`Unknown build status ID '${this.buildStatus}' on build ID '${this.buildId}'.`);
       }
     }
-    this.buildService.buildBuildidLogGet(this.buildId).subscribe(log => {
+    this.buildService.getBuildLogList(this.buildId).subscribe(log => {
       this.logEvents = log;
       this.logEvents.sort((a, b) => a.logId - b.logId);
     });

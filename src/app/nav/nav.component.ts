@@ -95,7 +95,7 @@ export class NavComponent implements OnInit {
 
     this.isFetchingVersions = true;
 
-    this.updateAppVersion(ServiceName.Api, this.apiMeta.versionGet());
+    this.updateAppVersion(ServiceName.Api, this.apiMeta.getVersion());
     this.updateAppVersion(ServiceName.ProviderGitHub, this.gitHubMetaService.githubVersionGet());
     this.updateAppVersion(ServiceName.ProviderGitLab, this.gitLabMetaService.gitlabVersionGet());
     this.updateAppVersion(ServiceName.ProviderAzureDevOps, this.azureDevOpsMetaService.azuredevopsVersionGet());

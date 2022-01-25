@@ -1,20 +1,20 @@
-import { MainProject, MainProvider } from 'api-client';
-import { MainBuild } from './main-build.model';
-import { MainBranch } from './main-branch.model';
+import { ResponseProject, ResponseProvider } from 'api-client';
+import { ResponseBuild } from './main-build.model';
+import { ResponseBranch } from './main-branch.model';
 import { ProjectBuild } from './project-build.model';
 import { ProjectAction } from './project-action.model';
 
-export class WharfProject implements MainProject {
+export class WharfProject implements ResponseProject {
     avatarUrl?: string;
-    branches?: MainBranch[];
+    branches?: ResponseBranch[];
     buildDefinition?: string;
-    buildHistory?: MainBuild[];
+    buildHistory?: ResponseBuild[];
     description?: string;
     gitUrl?: string;
     groupName?: string;
     name?: string;
     projectId?: number;
-    provider?: MainProvider;
+    provider?: ResponseProvider;
     providerId?: number;
     tokenId?: number;
     build?: ProjectBuild;

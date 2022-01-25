@@ -11,6 +11,7 @@ import { HealthService } from './api/health.service';
 import { MetaService } from './api/meta.service';
 import { ProjectService } from './api/project.service';
 import { ProviderService } from './api/provider.service';
+import { TestResultService } from './api/testResult.service';
 import { TokenService } from './api/token.service';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { TokenService } from './api/token.service';
     MetaService,
     ProjectService,
     ProviderService,
+    TestResultService,
     TokenService ]
 })
 export class ApiModule {

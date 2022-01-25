@@ -54,7 +54,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
     if (this.actionName === this.projectUtilsService.runAllActionName) {
       this.actionName = 'ALL';
     }
-    this.projectService.projectProjectidStageRunPost(
+    this.projectService.oldStartProjectBuild(
       this.project.projectId,
       this.actionName,
       this.actionsFormGroup.value.branch.name,

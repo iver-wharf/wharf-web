@@ -12,6 +12,16 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
+## v1.6.0 (WIP)
+
+- Changed function calls and type names to match the regenerated rest clients
+  using: (#91)
+
+  - `wharf-api` from v4.1.0 to v5.0.0.
+  - `wharf-provider-azuredevops` from v1.2.0-rc to v2.0.1.
+  - `wharf-provider-github` from v2.0.0-rc to v2.0.0.
+  - `wharf-provider-gitlab` from v1.2.0-rc to v1.3.0.
+
 ## v1.5.1 (2022-01-10)
 
 - Fixed version panel misplacement on scrollable pages and being locked to the

@@ -1,6 +1,6 @@
 import { ConfigService } from './../../shared/config/config.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { MainArtifact, ArtifactService } from 'api-client';
+import { ResponseArtifact, ArtifactService } from 'api-client';
 
 @Component({
   selector: 'wh-artifacts-list',
@@ -8,16 +8,16 @@ import { MainArtifact, ArtifactService } from 'api-client';
 })
 export class ArtifactsListComponent implements OnInit {
   @Input() buildId: number;
-  artifacts: MainArtifact[];
+  artifacts: ResponseArtifact[];
 
   constructor(
     private artifactService: ArtifactService,
     private configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.artifactService.buildBuildidArtifactsGet(this.buildId)
-      .subscribe(data => {
-        this.artifacts = data;
+    this.artifactService.getBuildArtifactList(this.buildId, 0)
+      .subscribe(paginatedArtifacts => {
+        this.artifacts = paginatedArtifacts.list;
       });
   }
 

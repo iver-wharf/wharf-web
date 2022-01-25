@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProjectService, ArtifactService, MainBuild } from 'api-client';
+import { ProjectService, ArtifactService, TestResultService, ResponseBuild, BuildService } from 'api-client';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable, forkJoin, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -29,6 +29,7 @@ export class ProjectDetailsBuildComponent {
     public projectUtilsService: ProjectUtilsService,
     private projectService: ProjectService,
     private artifactService: ArtifactService,
+    private buildService: BuildService,
     private actionsModalStore: ActionsModalStore,
     public localStorageProjectsService: LocalStorageProjectsService,
     private router: Router,
@@ -36,16 +37,16 @@ export class ProjectDetailsBuildComponent {
 
   loadBuildsLazy(event: LazyLoadEvent) {
     console.log(event);
-    this.projectService.projectsProjectidBuildsGet(this.project.projectId, this.rowsCount.toString(), event.first.toString())
+    this.buildService.getBuildList(this.rowsCount, event.first, null, this.project.projectId)
       .subscribe(paginatedBuilds => {
         this.buildsTotalCount = paginatedBuilds.totalCount;
-        this.project.buildHistory = paginatedBuilds.builds;
+        this.project.buildHistory = paginatedBuilds.list;
         this.fillProjectActions(this.project);
         this.fillProjectBuilds(this.project).subscribe();
       });
   }
 
-  navigateToBuild(build: MainBuild) {
+  navigateToBuild(build: ResponseBuild) {
     this.router.navigate(['/build', build.projectId, build.buildId]);
   }
 
@@ -61,7 +62,7 @@ export class ProjectDetailsBuildComponent {
     );
   }
 
-  isBuildRunning(build: MainBuild) {
+  isBuildRunning(build: ResponseBuild) {
     switch (build.statusId) {
       case BuildStatus.Scheduling:
       case BuildStatus.Running:
@@ -89,8 +90,7 @@ export class ProjectDetailsBuildComponent {
   private fillProjectBuilds(proj: WharfProject): Observable<WharfProject> {
     return forkJoin(
       proj.buildHistory.map(x =>
-        this.artifactService
-          .buildBuildidTestsResultsGet(x.buildId)
+        this.artifactService.getBuildTestResultList(x.buildId)
           .pipe(
             map(
               testResults =>
