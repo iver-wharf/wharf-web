@@ -28,7 +28,7 @@ export class ProjectDetailsConfigurationComponent implements OnChanges {
   }
 
   updateProperties() {
-    this.defaultBranchName = this.project.branches?.find(b => b.default)?.name
+    this.defaultBranchName = this.project.branches?.find(b => b._default)?.name
       ?? NO_DEFAULT_BRANCH_NAME;
 
     this.missingConfiguration = !this.project.buildDefinition;
