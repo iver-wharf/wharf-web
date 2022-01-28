@@ -14,15 +14,13 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
-- Regenerated rest clients for: (#91)
+- Changed function calls and type names to match the regenerated rest clients
+  using: (#91)
 
-  - `wharf-api` v5.0.0
-  - `wharf-provider-github` v2.0.0
-  - `wharf-provider-gitlab` v1.3.0
-  - `wharf-provider-azuredevops` v2.0.1
-
-- Changed function calls and object references to match new names in the
-  generated code. (#91)
+  - `wharf-api` from v4.1.0 to v5.0.0.
+  - `wharf-provider-azuredevops` from v1.2.0-rc to v2.0.1.
+  - `wharf-provider-github` from v2.0.0-rc to v2.0.0.
+  - `wharf-provider-gitlab` from v1.2.0-rc to v1.3.0.
 
 - Added test results failed/skipped/passed numbers to each build in a project's
   build list. (#53)

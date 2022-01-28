@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ResponseBuild, BuildService } from 'api-client';
+import { ProjectService, ArtifactService, ResponseBuild, BuildService } from 'api-client';
 import { LazyLoadEvent } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { WharfProject } from 'src/app/models/main-project.model';
@@ -25,6 +25,8 @@ export class ProjectDetailsBuildComponent {
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
+    private projectService: ProjectService,
+    private artifactService: ArtifactService,
     private buildService: BuildService,
     private actionsModalStore: ActionsModalStore,
     public localStorageProjectsService: LocalStorageProjectsService,
