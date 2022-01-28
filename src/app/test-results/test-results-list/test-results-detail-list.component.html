@@ -1,4 +1,4 @@
-<div *ngIf="failedDetails && failedDetails.length > 0" >
+<div *ngIf="failedDetails && failedDetails.length > 0; else noMessages" >
   <p-accordionTab *ngFor="let detail of failedDetails">
     <ng-template pTemplate="header">
       <span>{{detail.name}}</span>
@@ -9,4 +9,4 @@
     </ng-template>
   </p-accordionTab>
 </div>
-<p *ngIf="!failedDetails || failedDetails.length === 0">No messages</p>
+<ng-template #noMessages><p>No messages</p></ng-template>
