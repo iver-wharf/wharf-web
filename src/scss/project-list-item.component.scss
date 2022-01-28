@@ -29,28 +29,42 @@ wh-project-list-item {
   }
 
   td {
-    &.col-tests {
-      i {
-        &.pi-times {
-          color: red;
-        }
-
-        &.pi-circle-on {
-          color: orange;
-        }
-
-        &.pi-check {
-          color: green;
-        }
-      }
-    }
-
     &.col-stage,
     &.col-environment,
     &.col-status,
     &.col-branch {
       overflow-x: hidden;
       text-overflow: ellipsis;
+    }
+  }
+}
+
+i.pi {
+  &.test-summary-failed {
+    &[has-entries=true] {
+      color: red;
+    }
+
+    &[has-entries=false] {
+      color: gray;
+    }
+  }
+  &.test-summary-skipped {
+    &[has-entries=true] {
+      color: orange;
+    }
+
+    &[has-entries=false] {
+      color: gray;
+    }
+  }
+  &.test-summary-passed {
+    &[has-entries=true] {
+      color: green;
+    }
+
+    &[has-entries=false] {
+      color: gray;
     }
   }
 }

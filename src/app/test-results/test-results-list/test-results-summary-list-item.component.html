@@ -3,10 +3,10 @@
     <ng-template pTemplate="header" style="display: flex">
       <span>{{summary.fileName}}</span>
       <span style="flex: 1; text-align: right; white-space: nowrap">
-        <span [ngStyle]="{'color': (summary.failed) ? 'red' : 'green'}">{{summary.failed ? "Failed" : "Passed" }}</span> |
-        {{summary.failed | number:'1.0-0' }}<i class="pi pi-times" [ngStyle]="{'color': (summary.failed) ? 'red' : 'gray'}"></i>
-        {{summary.skipped | number:'1.0-0' }}<i class="pi pi-circle-on" [ngStyle]="{'color': (summary.skipped) ? 'orange' : 'gray'}"></i>
-        {{summary.passed | number:'1.0-0' }}<i class="pi pi-check" [ngStyle]="{'color': (summary.passed) ? 'green' : 'gray'}"></i>
+        <span class="test-status-text" [attr.failed]="!!summary.failed">{{summary.failed ? "Failed" : "Passed" }}</span> |
+        {{summary.failed | number:'1.0-0'}}<i class="pi pi-times test-summary-failed" [attr.has-entries]="!!summary.failed"></i>
+        {{summary.skipped | number:'1.0-0'}}<i class="pi pi-circle-on test-summary-skipped" [attr.has-entries]="!!summary.skipped"></i>
+        {{summary.passed | number:'1.0-0'}}<i class="pi pi-check test-summary-passed" [attr.has-entries]="!!summary.passed"></i>
       </span>
     </ng-template>
     <ng-template pTemplate="content">

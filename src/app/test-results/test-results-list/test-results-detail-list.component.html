@@ -2,7 +2,7 @@
   <p-accordionTab *ngFor="let detail of failedDetails">
     <ng-template pTemplate="header">
       <span>{{detail.name}}</span>
-      <span style="flex: 1; text-align: right; white-space: nowrap" [ngStyle]="{'color': (detail.status === 'Failed') ? 'red' : 'white'}">{{detail.status}}</span>
+      <span class="test-status-text" [attr.failed]="detail.status === 'Failed'">{{detail.status}}</span>
     </ng-template>
     <ng-template pTemplate="content">
       <wh-test-results-detail-list-item [detail]="detail"></wh-test-results-detail-list-item>
