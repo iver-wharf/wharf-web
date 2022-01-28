@@ -16,16 +16,22 @@ export class TestResultsDetailListComponent implements OnInit {
     private testResultService: TestResultService) { }
 
   ngOnInit(): void {
-    if (!this.hasFetched) {
-      this.testResultService
-        .getBuildTestResultDetailList(this.buildId, this.summaryId)
-        .subscribe(details => {
-          this.details = details.list;
-          this.details.forEach(d => d.message = this.unescapeHtml(d.message));
-          this.failedDetails = this.details.filter(d => d.status === ResponseTestResultDetail.StatusEnum.Failed);
-        });
-      this.hasFetched = true;
+    this.fetchTestResultDetails();
+  }
+
+  private fetchTestResultDetails() {
+    if (this.hasFetched) {
+      return;
     }
+
+    this.hasFetched = true;
+    this.testResultService
+      .getBuildTestResultDetailList(this.buildId, this.summaryId)
+      .subscribe(details => {
+        this.details = details.list;
+        this.details.forEach(d => d.message = this.unescapeHtml(d.message));
+        this.failedDetails = this.details.filter(d => d.status === ResponseTestResultDetail.StatusEnum.Failed);
+      });
   }
 
   private unescapeHtml(str: string): string {
