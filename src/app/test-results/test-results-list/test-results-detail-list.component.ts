@@ -10,13 +10,13 @@ export class TestResultsDetailListComponent implements OnInit {
   @Input() summaryId: number;
   details: ResponseTestResultDetail[];
   failedDetails: ResponseTestResultDetail[];
-  private fetched: boolean;
+  private hasFetched: boolean;
 
   constructor(
     private testResultService: TestResultService) { }
 
   ngOnInit(): void {
-    if (!this.fetched) {
+    if (!this.hasFetched) {
       this.testResultService
         .getBuildTestResultDetailList(this.buildId, this.summaryId)
         .subscribe(details => {
@@ -24,7 +24,7 @@ export class TestResultsDetailListComponent implements OnInit {
           this.details.forEach(d => d.message = this.unescapeHtml(d.message));
           this.failedDetails = this.details.filter(d => d.status === ResponseTestResultDetail.StatusEnum.Failed);
         });
-      this.fetched = true;
+      this.hasFetched = true;
     }
   }
 
