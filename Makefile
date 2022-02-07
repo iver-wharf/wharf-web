@@ -1,5 +1,20 @@
+.PHONY: deps clean \
+	docker docker-run serve \
+	clients-force clients \
+	lint lint-ng lint-md lint-scss \
+	lint-fix lint-ng-fix lint-md-fix lint-scss-fix
+
 commit = $(shell git rev-parse HEAD)
 version = latest
+
+deps:
+	npm install
+
+clean:
+	rm -vrf dist/api-client
+	rm -vrf dist/import-gitlab-client
+	rm -vrf dist/import-github-client
+	rm -vrf dist/import-azuredevops-client
 
 docker:
 	docker build . \
@@ -25,20 +40,38 @@ serve: clients
 clients-force:
 	npm run build-clients
 
-clients:
-ifeq ("$(wildcard dist/api-client)","")
-	npx ng build api-client
-endif
-ifeq ("$(wildcard dist/import-gitlab-client)","")
-	npx ng build import-gitlab-client
-endif
-ifeq ("$(wildcard dist/import-github-client)","")
-	npx ng build import-github-client
-endif
-ifeq ("$(wildcard dist/import-azuredevops-client)","")
-	npx ng build import-azuredevops-client
-endif
-	@# This comment silences warning "make: Nothing to be done for 'clients'."
+clients: dist/api-client dist/import-gitlab-client dist/import-github-client dist/import-azuredevops-client
 
-deps:
-	npm install
+dist/api-client:
+	npx ng build api-client
+
+dist/import-gitlab-client:
+	npx ng build import-gitlab-client
+
+dist/import-github-client:
+	npx ng build import-github-client
+
+dist/import-azuredevops-client:
+	npx ng build import-azuredevops-client
+
+lint: lint-ng lint-md lint-scss
+
+lint-fix: lint-ng-fix lint-md-fix lint-scss-fix
+
+lint-ng:
+	ng lint
+
+lint-ng-fix:
+	ng lint --fix
+
+lint-md:
+	remark . .github
+
+lint-md-fix:
+	remark . .github -o
+
+lint-scss:
+	stylelint 'src/**/*.scss'
+
+lint-scss-fix:
+	stylelint 'src/**/*.scss' --fix
