@@ -4,9 +4,7 @@ wh-test-results-summary-list .p-accordion .p-accordion-content {
 }
 
 .detail-message {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column;
   flex-direction: column;
   background-color: $wharf_code_inline_background;
   color: white;
