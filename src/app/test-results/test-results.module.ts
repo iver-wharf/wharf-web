@@ -9,10 +9,15 @@ import { TestResultsSummaryListItemComponent } from './test-results-list/test-re
 import { TestResultsDetailListComponent } from './test-results-list/test-results-detail-list.component';
 import { TestResultsDetailsListItemComponent } from './test-results-list/test-results-detail-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccordionModule } from "primeng/accordion"
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
-  declarations: [TestResultsSummaryListComponent, TestResultsSummaryListItemComponent, TestResultsDetailListComponent, TestResultsDetailsListItemComponent],
+  declarations: [
+    TestResultsSummaryListComponent,
+    TestResultsSummaryListItemComponent,
+    TestResultsDetailListComponent,
+    TestResultsDetailsListItemComponent,
+  ],
   imports: [
     CommonModule,
     TableModule,
