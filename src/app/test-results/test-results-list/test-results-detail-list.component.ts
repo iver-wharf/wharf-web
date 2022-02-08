@@ -29,12 +29,7 @@ export class TestResultsDetailListComponent implements OnInit {
       .getBuildTestResultDetailList(this.buildId, this.summaryId)
       .subscribe(details => {
         this.details = details.list;
-        this.details.forEach(d => d.message = this.unescapeHtml(d.message));
         this.failedDetails = this.details.filter(d => d.status === ResponseTestResultDetail.StatusEnum.Failed);
       });
-  }
-
-  private unescapeHtml(str: string): string {
-    return str?.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
   }
 }
