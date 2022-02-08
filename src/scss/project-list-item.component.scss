@@ -49,6 +49,7 @@ i.pi {
       color: gray;
     }
   }
+
   &.test-summary-skipped {
     &[has-entries=true] {
       color: orange;
@@ -58,6 +59,7 @@ i.pi {
       color: gray;
     }
   }
+
   &.test-summary-passed {
     &[has-entries=true] {
       color: green;
