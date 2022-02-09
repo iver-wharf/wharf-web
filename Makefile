@@ -59,10 +59,10 @@ lint: lint-ng lint-md lint-scss
 lint-fix: lint-ng-fix lint-md-fix lint-scss-fix
 
 lint-ng:
-	ng lint
+	npx ng lint
 
 lint-ng-fix:
-	ng lint --fix
+	npx ng lint --fix
 
 lint-md:
 	remark . .github
