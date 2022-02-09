@@ -1,4 +1,4 @@
-const { collectLicenses } = require('@iver-wharf/wharf-collect-licenses');
+import { collectLicenses } from '@iver-wharf/wharf-collect-licenses';
 
 collectLicenses({
   outputFilePath: 'src/assets/licenses.json',
