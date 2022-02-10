@@ -122,18 +122,13 @@ docker push quay.io/iver-wharf/wharf-web:v2.0.0
 ## Linting from command-line
 
 ```sh
-npm install
+make deps
 
-npm run lint
+make lint
 
-# Only run Angular/TypeScript linting
-npm run lint-ng
-
-# Only run SCSS linting
-npm run lint-scss
-
-# Only run Markdown linting
-npm run lint-md
+make lint-ng # Only run Angular/TypeScript linting
+make lint-scss # Only run SCSS linting
+make lint-md # Only run Markdown linting
 ```
 
 Some linting errors have quickfixes, such as "missing semicolon" or
@@ -141,20 +136,15 @@ Some linting errors have quickfixes, such as "missing semicolon" or
 code. These can be fixed by running the following:
 
 ```sh
-npm run lint-fix
+make lint-fix
 
-# Only fix Angular/TypeScript lint errors
-npm run lint-ng-fix
-
-# Only fix SCSS lint errors
-npm run lint-scss-fix
-
-# Only fix Markdown lint errors
-npm run lint-md-fix
+make lint-ng-fix # Only fix Angular/TypeScript lint errors
+make lint-scss-fix # Only fix SCSS lint errors
+make lint-md-fix # Only fix Markdown lint errors
 ```
 
 A lot of other errors, such as "member should be camelCased", is not fixable by
-this `npm run lint-fix` command. For those, you'll have to fix them manually.
+this `make lint-fix` command. For those, you'll have to fix them manually.
 
 ## Linting from IDE
 
