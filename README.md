@@ -138,9 +138,9 @@ code. These can be fixed by running the following:
 ```sh
 make lint-fix
 
-make lint-ng-fix # Only fix Angular/TypeScript lint errors
-make lint-scss-fix # Only fix SCSS lint errors
-make lint-md-fix # Only fix Markdown lint errors
+make lint-fix-ng # Only fix Angular/TypeScript lint errors
+make lint-fix-scss # Only fix SCSS lint errors
+make lint-fix-md # Only fix Markdown lint errors
 ```
 
 A lot of other errors, such as "member should be camelCased", is not fixable by
