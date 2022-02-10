@@ -26,7 +26,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   which includes upgrade of `node-fetch` from v2.6.5 to v3.2.0, fixing
   [CVE-2022-0235](https://nvd.nist.gov/vuln/detail/CVE-2022-0235). (#110)
 
-- Fixed no project ID being sent to the provider APIs when refreshing, which
+- Fixed project ID not being sent to the provider APIs when refreshing, which
   was resulting in attempting to import the project anew instead. (#113)
 
 ## v1.5.1 (2022-01-10)
