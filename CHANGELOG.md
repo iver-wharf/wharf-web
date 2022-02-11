@@ -28,6 +28,10 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Added test result details, showing test messages and per-artifact test
   results, to the build details page. (#53)
 
+- Security: Changed version of `wharf-collect-licenses` from v1.0.0 to v2.0.0,
+  which includes upgrade of `node-fetch` from v2.6.5 to v3.2.0, fixing
+  [CVE-2022-0235](https://nvd.nist.gov/vuln/detail/CVE-2022-0235). (#110)
+
 ## v1.5.1 (2022-01-10)
 
 - Fixed version panel misplacement on scrollable pages and being locked to the
