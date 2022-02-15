@@ -3,8 +3,8 @@ import { Config } from './config';
 import { Configuration } from 'api-client';
 import { Configuration as GitlabConfiguration } from 'import-gitlab-client';
 import { Configuration as AzureDevOpsConfiguration } from 'import-azuredevops-client';
-import { LogLevel, OpenIdConfiguration } from 'angular-auth-oidc-client';
-import { BehaviorSubject, config, Observable, of, pluck } from 'rxjs';
+import { OpenIdConfiguration } from 'angular-auth-oidc-client';
+import { config, Observable, of, pluck } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { HttpClient } from '@angular/common/http';
@@ -45,19 +45,12 @@ export const lowClone = <T>(obj: T): T => {
   return clone;
 };
 
-const defaultOidcConfig = {
-  authority: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration',
-  redirectUrl: window.location.origin,
-  clientId: 'placeholder',
-};
-
 const configUrl = 'assets/config.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
-  public isPlaceHolderOidcConfig$ = new BehaviorSubject<boolean>(true);
   private config: Config;
 
   constructor(
@@ -106,13 +99,7 @@ export class ConfigService {
 
   public getOidcConfig$(): Observable<OpenIdConfiguration> {
     return this.getConfig$().pipe(
-      map<Config,OpenIdConfiguration>((configuration: Config) => {
-        if (!configuration?.oidcConfig){
-          return defaultOidcConfig;
-          this.isPlaceHolderOidcConfig$.next(true);
-        }
-        return configuration.oidcConfig;
-      }),
+      map<Config,OpenIdConfiguration>((configuration: Config) => configuration.oidcConfig),
     );
   }
 

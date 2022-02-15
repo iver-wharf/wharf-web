@@ -3,7 +3,7 @@ import { OpenIdConfiguration } from 'angular-auth-oidc-client';
 export interface Config {
   environment: EnvironmentConfig;
   backendUrls: BackendUrlsConfig;
-  oidcConfig?: OpenIdConfiguration;
+  oidcConfig: OpenIdConfiguration;
 }
 
 interface EnvironmentConfig {

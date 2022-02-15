@@ -12,7 +12,6 @@ import { LicensesService } from '../shared/licenses/licenses.service';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { takeUntil } from 'rxjs/operators';
-import { ConfigService } from '../shared/config/config.service';
 
 enum RemoteVersionStatus {
   Pending,
@@ -71,7 +70,6 @@ export class NavComponent implements OnInit, OnDestroy {
     private licensesService: LicensesService,
     private router: Router,
     private oidcSecurityService: OidcSecurityService,
-    private configService: ConfigService,
   ) {
   }
 
@@ -99,10 +97,6 @@ export class NavComponent implements OnInit, OnDestroy {
     ];
 
     this.setMenuOptsAuth();
-  }
-
-  public isUsingPlaceholderOidcConfig(): Observable<boolean> {
-    return this.configService.isPlaceHolderOidcConfig$;
   }
 
   public ngOnDestroy() {
