@@ -34,6 +34,7 @@ export class ProvidersService {
     switch (project.provider.name) {
       case ProviderType.GitLab.toLowerCase():
         return this.gitlabService.gitlabPost({
+          projectId: project.projectId,
           url: project.provider.url,
           tokenId: project.provider.tokenId,
           group: project.groupName,
@@ -42,6 +43,7 @@ export class ProvidersService {
         });
       case ProviderType.GitHub.toLowerCase():
         return this.gitHubService.githubPost({
+          projectId: project.projectId,
           url: project.provider.url,
           tokenId: project.provider.tokenId,
           group: project.groupName,
@@ -50,6 +52,7 @@ export class ProvidersService {
         });
       case ProviderType.AzureDevOps.toLowerCase():
         return this.azureDevOpsService.azuredevopsPost({
+          projectId: project.projectId,
           url: project.provider.url,
           tokenId: project.provider.tokenId,
           group: project.groupName,
