@@ -2,7 +2,7 @@
 	docker docker-run serve \
 	clients-force clients \
 	lint lint-ng lint-md lint-scss \
-	lint-fix lint-ng-fix lint-md-fix lint-scss-fix
+	lint-fix lint-fix-ng lint-fix-md lint-fix-scss
 
 commit = $(shell git rev-parse HEAD)
 version = latest
@@ -56,22 +56,22 @@ dist/import-azuredevops-client:
 
 lint: lint-ng lint-md lint-scss
 
-lint-fix: lint-ng-fix lint-md-fix lint-scss-fix
+lint-fix: lint-fix-ng lint-fix-md lint-fix-scss
 
 lint-ng:
 	npx ng lint
 
-lint-ng-fix:
+lint-fix-ng:
 	npx ng lint --fix
 
 lint-md:
 	remark . .github
 
-lint-md-fix:
+lint-fix-md:
 	remark . .github -o
 
 lint-scss:
 	stylelint 'src/**/*.scss'
 
-lint-scss-fix:
+lint-fix-scss:
 	stylelint 'src/**/*.scss' --fix
