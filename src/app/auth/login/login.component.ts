@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import {
+  AuthenticatedResult,
+  OidcSecurityService,
+  OpenIdConfiguration,
+  UserDataResult,
+} from 'angular-auth-oidc-client';
+import { Observable, pluck } from 'rxjs';
+
+/*
+ * Largely from damienbod/angular-auth-oidc-client samples. See-
+ * https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app
+ */
+@Component({
+  selector: 'wh-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+})
+export class LoginComponent implements OnInit {
+
+  configuration: OpenIdConfiguration;
+  userData$: Observable<UserDataResult>;
+  isAuthenticated$: Observable<boolean>;
+
+  constructor(
+    public oidcSecurityService: OidcSecurityService,
+  ) { }
+
+  ngOnInit() {
+    this.configuration = this.oidcSecurityService.getConfiguration();
+    this.userData$ = this.oidcSecurityService.userData$;
+    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$.pipe(pluck('isAuthenticated'));
+  }
+
+  login() {
+    this.oidcSecurityService.authorize();
+  }
+
+  refreshSession() {
+    this.oidcSecurityService.forceRefreshSession().subscribe((result) => console.log(result));
+  }
+
+  logout() {
+    this.oidcSecurityService.logoff();
+  }
+
+  logoffAndRevokeTokens() {
+    this.oidcSecurityService.logoffAndRevokeTokens().subscribe((result) => console.log(result));
+  }
+
+  revokeRefreshToken() {
+    this.oidcSecurityService.revokeRefreshToken().subscribe((result) => console.log(result));
+  }
+
+  revokeAccessToken() {
+    this.oidcSecurityService.revokeAccessToken().subscribe((result) => console.log(result));
+  }
+
+}

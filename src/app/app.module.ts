@@ -16,6 +16,7 @@ import { SyntaxHighlightService } from './shared/syntax-highlight/syntax-highlig
 import { SharedModule } from './shared/pipes/shared.module';
 import { NavModule } from './nav/nav.module';
 import { LicensesModule } from './licenses/licenses.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LicensesModule } from './licenses/licenses.module';
     MenuModule,
     TooltipModule,
     SharedModule,
+    AuthModule,
   ],
   providers: [
     {

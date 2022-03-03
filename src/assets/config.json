@@ -5,16 +5,25 @@
     },
     "updateLatency": 20000,
     "updateFrequency": 30000,
-    "identityServer": {
-        "url": "https://login.stage.local",
-        "scope": "openid profile email SpotApi",
-        "debugMode": false,
-        "silentRenewEndpoint": "/assets/silent-renew.html"
-    },
     "backendUrls": {
-        "Api": "http://localhost:5001/api",
-        "GitlabImport": "http://localhost:5002/import",
-        "GithubImport": "http://localhost:5003/import",
-        "AzureDevopsImport": "http://localhost:5004/import"
+        "Api": "http://localhost:4200/api",
+        "GitlabImport": "http://localhost:4200/import",
+        "GithubImport": "http://localhost:4200/import",
+        "AzureDevopsImport": "http://localhost:4200/import"
+    },
+    "oidcConfig": {
+      "authority": "https://login.microsoftonline.com/841df554-ef9d-48b1-bc6e-44cf8543a8fc/v2.0/.well-known/openid-configuration",
+      "redirectUrl": "http://localhost:4200",
+      "postLogoutRedirectUri": "http://localhost:4200",
+      "clientId": "01fcb3dc-7a2b-4b1c-a7d6-d7033089c779",
+      "scope": "openid profile email offline_access api://wharf-internal/read api://wharf-internal/admin api://wharf-internal/deploy",
+      "responseType": "id_token token",
+      "ignoreNonceAfterRefresh": true,
+      "silentRenew": true,
+      "useRefreshToken": true,
+      "logLevel": "debug",
+      "maxIdTokenIatOffsetAllowedInSeconds": 600,
+      "issValidationOff": false,
+      "autoUserInfo": false
     }
 }

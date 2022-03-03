@@ -3,6 +3,11 @@ import { Config } from './config';
 import { Configuration } from 'api-client';
 import { Configuration as GitlabConfiguration } from 'import-gitlab-client';
 import { Configuration as AzureDevOpsConfiguration } from 'import-azuredevops-client';
+import { OpenIdConfiguration } from 'angular-auth-oidc-client';
+import { config, Observable, of, pluck } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Backward compatability to allow config values to start with an uppercase or lowercase.
@@ -40,20 +45,32 @@ export const lowClone = <T>(obj: T): T => {
   return clone;
 };
 
+const configUrl = 'assets/config.json';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
   private config: Config;
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient,
+  ) { }
 
   setConfig(config: Config): void {
     this.config = lowClone(config);
   }
 
-  getConfig(): Config {
+  public getConfig(): Config {
     return this.config;
+  }
+
+  public getConfig$(): Observable<Config | null> {
+    return this.httpClient.get<Config>(configUrl);
+  }
+
+  hasConfig(): boolean {
+    return  !! this.config;
   }
 
   getApiConfig(): Configuration {
@@ -79,4 +96,11 @@ export class ConfigService {
       basePath: upGet(upGet(this.config, 'backendUrls'), 'azureDevopsImport'),
     });
   }
+
+  public getOidcConfig$(): Observable<OpenIdConfiguration> {
+    return this.getConfig$().pipe(
+      map<Config,OpenIdConfiguration>((configuration: Config) => configuration.oidcConfig),
+    );
+  }
+
 }
