@@ -1,6 +1,4 @@
-import { ResponseProject, ResponseProvider } from 'api-client';
-import { ResponseBuild } from './main-build.model';
-import { ResponseBranch } from './main-branch.model';
+import { ResponseProject, ResponseBuild, ResponseProvider, ResponseBranch } from 'api-client';
 import { ProjectBuild } from './project-build.model';
 import { ProjectAction } from './project-action.model';
 

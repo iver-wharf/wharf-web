@@ -1,10 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ProjectService, ArtifactService, TestResultService, ResponseBuild, BuildService } from 'api-client';
+import { ResponseBuild, BuildService } from 'api-client';
 import { LazyLoadEvent } from 'primeng/api';
-import { Observable, forkJoin, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { WharfProject } from 'src/app/models/main-project.model';
-import { TestsResults } from 'src/app/models/tests-results.model';
 import { ActionsModalStore } from '../../actions-modal/actions-modal.service';
 import { LocalStorageProjectsService } from '../../local-storage-projects.service';
 import { ProjectUtilsService } from '../../project-utils.service';
@@ -27,8 +25,6 @@ export class ProjectDetailsBuildComponent {
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
-    private projectService: ProjectService,
-    private artifactService: ArtifactService,
     private buildService: BuildService,
     private actionsModalStore: ActionsModalStore,
     public localStorageProjectsService: LocalStorageProjectsService,
@@ -42,14 +38,12 @@ export class ProjectDetailsBuildComponent {
         this.buildsTotalCount = paginatedBuilds.totalCount;
         this.project.buildHistory = paginatedBuilds.list;
         this.fillProjectActions(this.project);
-        this.fillProjectBuilds(this.project).subscribe();
       });
   }
 
   navigateToBuild(build: ResponseBuild) {
     this.router.navigate(['/build', build.projectId, build.buildId]);
   }
-
 
   openActions(label) {
     this.selectedAction = label;
@@ -85,27 +79,6 @@ export class ProjectDetailsBuildComponent {
       default:
         return '';
     }
-  }
-
-  private fillProjectBuilds(proj: WharfProject): Observable<WharfProject> {
-    return forkJoin(
-      proj.buildHistory.map(x =>
-        this.artifactService.getBuildTestResultList(x.buildId)
-          .pipe(
-            map(
-              testResults =>
-                new TestsResults(testResults.passed, testResults.failed),
-            ),
-          ),
-      ),
-    ).pipe(
-      map(testResults => {
-        testResults.forEach((element, index) => {
-          this.project.buildHistory[index].testsResults = element;
-        });
-        return this.project;
-      }),
-    );
   }
 
   private fillProjectActions(proj: WharfProject): WharfProject {

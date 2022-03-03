@@ -1,5 +1,6 @@
 import { SharedModule } from '../shared/pipes/shared.module';
 import { ArtifactsModule } from './../artifacts/artifacts.module';
+import { TestResultsModule } from './../test-results/test-results.module';
 import { BuildService, ProjectService } from 'api-client';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { TabViewExtendedModule } from '../shared/tabview-x/tabview-x.module';
     TabMenuModule,
     TabViewExtendedModule,
     ArtifactsModule,
+    TestResultsModule,
     SharedModule,
   ],
   providers: [

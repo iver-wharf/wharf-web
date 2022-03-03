@@ -1,0 +1,29 @@
+wh-test-results-summary-list .p-accordion .p-accordion-content {
+  background-color: transparent;
+  border: none;
+}
+
+.detail-message {
+  display: flex;
+  flex-direction: column;
+  background-color: $wharf_code_inline_background;
+  color: white;
+  font-family: monospace;
+  padding: 0.1em;
+  border-radius: 0.3em;
+  overflow: auto;
+}
+
+.test-status-text {
+  flex: 1;
+  text-align: right;
+  white-space: nowrap;
+
+  &[failed="true"] {
+    color: red;
+  }
+
+  &[failed="false"] {
+    color: white;
+  }
+}

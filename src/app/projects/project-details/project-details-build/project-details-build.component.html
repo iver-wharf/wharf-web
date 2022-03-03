@@ -1,17 +1,12 @@
-<p-table
-  class="build-list"
-  [value]="project?.buildHistory"
-  [lazy]="true"
-  (onLazyLoad)="loadBuildsLazy($event)"
-  [paginator]="true"
-  [rows]="rowsCount"
-  [totalRecords]="buildsTotalCount">
+<p-table class="build-list" [value]="project?.buildHistory" [lazy]="true" (onLazyLoad)="loadBuildsLazy($event)"
+  [paginator]="true" [rows]="rowsCount" [totalRecords]="buildsTotalCount">
   <ng-template pTemplate="header">
     <tr>
       <th class="col-id">ID</th>
       <th class="col-stage">STAGE</th>
       <th class="col-environment">ENVIRONMENT</th>
       <th class="col-status">STATUS</th>
+      <th class="col-tests">TEST RESULTS</th>
       <th class="col-branch">BRANCH</th>
       <th class="col-started">STARTED</th>
       <th class="col-duration">DURATION</th>
@@ -25,11 +20,13 @@
       <td class="col-environment">{{build.environment}}</td>
       <td class="col-status">
         <span [class]="this.getStatusCssClass(build.statusId)">{{build.status}}</span>
-        <p-progressSpinner
-          *ngIf="isBuildRunning(build)"
-          class="status-progress-spinner"
-          strokeWidth="4"
-          ></p-progressSpinner>
+        <p-progressSpinner *ngIf="isBuildRunning(build)" class="status-progress-spinner" strokeWidth="4">
+        </p-progressSpinner>
+      </td>
+      <td class="col-tests">
+        {{build.testResultListSummary.failed | number:'1.0-0'}}<i class="pi pi-times test-summary-failed" [attr.has-entries]="!!build.testResultListSummary.failed"></i>
+        {{build.testResultListSummary.skipped | number:'1.0-0'}}<i class="pi pi-circle-on test-summary-skipped" [attr.has-entries]="!!build.testResultListSummary.skipped"></i>
+        {{build.testResultListSummary.passed | number:'1.0-0'}}<i class="pi pi-check test-summary-passed" [attr.has-entries]="!!build.testResultListSummary.passed"></i>
       </td>
       <td class="col-branch">{{build.gitBranch}}</td>
       <td class="col-started">{{build.scheduledOn | whDate}}</td>

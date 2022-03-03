@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BuildService, ResponseLog } from 'api-client';
 import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
+import { ResponseBuild } from 'api-client';
 
 @Component({
   selector: 'wh-build-details',
@@ -12,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecked {
   buildId: number;
   buildStatus?: BuildStatus;
+  build: ResponseBuild;
   myData: any;
   source: EventSource;
   listener: any = null;
@@ -28,6 +30,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   ngOnInit(): void {
     this.buildId = Number(this.route.snapshot.paramMap.get('buildId'));
     this.buildService.getBuild(this.buildId).subscribe(build => {
+      this.build = build;
       this.buildStatus = build.statusId;
       this.connect();
     });

@@ -39,6 +39,38 @@ wh-project-list-item {
   }
 }
 
+i.pi {
+  &.test-summary-failed {
+    &[has-entries="true"] {
+      color: red;
+    }
+
+    &[has-entries="false"] {
+      color: gray;
+    }
+  }
+
+  &.test-summary-skipped {
+    &[has-entries="true"] {
+      color: orange;
+    }
+
+    &[has-entries="false"] {
+      color: gray;
+    }
+  }
+
+  &.test-summary-passed {
+    &[has-entries="true"] {
+      color: green;
+    }
+
+    &[has-entries="false"] {
+      color: gray;
+    }
+  }
+}
+
 .project-list {
   th {
     overflow-x: hidden;
