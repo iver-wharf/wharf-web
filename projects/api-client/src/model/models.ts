@@ -28,6 +28,8 @@ export * from './responseBranchList';
 export * from './responseBuild';
 export * from './responseBuildParam';
 export * from './responseBuildReferenceWrapper';
+export * from './responseEngine';
+export * from './responseEngineList';
 export * from './responseHealthStatus';
 export * from './responseLog';
 export * from './responsePaginatedArtifacts';
