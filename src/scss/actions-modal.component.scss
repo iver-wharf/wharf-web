@@ -10,10 +10,20 @@
   .var-info-icon {
     vertical-align: bottom;
     color: $wharf_palette_cloud_grey;
+    margin-left: 0.3rem;
 
     &:hover {
       color: inherit;
     }
+  }
+
+  .engine-name {
+    margin-right: 0.3em;
+  }
+
+  .engine-id {
+    font-family: $wharf_code_font_family;
+    font-size: 90%;
   }
 
   .action-buttons {

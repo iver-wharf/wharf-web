@@ -14,7 +14,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.0 (WIP)
 
-- Adds the ability to login. While logged in this will forward the OIDC
+- Added the ability to login. While logged in this will forward the OIDC
   access token to the backend such that a secure user access control is
   established. (#70)
 
@@ -38,6 +38,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Fixed project ID not being sent to the provider APIs when refreshing, which
   was resulting in attempting to import the project anew instead. (#113)
+
+- Added field for changing execution engine used in a build via the
+  "RUN ALL OPTIONS" modal. (#122)
 
 ## v1.5.1 (2022-01-10)
 

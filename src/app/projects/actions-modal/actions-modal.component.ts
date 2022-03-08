@@ -2,15 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Subject } from 'rxjs';
-import { finalize, takeUntil, tap } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { Environment } from 'src/app/models/environment.model';
 import { InputField } from 'src/app/models/input-field.model';
 import { WharfProject } from 'src/app/models/main-project.model';
 import { ProjectBuild } from 'src/app/models/project-build.model';
 import { ProjectUtilsService } from './../project-utils.service';
 import { ActionsModalStore } from './actions-modal.service';
-import { ProjectService } from 'api-client';
+import { BuildService, EngineService, ProjectService, ResponseEngine } from 'api-client';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
 
 @Component({
   selector: 'wh-actions-modal',
@@ -23,16 +24,35 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
   isVisible: boolean;
   actionsFormGroup: FormGroup;
   initialFormState: any;
+  engines?: ResponseEngine[];
+  defaultEngine?: ResponseEngine;
   private destroyed$ = new Subject<void>();
 
   constructor(
     private projectService: ProjectService,
+    private buildService: BuildService,
+    private engineService: EngineService,
+    private notificationService: NotificationService,
     public actionsModalStore: ActionsModalStore,
     private projectUtilsService: ProjectUtilsService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.engineService.getEngineList().pipe(takeUntil(this.destroyed$))
+      .subscribe({
+        next: resp => {
+          this.engines = resp.list;
+          this.defaultEngine = resp.defaultEngine;
+          const defaultEngineId = this.defaultEngine?.id ?? null;
+          this.initialFormState.engine = defaultEngineId;
+          this.actionsFormGroup.controls.engine.setValue(defaultEngineId);
+        },
+        error: err => {
+          this.engines = [];
+          console.warn('Failed to fetch engines:', err);
+        },
+      });
     this.actionsModalStore.project$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.project = x);
     this.actionsModalStore.isVisible$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.isVisible = x);
     this.actionsModalStore.actionName$.pipe(takeUntil(this.destroyed$)).subscribe(x => this.actionName = x);
@@ -54,22 +74,36 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
     if (this.actionName === this.projectUtilsService.runAllActionName) {
       this.actionName = 'ALL';
     }
-    this.projectService.oldStartProjectBuild(
-      this.project.projectId,
-      this.actionName,
-      this.actionsFormGroup.value.branch.name,
-      this.actionsFormGroup.value.environment.value,
-      this.actionsFormGroup.value,
-    )
-      .pipe(
-        tap(build => {
-          this.router.navigate(['build', this.project.projectId, build.buildRef]);
-        }),
-        finalize(() => {
-          this.cleanup();
-        }),
+    // Using the fact that we even got some engines as a way to detect
+    // the compatibility of wharf-api. If it got engines, then it is in
+    // v5.1.0 or greater, and the new startProjectBuild was added in v5.0.0.
+    const startBuild$ = this.engines?.length > 0
+      ? this.buildService.startProjectBuild(
+        this.project.projectId,
+        this.actionName,
+        this.actionsFormGroup.value.branch.name,
+        this.actionsFormGroup.value.environment.value,
+        this.actionsFormGroup.value.engine,
+        this.actionsFormGroup.value,
       )
-      .subscribe();
+      : this.projectService.oldStartProjectBuild(
+        this.project.projectId,
+        this.actionName,
+        this.actionsFormGroup.value.branch.name,
+        this.actionsFormGroup.value.environment.value,
+        this.actionsFormGroup.value,
+      );
+
+    startBuild$.pipe(
+      finalize(() => this.cleanup()),
+    ).subscribe({
+      next: build => {
+        this.router.navigate(['build', this.project.projectId, build.buildRef]);
+      },
+      error: _ => {
+        this.notificationService.showError(`Failed to start build`);
+      },
+    });
   }
 
   cleanup() {
@@ -94,6 +128,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
 
     inputsGroup.branch = new FormControl('');
     inputsGroup.environment = new FormControl('');
+    inputsGroup.engine = new FormControl('');
     this.actionsFormGroup = new FormGroup(inputsGroup);
     this.actionsFormGroup.setValue(this.initialFormState);
   }

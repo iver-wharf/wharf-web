@@ -66,5 +66,48 @@
         <div *ngSwitchDefault>Field not recognized. Type: {{input.type}}</div>
       </div>
     </div>
+    <div class="form-control">
+      <div [ngSwitch]="this.engines?.length">
+        <h5>
+          <label>Execution engine</label>
+          <span *ngSwitchCase="undefined">: Loading...</span>
+          <span *ngSwitchCase="0">: <i>None available or error loading.</i></span>
+          <span *ngSwitchCase="1">:
+            <span [pTooltip]="engines[0].url" tooltipPosition="top">
+              <strong class="engine-name">{{engines[0].name}}</strong>
+              <span>(id: <span class="engine-id">{{engines[0].id}}</span>)</span>
+            </span>
+          </span>
+          <i class="var-info-icon pi pi-info-circle"
+            pTooltip='Execution engine is where the code will be executed. Wharf traditionally supports Jenkins and wharf-cmd.
+            This field is only changeable when there are multiple execution engines configured in wharf-api.'
+            tooltipPosition="top"
+          ></i>
+        </h5>
+        <div *ngSwitchDefault>
+          <p-dropdown
+            [options]="this.engines"
+            optionLabel="name"
+            optionValue="id"
+            formControlName="engine">
+            <ng-template let-engine pTemplate="selectedItem">
+              <div>
+                <span class="engine-name">{{engine.name}}</span>
+                <small>(id: <span class="engine-id">{{engine.id}}</span>)</small>
+              </div>
+            </ng-template>
+            <ng-template let-engine pTemplate="item">
+              <div>
+                <strong class="engine-name">{{engine.name}}</strong>
+                <small>(id: <span class="engine-id">{{engine.id}}</span>)</small>
+              </div>
+              <div>
+                <small class="engine-url">{{engine.url}}</small>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+      </div>
+    </div>
   </form>
 </ng-template>
