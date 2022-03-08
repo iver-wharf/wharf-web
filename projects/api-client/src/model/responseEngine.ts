@@ -11,12 +11,8 @@
  */
 
 
-export interface ResponseBranch { 
-    branchId?: number;
-    createdAt?: Date;
-    _default?: boolean;
+export interface ResponseEngine { 
+    id?: string;
     name?: string;
-    projectId?: number;
-    tokenId?: number;
-    updatedAt?: Date;
+    url?: string;
 }

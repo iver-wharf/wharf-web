@@ -18,15 +18,15 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { ResponseHealthStatus } from '../model/responseHealthStatus';
-import { ResponsePing } from '../model/responsePing';
+import { ProblemResponse } from '../model/problemResponse';
+import { ResponseEngineList } from '../model/responseEngineList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class HealthService {
+export class EngineService {
 
     protected basePath = 'https://localhost/api';
     public defaultHeaders = new HttpHeaders();
@@ -58,16 +58,16 @@ export class HealthService {
 
 
     /**
-     * Healthcheck for the API
-     * To be used by Kubernetes or alike. Added in v0.7.1.
+     * Get list of engines.
+     * Added in v5.1.0.
      * @param pretty Pretty indented JSON output
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getHealth(pretty?: boolean, observe?: 'body', reportProgress?: boolean): Observable<ResponseHealthStatus>;
-    public getHealth(pretty?: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResponseHealthStatus>>;
-    public getHealth(pretty?: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResponseHealthStatus>>;
-    public getHealth(pretty?: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getEngineList(pretty?: boolean, observe?: 'body', reportProgress?: boolean): Observable<ResponseEngineList>;
+    public getEngineList(pretty?: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResponseEngineList>>;
+    public getEngineList(pretty?: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResponseEngineList>>;
+    public getEngineList(pretty?: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -90,51 +90,7 @@ export class HealthService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<ResponseHealthStatus>(`${this.basePath}/health`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Ping
-     * You guessed it. Pong. Added in v4.2.0.
-     * @param pretty Pretty indented JSON output
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public pingHandler(pretty?: boolean, observe?: 'body', reportProgress?: boolean): Observable<ResponsePing>;
-    public pingHandler(pretty?: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResponsePing>>;
-    public pingHandler(pretty?: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResponsePing>>;
-    public pingHandler(pretty?: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (pretty !== undefined && pretty !== null) {
-            queryParameters = queryParameters.set('pretty', <any>pretty);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.get<ResponsePing>(`${this.basePath}/ping`,
+        return this.httpClient.get<ResponseEngineList>(`${this.basePath}/engine`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

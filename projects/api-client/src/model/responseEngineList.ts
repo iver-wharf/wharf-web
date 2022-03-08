@@ -9,14 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ResponseEngine } from './responseEngine';
 
 
-export interface ResponseBranch { 
-    branchId?: number;
-    createdAt?: Date;
-    _default?: boolean;
-    name?: string;
-    projectId?: number;
-    tokenId?: number;
-    updatedAt?: Date;
+export interface ResponseEngineList { 
+    defaultEngine?: ResponseEngine;
+    list?: Array<ResponseEngine>;
 }
