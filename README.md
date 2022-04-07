@@ -39,39 +39,31 @@ built first.
 
 ## Generate models and services
 
-In case you need to regenerate the api clients:
+In case you need to regenerate the api clients, run the
+`./generate-rest-client.ps1` script in powershell:
 
-1. Start up the container compose [wharf-docker-compose](https://github.com/iver-wharf/wharf-docker-compose)
-   locally to run the APIs through a reverse proxy on port 5000.
+- Windows:
 
-   ```console
-   $ docker-compose up --abort-on-container-exit
-   ```
+  ```powershell
+  PowerShell.exe -ExecutionPolicy Bypass -File ./generate-rest-client.ps1
+  ```
 
-2. Run the `./generate-rest-client.ps1` script in powershell:
+- Linux:
 
-   - Windows:
+  1. Install PowerShell Core, for example by following a guide from <https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux>
+    or by installing .NET SDK and installing it via the `dotnet` CLI
+    (installed via <https://dotnet.microsoft.com/download?initial-os=linux>)
+    by running:
 
-     ```powershell
-     PowerShell.exe -ExecutionPolicy Bypass -File ./generate-rest-client.ps1
-     ```
+    ```console
+    $ dotnet tool install --global powershell
+    ```
 
-   - Linux:
+  2. Now you can run the script:
 
-     1. Install PowerShell Core, for example by following a guide from <https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux>
-        or by installing .NET SDK and installing it via the `dotnet` CLI
-        (installed via <https://dotnet.microsoft.com/download?initial-os=linux>)
-        by running:
-
-        ```console
-        $ dotnet tool install --global powershell
-        ```
-
-     2. Now you can run the script:
-
-        ```console
-        $ ./generate-rest-client.ps1
-        ```
+    ```console
+    $ ./generate-rest-client.ps1
+    ```
 
 ## Run locally via Docker
 
