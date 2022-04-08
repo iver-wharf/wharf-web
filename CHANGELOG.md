@@ -45,7 +45,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Removed unused configs, specified in `assets/config.json`, and
   `"Environment"` object in `assets/config.json` and inlined their configs
   instead, as well as renamed `Name` to `name` and `IsProduction` to
-  `production`: (#?)
+  `production`: (#127)
 
   ```diff
   --- a/assets/config.json
@@ -75,7 +75,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Deprecated all PascalCased fields inside `assets/config.json` in favor of
   camelCased variants. Wharf-web performs automatic translation, but please
-  migrate your configs to camelCase as soon as possible, such as: (#?)
+  migrate your configs to camelCase as soon as possible, such as: (#127)
 
   ```diff
   --- a/assets/config.json
