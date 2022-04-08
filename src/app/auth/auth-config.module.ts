@@ -13,10 +13,7 @@ import { environment } from 'src/environments/environment';
     AuthModule.forRoot({
       loader: {
         provide: StsConfigLoader,
-        useFactory: () => {
-          console.log('OIDC config:', environment.oidcConfig);
-          return new StsConfigStaticLoader(environment.oidcConfig);
-        },
+        useFactory: () => new StsConfigStaticLoader(environment.oidcConfig),
       },
     }),
   ],
