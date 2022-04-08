@@ -4,17 +4,21 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment, fetchConfigPromise } from './environments/environment';
 
+const copyFields = <Type>(source: Type, target: Type) => {
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      target[key] = source[key];
+    }
+  }
+};
+
 fetchConfigPromise.then(config => {
   environment.name = config.name ?? environment.name;
   environment.production = config.production ?? environment.production;
-  environment.backendUrls = {
-    ...environment.backendUrls,
-    ...config.backendUrls ?? {},
-  };
-  environment.oidcConfig = {
-    ...environment.oidcConfig,
-    ...config.oidcConfig ?? {},
-  };
+  // Edit the existing JS objects instead of creating new ones, in case some
+  // code has reference to the objects before the config.json was fetched.
+  copyFields(config.backendUrls ?? {}, environment.backendUrls);
+  copyFields(config.oidcConfig ?? {}, environment.oidcConfig);
 
   if (environment.production) {
     enableProdMode();
