@@ -1,7 +1,8 @@
-export const environment = {
+import { environmentDefaults } from './environment.default';
+import { Environment } from './environment.types';
+
+export const environment: Environment = {
+  ...environmentDefaults,
+
   production: true,
-  version: '', //ci:version
-  ciGitCommit: '', //ci:gitCommit
-  ciBuildDate: new Date(), //ci:buildDate
-  ciBuildRef: 0, //ci:buildRef
 };
