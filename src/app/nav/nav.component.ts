@@ -104,28 +104,6 @@ export class NavComponent implements OnInit, OnDestroy {
     this.isDestroyed$.complete();
   }
 
-  private setMenuOptsAuth(): void {
-    combineLatest(this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$)
-      .pipe(takeUntil(this.isDestroyed$))
-      .subscribe(authStatus => {
-        if (authStatus[1].isAuthenticated) {
-          this.userItem = [
-            { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
-            {
-              label: authStatus[0].userData?.name,
-              icon: 'pi pi-user',
-              command: () => this.router.navigate(['/login']),
-            },
-          ];
-        } else {
-          this.userItem = [
-            { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
-            { label: 'user.name', disabled: true, icon: 'pi pi-user' },
-          ];
-        }
-      });
-  }
-
   fetchServiceVersions() {
     if (this.isFetchingVersions) {
       return;
@@ -157,24 +135,46 @@ export class NavComponent implements OnInit, OnDestroy {
       takeUntil(this.isDestroyed$),
       finalize(() => this.ref.markForCheck(),
       )).subscribe({
-      next: version => {
-        state.status = RemoteVersionStatus.OK;
-        state.version = version.version;
-      },
-      error: err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 404) {
-            state.status = RemoteVersionStatus.NotFound;
+        next: version => {
+          state.status = RemoteVersionStatus.OK;
+          state.version = version.version;
+        },
+        error: err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 404) {
+              state.status = RemoteVersionStatus.NotFound;
+            } else {
+              state.status = RemoteVersionStatus.Error;
+              state.error = err.message;
+            }
           } else {
+            console.warn('Unknown error fetching version for', serviceName, err);
             state.status = RemoteVersionStatus.Error;
-            state.error = err.message;
+            state.error = `Unknown error: ${err}`;
           }
+        },
+      });
+  }
+
+  private setMenuOptsAuth(): void {
+    combineLatest(this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$)
+      .pipe(takeUntil(this.isDestroyed$))
+      .subscribe(authStatus => {
+        if (authStatus[1].isAuthenticated) {
+          this.userItem = [
+            { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
+            {
+              label: authStatus[0].userData?.name,
+              icon: 'pi pi-user',
+              command: () => this.router.navigate(['/login']),
+            },
+          ];
         } else {
-          console.warn('Unknown error fetching version for', serviceName, err);
-          state.status = RemoteVersionStatus.Error;
-          state.error = `Unknown error: ${err}`;
+          this.userItem = [
+            { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
+            { label: 'user.name', disabled: true, icon: 'pi pi-user' },
+          ];
         }
-      },
-    });
+      });
   }
 }
