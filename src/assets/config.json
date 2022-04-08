@@ -1,9 +1,6 @@
 {
   "name": "dev",
   "production": false,
-  "Environment": {
-    "IsProduction": true
-  },
   "backendUrls": {
     "api": "/api",
     "gitlabImport": "/import",
