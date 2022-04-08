@@ -68,7 +68,7 @@ const normalizeConfig = (config: Config) => {
   }
 };
 
-const renameFieldsCasePascalToCamel = <Type extends object>(obj: Type) => {
+const renameFieldsCasePascalToCamel = (obj: Record<string, any>) => {
   for (const key in obj) {
     if (!Object.prototype.hasOwnProperty.call(obj, key)) {
       continue;
