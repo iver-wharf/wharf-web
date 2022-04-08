@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import {
-  AuthModule, OidcSecurityService,
-  StsConfigHttpLoader,
+  AuthModule,
   StsConfigLoader,
+  StsConfigStaticLoader,
 } from 'angular-auth-oidc-client';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WharfAuthInterceptor } from './wharf-auth.interceptor';
-import { ConfigService } from '../shared/config/config.service';
-
-const authFactory = (configService: ConfigService) => new StsConfigHttpLoader(configService.getOidcConfig$());
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
     AuthModule.forRoot({
       loader: {
         provide: StsConfigLoader,
-        useFactory: authFactory,
-        deps: [ConfigService],
+        useFactory: () => {
+          console.log('OIDC config:', environment.oidcConfig);
+          return new StsConfigStaticLoader(environment.oidcConfig);
+        },
       },
     }),
   ],
   exports: [AuthModule],
   declarations: [],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true },
   ],
 })
-export class AuthConfigModule {}
+export class AuthConfigModule { }

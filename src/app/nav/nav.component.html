@@ -7,7 +7,7 @@
         </a>
 
         <button class="version-button" type="button" pButton (click)="versionPanel.toggle($event)">
-          {{env.version}} <i class="pi pi-question-circle"></i>
+          {{build.version}} <i class="pi pi-question-circle"></i>
         </button>
 
         <p-overlayPanel #versionPanel (onShow)="fetchServiceVersions()" styleClass="version-panel" appendTo="body">
@@ -16,32 +16,32 @@
               <li>
                 <span class="label">Wharf web version: </span>
                 <span class="value">
-                  <ng-container *ngIf="env.version | whIsValidString; else invalidValue">
-                    {{env.version}}
+                  <ng-container *ngIf="build.version | whIsValidString; else invalidValue">
+                    {{build.version}}
                   </ng-container>
                 </span>
               </li>
               <li>
                 <span class="label">Build ID: </span>
                 <span class="value">
-                  <ng-container *ngIf="env.ciBuildRef | whIsValidBuildRef; else invalidValue">
-                    {{env.ciBuildRef}}
+                  <ng-container *ngIf="build.ciBuildRef | whIsValidBuildRef; else invalidValue">
+                    {{build.ciBuildRef}}
                   </ng-container>
                 </span>
               </li>
               <li>
                 <span class="label">Build commit: </span>
                 <span class="value">
-                  <ng-container *ngIf="env.ciGitCommit | whIsValidString; else invalidValue">
-                    {{env.ciGitCommit}}
+                  <ng-container *ngIf="build.ciGitCommit | whIsValidString; else invalidValue">
+                    {{build.ciGitCommit}}
                   </ng-container>
                 </span>
               </li>
               <li>
                 <span class="label">Build date: </span>
                 <span class="value">
-                  <ng-container *ngIf="env.ciBuildDate | whIsValidDate; else invalidValue">
-                    {{env.ciBuildDate | whDate}}
+                  <ng-container *ngIf="build.ciBuildDate | whIsValidDate; else invalidValue">
+                    {{build.ciBuildDate | whDate}}
                   </ng-container>
                 </span>
               </li>

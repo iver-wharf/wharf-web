@@ -1,10 +1,10 @@
-import { ConfigService } from './../../shared/config/config.service';
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BuildService, ResponseLog } from 'api-client';
 import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
 import { ResponseBuild } from 'api-client';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'wh-build-details',
@@ -24,7 +24,6 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   constructor(
     private route: ActivatedRoute,
     private buildService: BuildService,
-    private configService: ConfigService,
     private titleService: Title) { }
 
   ngOnInit(): void {
@@ -43,7 +42,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   connect(): void {
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
-        const apiUrl = this.configService.getConfig().backendUrls.api;
+        const apiUrl = environment.backendUrls.wharfApi;
         this.source = new EventSource(`${apiUrl}/build/${this.buildId}/stream`);
       }
       if (!!window.EventSource && !this.listener) {

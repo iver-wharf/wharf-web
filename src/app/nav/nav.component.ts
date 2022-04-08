@@ -73,8 +73,8 @@ export class NavComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  get env() {
-    return environment;
+  get build() {
+    return environment.build;
   }
 
   public ngOnInit() {
@@ -157,24 +157,24 @@ export class NavComponent implements OnInit, OnDestroy {
       takeUntil(this.isDestroyed$),
       finalize(() => this.ref.markForCheck(),
       )).subscribe({
-      next: version => {
-        state.status = RemoteVersionStatus.OK;
-        state.version = version.version;
-      },
-      error: err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 404) {
-            state.status = RemoteVersionStatus.NotFound;
+        next: version => {
+          state.status = RemoteVersionStatus.OK;
+          state.version = version.version;
+        },
+        error: err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 404) {
+              state.status = RemoteVersionStatus.NotFound;
+            } else {
+              state.status = RemoteVersionStatus.Error;
+              state.error = err.message;
+            }
           } else {
+            console.warn('Unknown error fetching version for', serviceName, err);
             state.status = RemoteVersionStatus.Error;
-            state.error = err.message;
+            state.error = `Unknown error: ${err}`;
           }
-        } else {
-          console.warn('Unknown error fetching version for', serviceName, err);
-          state.status = RemoteVersionStatus.Error;
-          state.error = `Unknown error: ${err}`;
-        }
-      },
-    });
+        },
+      });
   }
 }

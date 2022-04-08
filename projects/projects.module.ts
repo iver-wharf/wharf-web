@@ -3,22 +3,15 @@ import { ApiModule, Configuration } from 'api-client';
 import { ApiModule as AzureApiModule, Configuration as AzureConfiguration } from 'import-azuredevops-client';
 import { ApiModule as GitHubApiModule, Configuration as GitHubConfiguration } from 'import-github-client';
 import { ApiModule as GitLabApiModule, Configuration as GitLabConfiguration } from 'import-gitlab-client';
-import { ConfigService } from '../src/app/shared/config/config.service';
-
-const apiProviderWithConfig = <TConfig>(
-  configType: Type<TConfig>,
-  configFactory: (configService: ConfigService) => TConfig,
-): Provider =>
-({
-  provide: configType,
-  useFactory: configFactory,
-  deps: [ConfigService]
-});
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [{
     ngModule: ApiModule,
-    providers: [apiProviderWithConfig(Configuration, c => c.getApiConfig())],
+    providers: [{
+      provide: Configuration,
+      useFactory: () => new Configuration({ basePath: environment.backendUrls.wharfApi })
+    }],
   }],
   exports: [ApiModule],
 })
@@ -27,7 +20,10 @@ export class ConfiguredApiModule { }
 @NgModule({
   imports: [{
     ngModule: GitHubApiModule,
-    providers: [apiProviderWithConfig(GitHubConfiguration, c => c.getGitHubImportConfig())],
+    providers: [{
+      provide: GitHubConfiguration,
+      useFactory: () => new GitHubConfiguration({ basePath: environment.backendUrls.providerGitHub })
+    }],
   }],
   exports: [GitHubApiModule],
 })
@@ -36,7 +32,10 @@ export class ConfiguredGitHubApiModule { }
 @NgModule({
   imports: [{
     ngModule: GitLabApiModule,
-    providers: [apiProviderWithConfig(GitLabConfiguration, c => c.getGitlabImportConfig())],
+    providers: [{
+      provide: GitLabConfiguration,
+      useFactory: () => new GitLabConfiguration({ basePath: environment.backendUrls.providerGitLab })
+    }],
   }],
   exports: [GitLabApiModule],
 })
@@ -45,7 +44,10 @@ export class ConfiguredGitLabApiModule { }
 @NgModule({
   imports: [{
     ngModule: AzureApiModule,
-    providers: [apiProviderWithConfig(AzureConfiguration, c => c.getAzureDevOpsImportConfig())],
+    providers: [{
+      provide: AzureApiModule,
+      useFactory: () => new AzureConfiguration({ basePath: environment.backendUrls.providerAzureDevOps })
+    }],
   }],
   exports: [AzureApiModule],
 })

@@ -71,6 +71,7 @@ export const fetchConfigPromise = new Promise<Config>(resolve => {
   req.onload = () => {
     if (req.status < 200 || req.status >= 300) {
       // just use default values.
+      console.warn(`Non-2xx status code (${req.status} ${req.statusText}) when fetching config.json, using default environment instead.`);
       resolve(environment);
       return;
     }
@@ -78,7 +79,7 @@ export const fetchConfigPromise = new Promise<Config>(resolve => {
       const config: Config = JSON.parse(req.responseText) || {};
       resolve(config);
     } catch (err) {
-      console.warn('Failed to parse config.json', err);
+      console.warn('Failed to parse config.json, using default environment instead.', err);
       resolve(environment);
     }
   };
