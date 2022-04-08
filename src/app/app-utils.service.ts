@@ -7,7 +7,7 @@ export class AppUtilsService {
 
   constructor() { }
 
-  public downloadFile(data: Blob, fileName: string) {
+  downloadFile(data: Blob, fileName: string) {
     const blob = new Blob([data], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');

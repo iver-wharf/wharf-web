@@ -7,23 +7,23 @@ export class LocalStorageProjectsService {
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  public projectIsFavorite(projectId: number): boolean {
+  projectIsFavorite(projectId: number): boolean {
     return this.getFavoriteProjectsIds().some(id => id === projectId);
   }
 
-  public getFavoriteProjectsIds(): number[] {
+  getFavoriteProjectsIds(): number[] {
     return this.getProjects(this.favoriteProjectsKeyName);
   }
 
-  public setFavoriteProjectIds(projectIds: number[]): void {
+  setFavoriteProjectIds(projectIds: number[]): void {
     this.setProjects(projectIds, this.favoriteProjectsKeyName);
   }
 
-  public addToFavoriteProjects(projectId: number): void {
+  addToFavoriteProjects(projectId: number): void {
     this.addProject(projectId, this.favoriteProjectsKeyName);
   }
 
-  public handleFavoriteButtonClick(projectId: number): void {
+  handleFavoriteButtonClick(projectId: number): void {
     const favoriteProjectsIds = this.getFavoriteProjectsIds();
     if (favoriteProjectsIds.length && this.projectIsFavorite(projectId)) {
         const modifiedFavoriteProjects = this.getProjectsIdsDifference(favoriteProjectsIds, projectId);

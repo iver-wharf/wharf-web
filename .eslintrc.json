@@ -32,9 +32,9 @@
         ],
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/explicit-member-accessibility": [
-          "off",
+          "warn",
           {
-            "accessibility": "explicit"
+            "accessibility": "no-public"
           }
         ],
         "arrow-parens": ["off", "always"],
