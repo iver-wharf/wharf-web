@@ -21,7 +21,7 @@ ARG BUILD_GIT_COMMIT="HEAD"
 ARG BUILD_REF="0"
 ARG BUILD_DATE=""
 RUN chmod +x deploy/update-typescript-environments.sh \
-    && deploy/update-typescript-environments.sh src/environments/environment.prod.ts \
+    && deploy/update-typescript-environments.sh src/environments/environment.ts \
     && npm run build-clients \
     && npm run build-prod
 
