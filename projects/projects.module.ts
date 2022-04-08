@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
     ngModule: ApiModule,
     providers: [{
       provide: Configuration,
-      useFactory: () => new Configuration({ basePath: environment.backendUrls.wharfApi })
+      useFactory: () => new Configuration({ basePath: environment.backendUrls.api })
     }],
   }],
   exports: [ApiModule],
@@ -22,7 +22,7 @@ export class ConfiguredApiModule { }
     ngModule: GitHubApiModule,
     providers: [{
       provide: GitHubConfiguration,
-      useFactory: () => new GitHubConfiguration({ basePath: environment.backendUrls.providerGitHub })
+      useFactory: () => new GitHubConfiguration({ basePath: environment.backendUrls.githubImport })
     }],
   }],
   exports: [GitHubApiModule],
@@ -34,7 +34,7 @@ export class ConfiguredGitHubApiModule { }
     ngModule: GitLabApiModule,
     providers: [{
       provide: GitLabConfiguration,
-      useFactory: () => new GitLabConfiguration({ basePath: environment.backendUrls.providerGitLab })
+      useFactory: () => new GitLabConfiguration({ basePath: environment.backendUrls.gitlabImport })
     }],
   }],
   exports: [GitLabApiModule],
@@ -46,7 +46,7 @@ export class ConfiguredGitLabApiModule { }
     ngModule: AzureApiModule,
     providers: [{
       provide: AzureApiModule,
-      useFactory: () => new AzureConfiguration({ basePath: environment.backendUrls.providerAzureDevOps })
+      useFactory: () => new AzureConfiguration({ basePath: environment.backendUrls.azureDevopsImport })
     }],
   }],
   exports: [AzureApiModule],

@@ -1,11 +1,14 @@
 {
   "name": "dev",
   "production": false,
+  "Environment": {
+    "IsProduction": true
+  },
   "backendUrls": {
-    "wharfApi": "/api",
-    "providerGitLab": "/import",
-    "providerGitHub": "/import",
-    "providerAzureDevOps": "/import"
+    "api": "/api",
+    "gitlabImport": "/import",
+    "githubImport": "/import",
+    "azureDevopsImport": "/import"
   },
   "oidcConfig": {
     "authority": "https://login.microsoftonline.com/841df554-ef9d-48b1-bc6e-44cf8543a8fc/v2.0/.well-known/openid-configuration",

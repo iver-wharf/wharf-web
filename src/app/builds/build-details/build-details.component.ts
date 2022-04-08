@@ -42,7 +42,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   connect(): void {
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
-        const apiUrl = environment.backendUrls.wharfApi;
+        const apiUrl = environment.backendUrls.api;
         this.source = new EventSource(`${apiUrl}/build/${this.buildId}/stream`);
       }
       if (!!window.EventSource && !this.listener) {

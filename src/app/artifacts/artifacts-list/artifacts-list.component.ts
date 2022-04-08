@@ -22,7 +22,7 @@ export class ArtifactsListComponent implements OnInit {
   }
 
   getArtifactUrl(artifact): string {
-    const apiUrl = environment.backendUrls.wharfApi;
+    const apiUrl = environment.backendUrls.api;
     const buildId = encodeURIComponent(String(this.buildId));
     const artifactId = encodeURIComponent(String(artifact.artifactId));
 

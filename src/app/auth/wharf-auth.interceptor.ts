@@ -12,7 +12,7 @@ export class WharfAuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const apiUrl = environment.backendUrls.wharfApi;
+    const apiUrl = environment.backendUrls.api;
     if (!req.url.includes(apiUrl)) {
       return next.handle(req);
     }
