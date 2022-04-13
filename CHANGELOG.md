@@ -48,7 +48,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   - `eslint` from v7.30.0 to v8.12.0 (#125)
   - `ng-packagr` from v12.1.1 to v13.3.0 (#125)
   - `primeicons` from v4.1.0 to v5.0.0 (#125)
-  - `primeng` from v12.0.0 to v13.3.2 (#125)
+  - `primeng` from v12.0.0 to v13.3.3 (#125)
   - `rxjs` from v7.2.0 to v7.5.5 (#125)
   - `typescript` from v4.3.5 to v4.6.3 (#125)
 
