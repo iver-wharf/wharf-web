@@ -28,6 +28,7 @@ export class ProjectDetailsConfigurationComponent implements OnChanges {
   }
 
   updateProperties() {
+    // eslint-disable-next-line no-underscore-dangle
     this.defaultBranchName = this.project.branches?.find(b => b._default)?.name
       ?? NO_DEFAULT_BRANCH_NAME;
 

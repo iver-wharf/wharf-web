@@ -61,11 +61,11 @@ export class ConfigService {
     this.config = lowClone(config);
   }
 
-  public getConfig(): Config {
+  getConfig(): Config {
     return this.config;
   }
 
-  public getConfig$(): Observable<Config | null> {
+  getConfig$(): Observable<Config | null> {
     return this.httpClient.get<Config>(configUrl);
   }
 
@@ -97,7 +97,7 @@ export class ConfigService {
     });
   }
 
-  public getOidcConfig$(): Observable<OpenIdConfiguration> {
+  getOidcConfig$(): Observable<OpenIdConfiguration> {
     return this.getConfig$().pipe(
       map<Config,OpenIdConfiguration>((configuration: Config) => configuration.oidcConfig),
     );
