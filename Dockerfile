@@ -29,9 +29,8 @@ ARG REG=docker.io
 FROM ${REG}/library/nginx:1-alpine
 
 RUN apk add --upgrade --no-cache \
-    # Resolves CVE-2021-22945, as it's not yet upgraded in upstream image
-    curl>7.78.0 \
-    libcurl>7.78.0
+    # Resolves CVE-2022-1271, as it's not yet upgraded in upstream image
+    'xz-libs>=5.2.5-r1'
 
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
