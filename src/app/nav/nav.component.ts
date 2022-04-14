@@ -73,8 +73,8 @@ export class NavComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  get env() {
-    return environment;
+  get build() {
+    return environment.build;
   }
 
   ngOnInit() {
@@ -157,7 +157,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   private setMenuOptsAuth(): void {
-    combineLatest(this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$)
+    combineLatest([this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$])
       .pipe(takeUntil(this.isDestroyed$))
       .subscribe(authStatus => {
         if (authStatus[1].isAuthenticated) {

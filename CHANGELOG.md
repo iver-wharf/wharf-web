@@ -42,6 +42,60 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Added field for changing execution engine used in a build via the
   "RUN ALL OPTIONS" modal. (#122)
 
+- Removed unused configs, specified in `assets/config.json`, and
+  `"Environment"` object in `assets/config.json` and inlined their configs
+  instead, as well as renamed `Name` to `name` and `IsProduction` to
+  `production`: (#127)
+
+  ```diff
+  --- a/assets/config.json
+  +++ b/assets/config.json
+   {
+  -  "Environment": {
+  -    "Name": "lorem-ipsum",
+  -    "IsProduction": true
+  -  },
+  +  "name": "lorem-ipsum",
+  +  "production": true,
+
+  -  "UpdateLatency": 20000,
+  -  "UpdateFrequency": 30000,
+
+     "BackendUrls": {
+       "Api": "/api",
+       "Gitlab": "/import",
+       "Github": "/import",
+       "AzureDevops": "/import",
+     }
+   }
+  ```
+
+  Backward compatibtility is added, so the `Environment.Name` and
+  `Environment.IsProduction` inside `assets/config.json` still work.
+
+- Deprecated all PascalCased fields inside `assets/config.json` in favor of
+  camelCased variants. Wharf-web performs automatic translation, but please
+  migrate your configs to camelCase as soon as possible, such as: (#127)
+
+  ```diff
+  --- a/assets/config.json
+  +++ b/assets/config.json
+   {
+  -  "BackendUrls": {
+  -    "Api": "/api",
+  -    "Gitlab": "/import",
+  -    "Github": "/import",
+  -    "AzureDevops": "/import",
+  -  }
+  +  "backendUrls": {
+  +    "api": "/api",
+  +    "gitlab": "/import",
+  +    "github": "/import",
+  +    "azureDevops": "/import",
+  +  }
+   }
+  ```
+
 - Changed version of dependencies:
 
   - `@angular/*` from v12.1.1 to v13.3.2 (#125)

@@ -1,6 +1,6 @@
-import { ConfigService } from './../../shared/config/config.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ResponseArtifact, ArtifactService } from 'api-client';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'wh-artifacts-list',
@@ -12,7 +12,7 @@ export class ArtifactsListComponent implements OnInit {
 
   constructor(
     private artifactService: ArtifactService,
-    private configService: ConfigService) { }
+  ) { }
 
   ngOnInit(): void {
     this.artifactService.getBuildArtifactList(this.buildId, 0)
@@ -22,7 +22,7 @@ export class ArtifactsListComponent implements OnInit {
   }
 
   getArtifactUrl(artifact): string {
-    const apiUrl = this.configService.getConfig().backendUrls.api;
+    const apiUrl = environment.backendUrls.api;
     const buildId = encodeURIComponent(String(this.buildId));
     const artifactId = encodeURIComponent(String(artifact.artifactId));
 
