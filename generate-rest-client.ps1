@@ -1,9 +1,8 @@
 #!/usr/bin/env pwsh
 
 param (
-	[string] $ServerUrl = "http://localhost:5000",
 	[string] $DockerNetwork = "host",
-	[string] $DockerImage = "swaggerapi/swagger-codegen-cli:2.4.19",
+	[string] $DockerImage = "swaggerapi/swagger-codegen-cli:2.4.26",
 	[string] $DockerExec = "docker",
 	[switch] $SkipBuilding
 )
@@ -21,10 +20,10 @@ function Sync-Project {
 		--network $DockerNetwork `
 		$DockerImage `
 		generate `
-			--input-spec $ServerUrl$SwaggerDocPath `
+			--input-spec $SwaggerDocPath `
 			--lang typescript-angular `
 			--output /local/projects/$ProjectName/src `
-			--additional-properties ngVersion=9.0.3
+			--additional-properties ngVersion=13.3.2
 
 	if (-not $?) {
 		throw "Failed to pull Swagger definitions for '$ProjectName'"
@@ -41,7 +40,7 @@ function Sync-Project {
 	}
 }
 
-Sync-Project -ProjectName api-client -SwaggerDocPath /api/swagger/doc.json
-Sync-Project -ProjectName import-azuredevops-client -SwaggerDocPath /import/azuredevops/swagger/doc.json
-Sync-Project -ProjectName import-github-client -SwaggerDocPath /import/github/swagger/doc.json
-Sync-Project -ProjectName import-gitlab-client -SwaggerDocPath /import/gitlab/swagger/doc.json
+Sync-Project -ProjectName api-client -SwaggerDocPath https://github.com/iver-wharf/wharf-api/releases/download/v5.1.2/swagger.json
+Sync-Project -ProjectName import-azuredevops-client -SwaggerDocPath https://github.com/iver-wharf/wharf-provider-azuredevops/releases/download/v2.0.1/swagger.json
+Sync-Project -ProjectName import-github-client -SwaggerDocPath https://github.com/iver-wharf/wharf-provider-github/releases/download/v3.0.0/swagger.json
+Sync-Project -ProjectName import-gitlab-client -SwaggerDocPath https://github.com/iver-wharf/wharf-provider-gitlab/releases/download/v1.3.0/swagger.json
