@@ -121,6 +121,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
         this.initialFormState[input.name] = input.default || null;
       });
     }
+    // eslint-disable-next-line no-underscore-dangle
     this.initialFormState.branch = this.editedProjectInstance.branches.find(o => o._default);
     this.initialFormState.environment =
       this.editedProjectInstance.build.environments[1] // 1 to skip the first noEnvironment

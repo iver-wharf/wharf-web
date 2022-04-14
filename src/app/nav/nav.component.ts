@@ -77,7 +77,7 @@ export class NavComponent implements OnInit, OnDestroy {
     return environment.build;
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.projectItem = [
       { label: 'PROJECTS', icon: 'pi pi-file-o', routerLink: ['/'] },
     ];
@@ -99,31 +99,9 @@ export class NavComponent implements OnInit, OnDestroy {
     this.setMenuOptsAuth();
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy() {
     this.isDestroyed$.next(true);
     this.isDestroyed$.complete();
-  }
-
-  private setMenuOptsAuth(): void {
-    combineLatest(this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$)
-      .pipe(takeUntil(this.isDestroyed$))
-      .subscribe(authStatus => {
-        if (authStatus[1].isAuthenticated) {
-          this.userItem = [
-            { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
-            {
-              label: authStatus[0].userData?.name,
-              icon: 'pi pi-user',
-              command: () => this.router.navigate(['/login']),
-            },
-          ];
-        } else {
-          this.userItem = [
-            { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
-            { label: 'user.name', disabled: true, icon: 'pi pi-user' },
-          ];
-        }
-      });
   }
 
   fetchServiceVersions() {
@@ -175,6 +153,28 @@ export class NavComponent implements OnInit, OnDestroy {
             state.error = `Unknown error: ${err}`;
           }
         },
+      });
+  }
+
+  private setMenuOptsAuth(): void {
+    combineLatest([this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$])
+      .pipe(takeUntil(this.isDestroyed$))
+      .subscribe(authStatus => {
+        if (authStatus[1].isAuthenticated) {
+          this.userItem = [
+            { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
+            {
+              label: authStatus[0].userData?.name,
+              icon: 'pi pi-user',
+              command: () => this.router.navigate(['/login']),
+            },
+          ];
+        } else {
+          this.userItem = [
+            { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
+            { label: 'user.name', disabled: true, icon: 'pi pi-user' },
+          ];
+        }
       });
   }
 }
