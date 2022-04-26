@@ -106,6 +106,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
   - `rxjs` from v7.2.0 to v7.5.5 (#125)
   - `typescript` from v4.3.5 to v4.6.3 (#125)
 
+- Changed to require Node 16 or later due to new `package-lock.json` format
+  changes since NPM 7.0.0, which comes with Node 15.0.0 or later. (#130)
+
 ## v1.5.1 (2022-01-10)
 
 - Fixed version panel misplacement on scrollable pages and being locked to the
