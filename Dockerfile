@@ -1,5 +1,5 @@
 ARG REG=docker.io
-FROM ${REG}/library/node:14-alpine AS build
+FROM ${REG}/library/node:16-alpine AS build
 
 # Set working directory
 WORKDIR /usr/src/app
