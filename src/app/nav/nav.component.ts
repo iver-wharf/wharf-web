@@ -5,13 +5,14 @@ import { MetaService as GitLabMetaService } from 'import-gitlab-client';
 import { MetaService as GitHubMetaService } from 'import-github-client';
 import { MetaService as AzureDevOpsMetaService } from 'import-azuredevops-client';
 import { MetaService as ApiMeta } from 'api-client';
-import { combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LicensesService } from '../shared/licenses/licenses.service';
 import { Router } from '@angular/router';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+//import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 enum RemoteVersionStatus {
   Pending,
@@ -69,8 +70,10 @@ export class NavComponent implements OnInit, OnDestroy {
     private ref: ChangeDetectorRef,
     private licensesService: LicensesService,
     private router: Router,
-    private oidcSecurityService: OidcSecurityService,
+    //private oidcSecurityService: OidcSecurityService,
+    private authService: AuthService,
   ) {
+    console.log(authService.hello());
   }
 
   get build() {
@@ -92,7 +95,7 @@ export class NavComponent implements OnInit, OnDestroy {
     ];
 
     this.userItem = [
-      { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
+      //{ label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
       { label: 'user.name', disabled: true, icon: 'pi pi-user' },
     ];
 
@@ -157,24 +160,24 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   private setMenuOptsAuth(): void {
-    combineLatest([this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$])
-      .pipe(takeUntil(this.isDestroyed$))
-      .subscribe(authStatus => {
-        if (authStatus[1].isAuthenticated) {
-          this.userItem = [
-            { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
-            {
-              label: authStatus[0].userData?.name,
-              icon: 'pi pi-user',
-              command: () => this.router.navigate(['/login']),
-            },
-          ];
-        } else {
-          this.userItem = [
-            { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
-            { label: 'user.name', disabled: true, icon: 'pi pi-user' },
-          ];
-        }
-      });
+    //combineLatest([this.oidcSecurityService.userData$, this.oidcSecurityService.isAuthenticated$])
+    //  .pipe(takeUntil(this.isDestroyed$))
+    //  .subscribe(authStatus => {
+    //    if (authStatus[1].isAuthenticated) {
+    //      this.userItem = [
+    //        { label: 'LOGOUT', icon: 'pi pi-sign-out', command: () => this.oidcSecurityService.logoff() },
+    //        {
+    //          label: authStatus[0].userData?.name,
+    //          icon: 'pi pi-user',
+    //          command: () => this.router.navigate(['/login']),
+    //        },
+    //      ];
+    //    } else {
+    //      this.userItem = [
+    //        { label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
+    //        { label: 'user.name', disabled: true, icon: 'pi pi-user' },
+    //      ];
+    //    }
+    //  });
   }
 }

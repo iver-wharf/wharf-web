@@ -6,7 +6,7 @@ export interface Config {
   production?: boolean;
 
   backendUrls?: BackendUrlsConfig;
-  oidcConfig?: OpenIdConfiguration;
+  oidcConfig?: OidcConfig;
 }
 
 interface BackendUrlsConfig {
@@ -14,6 +14,10 @@ interface BackendUrlsConfig {
   gitlabImport?: string;
   githubImport?: string;
   azureDevopsImport?: string;
+}
+
+interface OidcConfig extends OpenIdConfiguration {
+  enabled?: boolean;
 }
 
 export interface Environment extends Config {
