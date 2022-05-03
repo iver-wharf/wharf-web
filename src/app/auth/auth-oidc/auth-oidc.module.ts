@@ -24,6 +24,12 @@ import { OidcUnauthorizedComponent } from './oidc-unauthorized/oidc-unauthorized
     RouterModule,
     ButtonModule,
     CardModule,
+
+    RouterModule.forChild([
+      { path: 'login', component: OidcLoginComponent },
+      { path: 'unauthorized', component: OidcUnauthorizedComponent },
+      { path: 'forbidden', component: OidcForbiddenComponent },
+    ]),
   ],
 })
 export class AuthOidcModule {

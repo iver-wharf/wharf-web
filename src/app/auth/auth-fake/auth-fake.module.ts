@@ -14,17 +14,18 @@ import { CardModule } from 'primeng/card';
     FakeUnauthorizedComponent,
     FakeLoginComponent,
   ],
-  exports: [
-    FakeForbiddenComponent,
-    FakeUnauthorizedComponent,
-    FakeLoginComponent,
-  ],
   imports: [
     CommonModule,
     DialogModule,
     RouterModule,
     ButtonModule,
     CardModule,
+
+    RouterModule.forChild([
+      { path: 'login', component: FakeLoginComponent },
+      { path: 'unauthorized', component: FakeUnauthorizedComponent },
+      { path: 'forbidden', component: FakeForbiddenComponent },
+    ]),
   ],
 })
 export class AuthFakeModule {
