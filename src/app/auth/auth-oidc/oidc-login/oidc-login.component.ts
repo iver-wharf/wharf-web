@@ -12,11 +12,11 @@ import { Observable, pluck } from 'rxjs';
  * https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app
  */
 @Component({
-  selector: 'wh-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'wh-login-impl',
+  templateUrl: './oidc-login.component.html',
+  styleUrls: ['./oidc-login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class OidcLoginComponent implements OnInit {
 
   configuration: OpenIdConfiguration;
   userData$: Observable<UserDataResult>;

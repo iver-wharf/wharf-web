@@ -5,7 +5,7 @@ import {
   StsConfigStaticLoader,
 } from 'angular-auth-oidc-client';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { WharfAuthInterceptor } from './wharf-auth.interceptor';
+import { AuthOidcInterceptor } from './auth-oidc.interceptor';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
   exports: [AuthModule],
   declarations: [],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: WharfAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthOidcInterceptor, multi: true },
   ],
 })
 export class AuthConfigModule { }

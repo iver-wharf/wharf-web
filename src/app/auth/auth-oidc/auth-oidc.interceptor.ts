@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class WharfAuthInterceptor implements HttpInterceptor {
+export class AuthOidcInterceptor implements HttpInterceptor {
 
   constructor(
     private oidcSecurityService: OidcSecurityService,
