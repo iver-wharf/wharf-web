@@ -8,7 +8,7 @@
     "azureDevopsImport": "/import"
   },
   "oidcConfig": {
-    "enabled": false,
+    "enabled": true,
     "authority": "https://login.microsoftonline.com/841df554-ef9d-48b1-bc6e-44cf8543a8fc/v2.0/.well-known/openid-configuration",
     "redirectUrl": "http://localhost:4200",
     "postLogoutRedirectUri": "http://localhost:4200",
