@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'wh-forbidden-impl',
+  selector: 'wh-forbidden',
   templateUrl: './oidc-forbidden.component.html',
   styleUrls: ['./oidc-forbidden.component.scss'],
 })

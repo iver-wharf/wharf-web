@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'wh-unauthorized-impl',
+  selector: 'wh-unauthorized',
   templateUrl: './oidc-unauthorized.component.html',
   styleUrls: ['./oidc-unauthorized.component.scss'],
 })

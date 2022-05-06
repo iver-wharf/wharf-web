@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'wh-unauthorized-impl',
+  selector: 'wh-unauthorized',
   templateUrl: './fake-unauthorized.component.html',
   styleUrls: ['./fake-unauthorized.component.scss'],
 })

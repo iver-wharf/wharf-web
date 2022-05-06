@@ -12,7 +12,7 @@ import { Observable, pluck } from 'rxjs';
  * https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app
  */
 @Component({
-  selector: 'wh-login-impl',
+  selector: 'wh-login',
   templateUrl: './oidc-login.component.html',
   styleUrls: ['./oidc-login.component.scss'],
 })

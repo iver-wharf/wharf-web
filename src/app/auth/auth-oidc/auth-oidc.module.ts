@@ -10,6 +10,8 @@ import { CardModule } from 'primeng/card';
 import { OidcForbiddenComponent } from './oidc-forbidden/oidc-forbidden.component';
 import { OidcLoginComponent } from './oidc-login/oidc-login.component';
 import { OidcUnauthorizedComponent } from './oidc-unauthorized/oidc-unauthorized.component';
+import { AuthService } from '../auth.service';
+import { OidcAuthProvider } from './oidc-auth-provider';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { OidcUnauthorizedComponent } from './oidc-unauthorized/oidc-unauthorized
 export class AuthOidcModule {
   constructor(
     private readonly eventService: PublicEventsService,
+    authService: AuthService,
   ) {
+    authService.register(new OidcAuthProvider());
     this.eventService
       .registerForEvents()
       .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))

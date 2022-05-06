@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth.service';
 
 @Component({
-  selector: 'wh-login-impl',
+  selector: 'wh-login',
   templateUrl: './fake-login.component.html',
   styleUrls: ['./fake-login.component.scss'],
 })
-export class FakeLoginComponent {
+export class FakeLoginComponent implements OnInit {
+  constructor(
+    private authService: AuthService,
+  ) { }
+
+  ngOnInit() {
+    this.authService.navigateBackToReturnUrl();
+  }
 }
