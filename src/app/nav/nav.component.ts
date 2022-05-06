@@ -73,7 +73,6 @@ export class NavComponent implements OnInit, OnDestroy {
     //private oidcSecurityService: OidcSecurityService,
     private authService: AuthService,
   ) {
-    //console.log(authService.hello());
   }
 
   get build() {

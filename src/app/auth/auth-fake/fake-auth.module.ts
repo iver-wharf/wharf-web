@@ -8,7 +8,6 @@ import { FakeUnauthorizedComponent } from './fake-unauthorized/fake-unauthorized
 import { FakeLoginComponent } from './fake-login/fake-login.component';
 import { CardModule } from 'primeng/card';
 import { AuthService } from '../auth.service';
-import { FakeAuthService } from './fake-auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,10 @@ import { FakeAuthService } from './fake-auth.service';
   ],
 })
 export class FakeAuthModule {
-  constructor(authService: AuthService) {
-    authService.register(new FakeAuthService());
+  constructor(
+    authService: AuthService,
+  ) {
+    authService.isAuthenticated = true;
+    authService.username = 'FAKE USER';
   }
 }

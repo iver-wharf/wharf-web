@@ -24,17 +24,13 @@ export class OidcLoginComponent implements OnInit {
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
-    private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.configuration = this.oidcSecurityService.getConfiguration();
     this.userData$ = this.oidcSecurityService.userData$;
     this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
-      .pipe(
-        pluck('isAuthenticated'),
-        tap(() => this.authService.navigateBackToReturnUrl()),
-      );
+      .pipe(pluck('isAuthenticated'));
   }
 
   login() {

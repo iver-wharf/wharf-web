@@ -14,7 +14,6 @@ const routes: Routes = [
       { path: 'project/:projectId', component: ProjectDetailsComponent },
       { path: 'build/:projectId/:buildId', component: BuildDetailsComponent },
       { path: 'third-party-licenses', component: LicensesComponent },
-      //{ path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
     ],
   },
   {
