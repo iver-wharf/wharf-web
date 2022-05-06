@@ -68,12 +68,9 @@ export class OidcAutoLoginRoutesGuard implements CanActivate, CanActivateChild, 
     return loginResponse$.pipe(
       take(1),
       map(({ isAuthenticated, userData }) => {
-        this.authService.isAuthenticated = isAuthenticated;
-        if (typeof userData === 'object') {
-          this.authService.username = userData.name ?? '<unknown name>';
-        }
 
         if (isAuthenticated) {
+          this.authService.setLoggedIn(userData?.name);
           this.authService.navigateBackToReturnUrl();
         } else {
           this.authService.setReturnUrl(url);

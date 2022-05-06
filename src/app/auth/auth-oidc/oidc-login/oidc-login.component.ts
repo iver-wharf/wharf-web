@@ -4,8 +4,8 @@ import {
   OpenIdConfiguration,
   UserDataResult,
 } from 'angular-auth-oidc-client';
-import { Observable, pluck, tap } from 'rxjs';
-import { AuthService } from '../../auth.service';
+import { Observable, pluck } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 /*
  * Largely from damienbod/angular-auth-oidc-client samples. See-
@@ -27,7 +27,7 @@ export class OidcLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.configuration = this.oidcSecurityService.getConfiguration();
+    this.configuration = environment.oidcConfig;
     this.userData$ = this.oidcSecurityService.userData$;
     this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
       .pipe(pluck('isAuthenticated'));

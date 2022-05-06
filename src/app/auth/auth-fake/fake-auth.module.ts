@@ -33,7 +33,6 @@ export class FakeAuthModule {
   constructor(
     authService: AuthService,
   ) {
-    authService.isAuthenticated = true;
-    authService.username = 'FAKE USER';
+    authService.setLoggedIn('FAKE USER');
   }
 }

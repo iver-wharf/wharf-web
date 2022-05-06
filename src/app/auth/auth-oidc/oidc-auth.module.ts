@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { EventTypes, OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
 import { CardModule } from 'primeng/card';
 import { OidcForbiddenComponent } from './oidc-forbidden/oidc-forbidden.component';
 import { OidcLoginComponent } from './oidc-login/oidc-login.component';
@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OidcAuthInterceptor } from './oidc-auth.interceptor';
 import { OidcAutoLoginRoutesGuard } from './oidc-auto-login.guard';
 import { OidcAuthConfigModule } from './oidc-auth-config.module';
+import { AuthService } from '../auth.service';
 
 @NgModule({
   declarations: [

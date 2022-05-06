@@ -1,26 +1,46 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
-let returnUrl: string | null = null;
+const SESSION_LOGIN_RETURN_KEY = 'login-return';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
-  isAuthenticated: boolean;
-  username: string;
+  username = '<unknown username>';
+
+  private isAuthCurrent: boolean;
+  private isAuth$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private router: Router,
   ) { }
 
-  setReturnUrl(url: string | null) {
-    if (returnUrl) {
-      console.warn('Trying to set return URL when it has already been set.', {
-        current: returnUrl,
-        new: url,
-      });
+  get isAuthenticated() {
+    return this.isAuthCurrent;
+  }
+
+  get isAuthenticated$() {
+    return this.isAuth$.asObservable();
+  }
+
+  setLoggedIn(username: string | undefined) {
+    if (this.isAuthCurrent) {
+      console.warn('Tried to set logged in when already logged in.');
       return;
     }
-    returnUrl = url;
+    this.username = username ?? '<unknown username>';
+    this.isAuthCurrent = true;
+    this.isAuth$.next(true);
+  }
+
+  setReturnUrl(url: string | null) {
+    const returnUrl = sessionStorage.getItem(SESSION_LOGIN_RETURN_KEY);
+    if (returnUrl) {
+      return;
+    }
+    sessionStorage.setItem(SESSION_LOGIN_RETURN_KEY, url);
   }
 
   navigateBackToReturnUrl() {
@@ -28,7 +48,8 @@ export class AuthService {
       console.warn('Cannot navigate back: user is not authenticated');
       return;
     }
-    this.router.navigateByUrl(returnUrl ?? '/');
-    returnUrl = null;
+    const returnUrl = sessionStorage.getItem(SESSION_LOGIN_RETURN_KEY) ?? '/';
+    this.router.navigateByUrl(returnUrl);
+    sessionStorage.removeItem(SESSION_LOGIN_RETURN_KEY);
   }
 }
