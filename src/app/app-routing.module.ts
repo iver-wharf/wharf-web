@@ -18,13 +18,9 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'auth', loadChildren: async () => {
-      if (environment.oidcConfig?.enabled) {
-        return (await import('./auth/auth-oidc/oidc-auth.module')).OidcAuthModule;
-      } else {
-        return (await import('./auth/auth-fake/fake-auth.module')).FakeAuthModule;
-      }
-    },
+    path: 'auth', loadChildren: async () => environment.oidcConfig?.enabled
+      ? (await import('./auth/auth-oidc/oidc-auth.module')).OidcAuthModule
+      : (await import('./auth/auth-fake/fake-auth.module')).FakeAuthModule,
   },
 ];
 
