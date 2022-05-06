@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
-import { AuthConfigModule } from './auth-oidc-config.module';
+import { OidcAuthConfigModule } from './oidc-auth-config.module';
 import { CardModule } from 'primeng/card';
 import { OidcForbiddenComponent } from './oidc-forbidden/oidc-forbidden.component';
 import { OidcLoginComponent } from './oidc-login/oidc-login.component';
@@ -21,7 +21,7 @@ import { OidcAuthProvider } from './oidc-auth-provider';
   ],
   imports: [
     CommonModule,
-    AuthConfigModule,
+    OidcAuthConfigModule,
     DialogModule,
     RouterModule,
     ButtonModule,
@@ -34,7 +34,7 @@ import { OidcAuthProvider } from './oidc-auth-provider';
     ]),
   ],
 })
-export class AuthOidcModule {
+export class OidcAuthModule {
   constructor(
     private readonly eventService: PublicEventsService,
     authService: AuthService,

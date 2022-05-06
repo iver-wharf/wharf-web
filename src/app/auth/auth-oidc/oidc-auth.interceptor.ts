@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class AuthOidcInterceptor implements HttpInterceptor {
+export class OidcAuthInterceptor implements HttpInterceptor {
 
   constructor(
     private oidcSecurityService: OidcSecurityService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('intercept!');
     const apiUrl = environment.backendUrls.api;
     if (!req.url.includes(apiUrl)) {
       return next.handle(req);

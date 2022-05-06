@@ -30,7 +30,7 @@ import { FakeAuthService } from './fake-auth.service';
     ]),
   ],
 })
-export class AuthFakeModule {
+export class FakeAuthModule {
   constructor(authService: AuthService) {
     authService.register(new FakeAuthService());
   }
