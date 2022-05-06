@@ -6,16 +6,17 @@ import { AuthProvider } from '../auth-provider';
 export class OidcAuthProvider implements AuthProvider {
   constructor(
     private oidcSecurityService: OidcSecurityService,
-  ) { }
+  ) {
+    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated }) => {
+      console.log('Authenticated: ', isAuthenticated);
+    });
+  }
 
   getName(): string {
     return 'OpenID Connect (OIDC)';
   }
 
   isAuthenticated(): boolean {
-    this.oidcSecurityService.isAuthenticated$.subscribe({
-      next: (auth) => console.log('is auth$?', auth),
-    });
     return this.oidcSecurityService.isAuthenticated();
   }
 }

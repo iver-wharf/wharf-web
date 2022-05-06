@@ -4,7 +4,8 @@ import {
   OpenIdConfiguration,
   UserDataResult,
 } from 'angular-auth-oidc-client';
-import { Observable, pluck } from 'rxjs';
+import { Observable, pluck, tap } from 'rxjs';
+import { AuthService } from '../../auth.service';
 
 /*
  * Largely from damienbod/angular-auth-oidc-client samples. See-
@@ -23,12 +24,17 @@ export class OidcLoginComponent implements OnInit {
 
   constructor(
     public oidcSecurityService: OidcSecurityService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.configuration = this.oidcSecurityService.getConfiguration();
     this.userData$ = this.oidcSecurityService.userData$;
-    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$.pipe(pluck('isAuthenticated'));
+    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
+      .pipe(
+        pluck('isAuthenticated'),
+        tap(() => this.authService.navigateBackToReturnUrl()),
+      );
   }
 
   login() {
