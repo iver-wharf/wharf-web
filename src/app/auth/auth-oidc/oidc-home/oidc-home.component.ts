@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AuthenticatedResult,
   OidcSecurityService,
   OpenIdConfiguration,
   UserDataResult,
 } from 'angular-auth-oidc-client';
 import { Observable, pluck } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 /*
  * Largely from damienbod/angular-auth-oidc-client samples. See-
  * https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app
  */
 @Component({
-  selector: 'wh-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'wh-auth',
+  templateUrl: './oidc-home.component.html',
 })
-export class LoginComponent implements OnInit {
+export class OidcHomeComponent implements OnInit {
 
   configuration: OpenIdConfiguration;
   userData$: Observable<UserDataResult>;
@@ -27,9 +26,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.configuration = this.oidcSecurityService.getConfiguration();
+    this.configuration = environment.oidcConfig;
     this.userData$ = this.oidcSecurityService.userData$;
-    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$.pipe(pluck('isAuthenticated'));
+    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
+      .pipe(pluck('isAuthenticated'));
   }
 
   login() {

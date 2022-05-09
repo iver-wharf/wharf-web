@@ -5,15 +5,21 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class WharfAuthInterceptor implements HttpInterceptor {
+export class OidcAuthInterceptor implements HttpInterceptor {
 
   constructor(
     private oidcSecurityService: OidcSecurityService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const apiUrl = environment.backendUrls.api;
-    if (!req.url.includes(apiUrl)) {
+    if (!environment.oidcConfig?.enabled) {
+      return next.handle(req);
+    }
+    const urls = environment.backendUrls;
+    if (!req.url.startsWith(urls.api) &&
+      !req.url.startsWith(urls.azureDevopsImport) &&
+      !req.url.startsWith(urls.githubImport) &&
+      !req.url.startsWith(urls.gitlabImport)) {
       return next.handle(req);
     }
     const token = this.oidcSecurityService.getAccessToken();

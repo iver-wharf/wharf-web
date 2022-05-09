@@ -16,7 +16,16 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Added the ability to login. While logged in this will forward the OIDC
   access token to the backend such that a secure user access control is
-  established. (#70)
+  established. This is only performed when the following config value
+  is set: (#70, #137)
+
+  ```json
+  {
+    "oidcConfig": {
+      "enabled": true
+    }
+  }
+  ```
 
 - Changed function calls and type names to match the regenerated rest clients
   using: (#91)

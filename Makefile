@@ -32,7 +32,7 @@ ifneq "$(version)" "latest"
 endif
 
 docker-run:
-	docker run --rm -it quay.io/iver-wharf/wharf-web:$(version)
+	docker run --rm -it -p 8080:8080 quay.io/iver-wharf/wharf-web:$(version)
 
 serve: clients
 	npm start
