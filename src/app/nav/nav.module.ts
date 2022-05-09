@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NavComponent } from './nav.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/pipes/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';

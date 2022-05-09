@@ -1,4 +1,3 @@
-
 /* Inline code block */
 code,
 samp {
@@ -40,7 +39,8 @@ pre.code-block {
 }
 
 /* Prism classes coloring */
-.token {
+.language-yaml .token {
+
   &.comment,
   &.prolog,
   &.doctype,
@@ -55,6 +55,16 @@ pre.code-block {
   &.key,
   &.attr-value,
   &.keyword {
+    color: $wharf_code_token_keyword_color;
+  }
+}
+
+.language-json .token {
+  &.punctuation {
+    color: $wharf_code_token_punctuation_color;
+  }
+
+  &.property {
     color: $wharf_code_token_keyword_color;
   }
 }

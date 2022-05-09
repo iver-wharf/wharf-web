@@ -10,7 +10,7 @@ import { NotificationModule } from './shared/notification/notification.module';
 import { MenuModule } from 'primeng/menu';
 import { TooltipModule } from 'primeng/tooltip';
 import { SyntaxHighlightService } from './shared/syntax-highlight/syntax-highlight.service';
-import { SharedModule } from './shared/pipes/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { NavModule } from './nav/nav.module';
 import { LicensesModule } from './licenses/licenses.module';
 import { AuthModule } from './auth/auth.module';

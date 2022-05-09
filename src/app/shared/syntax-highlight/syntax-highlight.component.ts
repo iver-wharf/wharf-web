@@ -25,8 +25,8 @@ export class SyntaxHighlightComponent implements AfterViewChecked, OnChanges {
   @Input() language: string;
   @Input() code: string;
 
-  @ViewChild('codeElem', {static: false}) codeElem: ElementRef<HTMLElement>;
-  @ViewChild('template', {static: true, read: TemplateRef}) template: TemplateRef<any>;
+  @ViewChild('codeElem', { static: false }) codeElem: ElementRef<HTMLElement>;
+  @ViewChild('template', { static: true, read: TemplateRef }) template: TemplateRef<any>;
 
   private hasHighlighted = false;
 

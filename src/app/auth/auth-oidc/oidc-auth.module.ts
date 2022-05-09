@@ -9,6 +9,7 @@ import { OidcHomeComponent } from './oidc-home/oidc-home.component';
 import { OidcUnauthorizedComponent } from './oidc-unauthorized/oidc-unauthorized.component';
 import { OidcAutoLoginRoutesGuard } from './oidc-auto-login.guard';
 import { AuthGuard } from '../auth.guard';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthGuard } from '../auth.guard';
     RouterModule,
     ButtonModule,
     CardModule,
+    SharedModule,
 
     RouterModule.forChild([
       { path: '', component: OidcHomeComponent, canActivate: [AuthGuard] },

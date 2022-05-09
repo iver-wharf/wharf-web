@@ -6,12 +6,9 @@
   <p-button (click)="revokeRefreshToken()">Revoke refresh token</p-button>
   <p-button (click)="refreshSession()">Refresh session</p-button>
   <hr />
-  <br />
-  Is Authenticated: {{ isAuthenticated$|async }}
-  <br />
-  userData
-  <pre>{{ userData$ | async | json }}</pre>
-  <br />
+  Is Authenticated: <code>{{ isAuthenticated$|async }}</code>
+  <h2>User data</h2>
+  <wh-syntax-highlight language="json" [code]="userData$ | async | json"></wh-syntax-highlight>
 </div>
 
 <ng-template #noAuth>
@@ -19,5 +16,6 @@
   <hr />
 </ng-template>
 
-Configuration loaded:
-<pre><code>{{ configuration | json }}</code></pre>
+<h2>Configuration loaded</h2>
+
+<wh-syntax-highlight language="json" [code]="configuration | json"></wh-syntax-highlight>
