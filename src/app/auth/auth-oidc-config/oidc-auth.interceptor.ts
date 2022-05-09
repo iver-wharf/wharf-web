@@ -12,7 +12,9 @@ export class OidcAuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('intercept!');
+    if (!environment.oidcConfig?.enabled) {
+      return next.handle(req);
+    }
     const apiUrl = environment.backendUrls.api;
     if (!req.url.includes(apiUrl)) {
       return next.handle(req);

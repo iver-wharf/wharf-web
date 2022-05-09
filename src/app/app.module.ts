@@ -14,7 +14,7 @@ import { SharedModule } from './shared/pipes/shared.module';
 import { NavModule } from './nav/nav.module';
 import { LicensesModule } from './licenses/licenses.module';
 import { AuthModule } from './auth/auth.module';
-import { OidcAuthConfigModule } from './auth/auth-oidc/oidc-auth-config.module';
+import { OidcAuthConfigModule } from './auth/auth-oidc-config/oidc-auth-config.module';
 
 @NgModule({
   declarations: [

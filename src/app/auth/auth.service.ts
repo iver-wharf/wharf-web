@@ -57,7 +57,6 @@ export class AuthService {
       return;
     }
     const returnUrl = sessionStorage.getItem(SESSION_LOGIN_RETURN_KEY) ?? '/';
-    console.log('Routing back to', returnUrl);
     this.router.navigateByUrl(returnUrl);
     sessionStorage.removeItem(SESSION_LOGIN_RETURN_KEY);
   }
