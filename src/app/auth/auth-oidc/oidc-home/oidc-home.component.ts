@@ -12,11 +12,10 @@ import { environment } from 'src/environments/environment';
  * https://github.com/damienbod/angular-auth-oidc-client/tree/main/projects/sample-code-flow-refresh-tokens/src/app
  */
 @Component({
-  selector: 'wh-login',
-  templateUrl: './oidc-login.component.html',
-  styleUrls: ['./oidc-login.component.scss'],
+  selector: 'wh-auth',
+  templateUrl: './oidc-home.component.html',
 })
-export class OidcLoginComponent implements OnInit {
+export class OidcHomeComponent implements OnInit {
 
   configuration: OpenIdConfiguration;
   userData$: Observable<UserDataResult>;

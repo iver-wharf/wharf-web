@@ -4,35 +4,43 @@ import { BehaviorSubject } from 'rxjs';
 
 const SESSION_LOGIN_RETURN_KEY = 'login-return';
 
+export interface Profile {
+  isAuthenticated: boolean;
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  username = '<unknown username>';
-
-  private isAuthCurrent: boolean;
-  private isAuth$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private profileCurrent: Profile = {
+    isAuthenticated: false,
+    username: '',
+  };
+  private profileSubject: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(this.profileCurrent);
 
   constructor(
     private router: Router,
   ) { }
 
   get isAuthenticated() {
-    return this.isAuthCurrent;
+    return this.profileCurrent.isAuthenticated;
   }
 
-  get isAuthenticated$() {
-    return this.isAuth$.asObservable();
+  get profile$() {
+    return this.profileSubject.asObservable();
   }
 
   setLoggedIn(username: string | undefined) {
-    if (this.isAuthCurrent) {
+    if (this.profileCurrent.isAuthenticated) {
       console.warn('Tried to set logged in when already logged in.');
       return;
     }
-    this.username = username ?? '<unknown username>';
-    this.isAuthCurrent = true;
-    this.isAuth$.next(true);
+    this.profileCurrent = {
+      username: username ?? '<unknown username>',
+      isAuthenticated: true,
+    };
+    this.profileSubject.next(this.profileCurrent);
   }
 
   setReturnUrl(url: string | null) {
@@ -49,6 +57,7 @@ export class AuthService {
       return;
     }
     const returnUrl = sessionStorage.getItem(SESSION_LOGIN_RETURN_KEY) ?? '/';
+    console.log('Routing back to', returnUrl);
     this.router.navigateByUrl(returnUrl);
     sessionStorage.removeItem(SESSION_LOGIN_RETURN_KEY);
   }

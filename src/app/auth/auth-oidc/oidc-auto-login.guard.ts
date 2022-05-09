@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
-  CanActivateChild,
-  CanLoad,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlSegment,
-  Route,
-  Router,
 } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { map, Observable, take } from 'rxjs';
@@ -43,22 +38,13 @@ SOFTWARE.
 @Injectable({
   providedIn: 'root',
 })
-export class OidcAutoLoginRoutesGuard implements CanActivate, CanActivateChild, CanLoad {
+export class OidcAutoLoginRoutesGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private oidcAuthService: OidcSecurityService,
-    private router: Router,
   ) { }
 
-  canLoad(): Observable<boolean> {
-    return this.checkAuth(this.router.getCurrentNavigation()?.extractedUrl.toString().substring(1) ?? '');
-  }
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.checkAuth(state.url);
-  }
-
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.checkAuth(state.url);
   }
 

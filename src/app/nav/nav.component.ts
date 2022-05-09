@@ -6,10 +6,9 @@ import { MetaService as GitHubMetaService } from 'import-github-client';
 import { MetaService as AzureDevOpsMetaService } from 'import-azuredevops-client';
 import { MetaService as ApiMeta } from 'api-client';
 import { Observable, ReplaySubject } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LicensesService } from '../shared/licenses/licenses.service';
-import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
@@ -92,14 +91,13 @@ export class NavComponent implements OnInit, OnDestroy {
 
     this.userItem = [];
 
-    this.authService.isAuthenticated$.subscribe({
-      next: isAuth => {
-        if (!isAuth) {
+    this.authService.profile$.subscribe({
+      next: profile => {
+        if (!profile.isAuthenticated) {
           return;
         }
         this.userItem = [
-          //{ label: 'LOGIN', icon: 'pi pi-sign-in', command: () => this.oidcSecurityService.authorize() },
-          { label: this.authService.username, icon: 'pi pi-user' },
+          { label: profile.username, icon: 'pi pi-user' },
         ];
       },
     });
