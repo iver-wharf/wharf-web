@@ -26,8 +26,8 @@ export class ProjectFavoriteButtonComponent {
 
   getClass() {
     if (this.localStorageProjectsService.projectIsFavorite(this.projectId)) {
-      return 'pi pi-star';
+      return 'pi pi-star-fill';
     }
-    return 'pi pi-star-o';
+    return 'pi pi-star';
   }
 }
