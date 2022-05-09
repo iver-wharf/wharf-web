@@ -15,8 +15,11 @@ export class OidcAuthInterceptor implements HttpInterceptor {
     if (!environment.oidcConfig?.enabled) {
       return next.handle(req);
     }
-    const apiUrl = environment.backendUrls.api;
-    if (!req.url.includes(apiUrl)) {
+    const urls = environment.backendUrls;
+    if (!req.url.startsWith(urls.api) &&
+      !req.url.startsWith(urls.azureDevopsImport) &&
+      !req.url.startsWith(urls.githubImport) &&
+      !req.url.startsWith(urls.gitlabImport)) {
       return next.handle(req);
     }
     const token = this.oidcSecurityService.getAccessToken();

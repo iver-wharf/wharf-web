@@ -30,10 +30,6 @@ export class OidcHomeComponent implements OnInit {
     this.userData$ = this.oidcSecurityService.userData$;
     this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$
       .pipe(pluck('isAuthenticated'));
-
-    this.oidcSecurityService.isAuthenticated$.subscribe({
-      next: b => console.log('is authenticated? ', b),
-    });
   }
 
   login() {
