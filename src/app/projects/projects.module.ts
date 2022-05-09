@@ -23,7 +23,6 @@ import { ActionsModalComponent } from './actions-modal/actions-modal.component';
 import { LocalStorageProjectsService } from './local-storage-projects.service';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProvidersModule } from '../providers/providers.module';
-import { WharfSpinnerAnimationComponent } from '../animations/wharf-spinner-animation/wharf-spinner-animation.component';
 import { ProjectListItemComponent } from './project-list/project-list-item.component';
 import {
   ProjectDetailsBuildComponent,
@@ -31,15 +30,13 @@ import {
   ProjectDetailsScheduleComponent,
   ProjectDetailsConfigurationComponent,
 } from './project-details';
-import { SyntaxHighlightComponent } from '../shared/syntax-highlight/syntax-highlight.component';
 import {
   ProjectRefreshIconComponent,
   ProjectRefreshButtonComponent,
 } from './project-refresh';
 import { ProjectFavoriteButtonComponent } from './project-favorite/project-favorite-button.component';
 import { TabViewExtendedModule } from '../shared/tabview-x/tabview-x.module';
-import { TimerComponent } from '../shared/timer/timer.component';
-import { SharedModule } from '../shared/pipes/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -53,9 +50,6 @@ import { SharedModule } from '../shared/pipes/shared.module';
     ProjectRefreshButtonComponent,
     ProjectRefreshIconComponent,
     ProjectFavoriteButtonComponent,
-    SyntaxHighlightComponent,
-    TimerComponent,
-    WharfSpinnerAnimationComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -80,6 +74,7 @@ import { SharedModule } from '../shared/pipes/shared.module';
     TabMenuModule,
     TabViewExtendedModule,
     TooltipModule,
+    SharedModule,
   ],
   providers: [
     ArtifactService,

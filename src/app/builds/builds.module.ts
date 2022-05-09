@@ -1,4 +1,4 @@
-import { SharedModule } from '../shared/pipes/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { ArtifactsModule } from './../artifacts/artifacts.module';
 import { TestResultsModule } from './../test-results/test-results.module';
 import { BuildService, ProjectService } from 'api-client';
