@@ -118,6 +118,15 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 - Changed to require Node 16 or later due to new `package-lock.json` format
   changes since NPM 7.0.0, which comes with Node 15.0.0 or later. (#130)
 
+- Security: Changed version of Alpine packages in Dockerfile to resolve CVEs:
+
+  - `xz-libs` &ge; v5.2.5-r1 to resolve CVE-2021-3918 (#129)
+
+  - `freetype` &ge; 2.11.1-r1 to resolve CVE-2022-27404 (#139)
+
+  - `curl` & `libcurl` &ge; 7.80.0-r1 to resolve CVE-2022-22576, CVE-2022-27774,
+    CVE-2022-27776, and CVE-2022-27775 (#139)
+
 ## v1.5.1 (2022-01-10)
 
 - Fixed version panel misplacement on scrollable pages and being locked to the

@@ -30,7 +30,11 @@ FROM ${REG}/library/nginx:1-alpine
 
 RUN apk add --upgrade --no-cache \
     # Resolves CVE-2022-1271, as it's not yet upgraded in upstream image
-    'xz-libs>=5.2.5-r1'
+    'xz-libs>=5.2.5-r1' \
+    # Resolves CVE-2022-27404
+    'freetype>=2.11.1-r1' \
+    # Resolves CVE-2022-22576, CVE-2022-27774, CVE-2022-27775, & CVE-2022-27776
+    'curl>=7.80.0-r1'
 
 COPY --from=build /usr/src/app/dist/wharf /usr/share/nginx/html
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
