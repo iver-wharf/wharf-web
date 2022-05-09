@@ -77,7 +77,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.projectItem = [
-      { label: 'PROJECTS', icon: 'pi pi-file-o', routerLink: ['/'] },
+      { label: 'PROJECTS', icon: 'pi pi-file', routerLink: ['/'] },
     ];
 
     this.items = [

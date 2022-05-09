@@ -25,7 +25,7 @@
       </td>
       <td class="col-tests">
         {{build.testResultListSummary.failed | number:'1.0-0'}}<i class="pi pi-times test-summary-failed" [attr.has-entries]="!!build.testResultListSummary.failed"></i>
-        {{build.testResultListSummary.skipped | number:'1.0-0'}}<i class="pi pi-circle-on test-summary-skipped" [attr.has-entries]="!!build.testResultListSummary.skipped"></i>
+        {{build.testResultListSummary.skipped | number:'1.0-0'}}<i class="pi pi-circle-fill test-summary-skipped" [attr.has-entries]="!!build.testResultListSummary.skipped"></i>
         {{build.testResultListSummary.passed | number:'1.0-0'}}<i class="pi pi-check test-summary-passed" [attr.has-entries]="!!build.testResultListSummary.passed"></i>
       </td>
       <td class="col-branch">{{build.gitBranch}}</td>
