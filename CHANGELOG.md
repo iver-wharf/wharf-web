@@ -111,11 +111,11 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Security: Changed version of Alpine packages in Dockerfile to resolve CVEs:
 
-  - `xz-libs` to v5.2.5-r1 to resolve CVE-2021-3918 (#129)
+  - `xz-libs` &ge; v5.2.5-r1 to resolve CVE-2021-3918 (#129)
 
-  - `freetype` to 2.11.1-r1 to resolve CVE-2022-27404 (#139)
+  - `freetype` &ge; 2.11.1-r1 to resolve CVE-2022-27404 (#139)
 
-  - `curl` & `libcurl` to 7.80.0-r1 to resolve CVE-2022-22576, CVE-2022-27774,
+  - `curl` & `libcurl` &ge; 7.80.0-r1 to resolve CVE-2022-22576, CVE-2022-27774,
     CVE-2022-27776, and CVE-2022-27775 (#139)
 
 ## v1.5.1 (2022-01-10)
