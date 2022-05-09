@@ -24,6 +24,7 @@ fetchConfigPromise.then(config => {
     enableProdMode();
   }
 
+  // AppModule
   import('./app/app.module').then(m => {
     platformBrowserDynamic().bootstrapModule(m.AppModule)
       .catch(err => console.error(err));

@@ -66,6 +66,5 @@ export class OidcAutoLoginRoutesGuard implements CanActivate {
         return isAuthenticated;
       }),
     );
-
   }
 }

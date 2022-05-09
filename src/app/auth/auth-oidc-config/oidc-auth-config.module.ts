@@ -1,8 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {
-  AuthModule,
-} from 'angular-auth-oidc-client';
+import { AuthModule } from 'angular-auth-oidc-client';
 import { environment } from 'src/environments/environment';
 import { OidcAuthInterceptor } from './oidc-auth.interceptor';
 
