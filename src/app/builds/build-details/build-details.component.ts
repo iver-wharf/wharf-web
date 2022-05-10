@@ -5,6 +5,8 @@ import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
 import { ResponseBuild } from 'api-client';
 import { environment } from 'src/environments/environment';
+import { EventSourcePolyfill, EventSourceInit } from 'ng-event-source';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'wh-build-details',
@@ -16,7 +18,6 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   build: ResponseBuild;
   myData: any;
   source: EventSource;
-  listener: any = null;
   logEvents: ResponseLog[] = [];
   container: HTMLElement;
   wasScrolledToBottom: boolean;
@@ -24,7 +25,9 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   constructor(
     private route: ActivatedRoute,
     private buildService: BuildService,
-    private titleService: Title) { }
+    private titleService: Title,
+    private oidcSecurityService: OidcSecurityService,
+  ) { }
 
   ngOnInit(): void {
     this.buildId = Number(this.route.snapshot.paramMap.get('buildId'));
@@ -42,16 +45,8 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   connect(): void {
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
-        const apiUrl = environment.backendUrls.api;
-        this.source = new EventSource(`${apiUrl}/build/${this.buildId}/stream`);
-      }
-      if (!!window.EventSource && !this.listener) {
-        this.source.addEventListener('message', (message: MessageEvent) => {
-          this.wasScrolledToBottom = this.isScrolledToBottom();
-          // When it comes to SSE, the MessageEvent.data is always a string
-          const data = JSON.parse(message.data);
-          this.logEvents.push(data);
-        });
+        this.source = this.openEventSourceStream();
+        this.source.addEventListener('message', this.listener);
       }
     } else {
       if (this.source) {
@@ -68,12 +63,45 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     });
   }
 
+  listener(message: MessageEvent) {
+    this.wasScrolledToBottom = this.isScrolledToBottom();
+    // When it comes to SSE, the MessageEvent.data is always a string
+    const data = JSON.parse(message.data);
+    this.logEvents.push(data);
+  }
+
   ngOnDestroy() {
     this.source?.removeEventListener('message', this.listener);
   }
 
   onTabChanged() {
     this.updateTitle();
+  }
+
+  private openEventSourceStream(): EventSource {
+    const url = `${environment.backendUrls.api}/build/${this.buildId}/stream`;
+    if (!environment.oidcConfig?.enabled) {
+      return new EventSource(url);
+    }
+    const reqOpts = this.getOidcRequestOptions();
+    const source = new EventSourcePolyfill(url, reqOpts);
+    return source as unknown as EventSource;
+  }
+
+  private getOidcRequestOptions(): EventSourceInit {
+    const token = this.oidcSecurityService.getAccessToken();
+    if (!token) {
+      return {};
+    }
+    const bearerToken = `Bearer ${token}`;
+    return {
+      headers: {
+        /* eslint-disable @typescript-eslint/naming-convention */
+        Authorization: bearerToken,
+        /* eslint-enable @typescript-eslint/naming-convention */
+      },
+      withCredentials: true,
+    };
   }
 
   private stayScrolledToBottom(): void {
