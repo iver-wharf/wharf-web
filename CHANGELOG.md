@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.6.0 (2022-05-09)
+## v1.6.0 (2022-05-10)
 
 - Added the ability to login. While logged in this will forward the OIDC
   access token to the backend such that a secure user access control is
