@@ -1,4 +1,4 @@
-import { NgModule, Provider, Type } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ApiModule, Configuration } from 'api-client';
 import { ApiModule as AzureApiModule, Configuration as AzureConfiguration } from 'import-azuredevops-client';
 import { ApiModule as GitHubApiModule, Configuration as GitHubConfiguration } from 'import-github-client';
@@ -45,7 +45,7 @@ export class ConfiguredGitLabApiModule { }
   imports: [{
     ngModule: AzureApiModule,
     providers: [{
-      provide: AzureApiModule,
+      provide: AzureConfiguration,
       useFactory: () => new AzureConfiguration({ basePath: environment.backendUrls.azureDevopsImport })
     }],
   }],
