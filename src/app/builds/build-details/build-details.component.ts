@@ -17,8 +17,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   buildStatus?: BuildStatus;
   build: ResponseBuild;
   myData: any;
-  source: EventSourcePolyfill;
-  listener: any = null;
+  source: EventSource;
   logEvents: ResponseLog[] = [];
   container: HTMLElement;
   wasScrolledToBottom: boolean;
@@ -46,17 +45,8 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   connect(): void {
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
-        const apiUrl = environment.backendUrls.api;
-        const reqOpts = this.getRequestOptions();
-        this.source = new EventSourcePolyfill(`${apiUrl}/build/${this.buildId}/stream`, reqOpts);
-      }
-      if (!!window.EventSource && !this.listener) {
-        this.source.addEventListener('message', (message: MessageEvent) => {
-          this.wasScrolledToBottom = this.isScrolledToBottom();
-          // When it comes to SSE, the MessageEvent.data is always a string
-          const data = JSON.parse(message.data);
-          this.logEvents.push(data);
-        });
+        this.source = this.openEventSourceStream();
+        this.source.addEventListener('message', this.listener);
       }
     } else {
       if (this.source) {
@@ -73,6 +63,13 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     });
   }
 
+  listener(message: MessageEvent) {
+    this.wasScrolledToBottom = this.isScrolledToBottom();
+    // When it comes to SSE, the MessageEvent.data is always a string
+    const data = JSON.parse(message.data);
+    this.logEvents.push(data);
+  }
+
   ngOnDestroy() {
     this.source?.removeEventListener('message', this.listener);
   }
@@ -81,10 +78,17 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     this.updateTitle();
   }
 
-  private getRequestOptions(): EventSourceInit {
+  private openEventSourceStream(): EventSource {
+    const url = `${environment.backendUrls.api}/build/${this.buildId}/stream`;
     if (!environment.oidcConfig?.enabled) {
-      return {};
+      return new EventSource(url);
     }
+    const reqOpts = this.getOidcRequestOptions();
+    const source = new EventSourcePolyfill(url, reqOpts);
+    return source as unknown as EventSource;
+  }
+
+  private getOidcRequestOptions(): EventSourceInit {
     const token = this.oidcSecurityService.getAccessToken();
     if (!token) {
       return {};
