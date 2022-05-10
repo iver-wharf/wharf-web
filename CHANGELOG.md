@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.6.0 (WIP)
+## v1.6.0 (2022-05-10)
 
 - Added the ability to login. While logged in this will forward the OIDC
   access token to the backend such that a secure user access control is
@@ -126,6 +126,8 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
   - `curl` & `libcurl` &ge; 7.80.0-r1 to resolve CVE-2022-22576, CVE-2022-27774,
     CVE-2022-27776, and CVE-2022-27775 (#139)
+
+- Fixed PrimeIcons icon names since upgrade from v4 to v5 in #125. (#141)
 
 ## v1.5.1 (2022-01-10)
 
