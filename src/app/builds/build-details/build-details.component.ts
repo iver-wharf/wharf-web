@@ -5,6 +5,8 @@ import { BuildStatus } from '../../models/build-status';
 import { Title } from '@angular/platform-browser';
 import { ResponseBuild } from 'api-client';
 import { environment } from 'src/environments/environment';
+import { EventSourcePolyfill, EventSourceInit } from 'ng-event-source';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'wh-build-details',
@@ -15,7 +17,7 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   buildStatus?: BuildStatus;
   build: ResponseBuild;
   myData: any;
-  source: EventSource;
+  source: EventSourcePolyfill;
   listener: any = null;
   logEvents: ResponseLog[] = [];
   container: HTMLElement;
@@ -24,7 +26,9 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
   constructor(
     private route: ActivatedRoute,
     private buildService: BuildService,
-    private titleService: Title) { }
+    private titleService: Title,
+    private oidcSecurityService: OidcSecurityService,
+  ) { }
 
   ngOnInit(): void {
     this.buildId = Number(this.route.snapshot.paramMap.get('buildId'));
@@ -43,7 +47,8 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
         const apiUrl = environment.backendUrls.api;
-        this.source = new EventSource(`${apiUrl}/build/${this.buildId}/stream`);
+        const reqOpts = this.getRequestOptions();
+        this.source = new EventSourcePolyfill(`${apiUrl}/build/${this.buildId}/stream`, reqOpts);
       }
       if (!!window.EventSource && !this.listener) {
         this.source.addEventListener('message', (message: MessageEvent) => {
@@ -74,6 +79,25 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
 
   onTabChanged() {
     this.updateTitle();
+  }
+
+  private getRequestOptions(): EventSourceInit {
+    if (!environment.oidcConfig?.enabled) {
+      return {};
+    }
+    const token = this.oidcSecurityService.getAccessToken();
+    if (!token) {
+      return {};
+    }
+    const bearerToken = `Bearer ${token}`;
+    return {
+      headers: {
+        /* eslint-disable @typescript-eslint/naming-convention */
+        Authorization: bearerToken,
+        /* eslint-enable @typescript-eslint/naming-convention */
+      },
+      withCredentials: true,
+    };
   }
 
   private stayScrolledToBottom(): void {
