@@ -12,7 +12,7 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 	https://changelog.md/
 -->
 
-## v1.6.1 (WIP)
+## v1.6.1 (2022-05-10)
 
 - Fixed Azure DevOps configuration loading. (#143)
 
