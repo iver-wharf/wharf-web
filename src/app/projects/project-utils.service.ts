@@ -23,7 +23,7 @@ export class ProjectUtilsService {
     if (proj.build != null) {
       const actions: MenuItem[] = Object.keys(proj.build)
         .filter(x => !this.actionsExcludedElements.includes(x))
-        .map(x => ({ label: x, command: () => this.openActions(x, proj.build) }));
+        .map<MenuItem>(x => ({ label: x, value: x, command: () => this.openActions(x, proj.build) }));
       return actions;
     }
     return [];
