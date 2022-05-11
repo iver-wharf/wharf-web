@@ -16,6 +16,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 - Fixed log not streaming. (#147)
 
+- Fixed an issue where input was being ignored on a dropdown for
+  selecting a specific stage build stage to run. (#148)
+
 ## v1.6.1 (2022-05-10)
 
 - Fixed Azure DevOps configuration loading. (#143)
