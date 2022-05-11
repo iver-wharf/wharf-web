@@ -46,11 +46,17 @@ export class BuildDetailsComponent implements OnInit, OnDestroy, AfterViewChecke
     if (this.buildStatus === BuildStatus.Scheduling || this.buildStatus === BuildStatus.Running) {
       if (!this.source) {
         this.source = this.openEventSourceStream();
-        this.source.addEventListener('message', this.listener);
+        this.source.addEventListener('message', this.listener.bind(this));
       }
     } else {
+      console.log('Skipping logs streaming because the build is not running:', {
+        buildId: this.buildId,
+        statusId: this.buildStatus,
+        status: this.build.status,
+      });
       if (this.source) {
         this.source.close();
+        this.source = null;
       }
 
       if (!(this.buildStatus in BuildStatus)) {
