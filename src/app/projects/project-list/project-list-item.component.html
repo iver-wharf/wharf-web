@@ -4,8 +4,7 @@
 <td class="col-status"><span class="not-available">N/A</span></td>
 <td class="col-actions">
   <p-splitButton
-    label="{{projectUtilsService.runAllActionName}}" [model]="projectUtilsService.getActionsMenuItems(project)"
-    (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)">
+    label="{{projectUtilsService.runAllActionName}}" [model]="menuItems">
   </p-splitButton>
 </td>
 <td class="col-quickactions">
