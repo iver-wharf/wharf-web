@@ -5,8 +5,7 @@
 <td class="col-actions">
   <p-splitButton *ngIf="projectUtilsService.getActionsMenuItems(project).length > 0"
     label="{{projectUtilsService.runAllActionName}}" [model]="projectUtilsService.getActionsMenuItems(project)"
-    (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)"
-    (click)="$event.stopPropagation()">
+    (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)">
   </p-splitButton>
 </td>
 <td class="col-quickactions">
