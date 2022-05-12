@@ -5,7 +5,7 @@
 <td class="col-actions">
   <p-splitButton
     [disabled]="!menuItems.length"
-    [pTooltip]="noValidBuildStepsTooltip"
+    [pTooltip]="noStagesTooltip"
     label="{{projectUtilsService.runAllActionName}}"
     [model]="menuItems"
     (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)"
