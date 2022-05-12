@@ -27,6 +27,7 @@ export class ProjectListItemComponent implements OnInit, OnChanges {
   isRefreshAnimationPlaying: boolean;
   providerHostname: string;
   menuItems: MenuItem[];
+  noValidBuildStepsTooltip;
 
   constructor(
     public localStorageProjectsService: LocalStorageProjectsService,
@@ -35,6 +36,9 @@ export class ProjectListItemComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.menuItems = this.projectUtilsService.getActionsMenuItems(this.project);
+    if (!this.menuItems.length) {
+      this.noValidBuildStepsTooltip = 'There are no valid build steps for this project!';
+    }
   }
 
   ngOnChanges(changes: NgChanges<ProjectListItemComponent>): void {
