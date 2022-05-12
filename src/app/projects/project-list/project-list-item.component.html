@@ -3,9 +3,11 @@
 <td class="col-provider">{{providerHostname}}</td>
 <td class="col-status"><span class="not-available">N/A</span></td>
 <td class="col-actions">
-  <p-splitButton
-    label="{{projectUtilsService.runAllActionName}}" [model]="menuItems">
-  </p-splitButton>
+  <p-splitButton *ngIf="menuItems.length"
+    label="{{projectUtilsService.runAllActionName}}"
+    [model]="menuItems"
+    (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)"
+  ></p-splitButton>
 </td>
 <td class="col-quickactions">
   <wh-project-refresh-icon (refreshed)="refreshed.emit($event)" [project]="project"></wh-project-refresh-icon>
