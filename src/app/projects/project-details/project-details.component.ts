@@ -9,6 +9,7 @@ import { ActionsModalStore } from '../actions-modal/actions-modal.service';
 import { ProjectService } from 'api-client';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { MenuItem } from 'primeng/api/menuitem';
 
 @Component({
   selector: 'wh-project-details',
@@ -23,6 +24,7 @@ export class ProjectDetailsComponent implements OnInit {
   buildsTotalCount = 0;
   rowsCount = 10;
   destroyed$ = new Subject<void>();
+  buildStageMenuItems: MenuItem[];
 
   constructor(
     public projectUtilsService: ProjectUtilsService,
@@ -47,6 +49,7 @@ export class ProjectDetailsComponent implements OnInit {
     const projectId = this.route.snapshot.paramMap.get('projectId');
     this.projectService.getProject(Number(projectId)).subscribe(project => {
       this.project = project;
+      this.buildStageMenuItems = this.projectUtilsService.getActionsMenuItems(this.project);
       // Temporary initialization to render table, after that loadBuildsLazy handles builds fetching
       this.project.buildHistory = [];
       this.updateTitle();
