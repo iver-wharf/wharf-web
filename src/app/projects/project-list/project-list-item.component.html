@@ -1,4 +1,4 @@
-<td class="col-name">{{project.name}}</td>
+<td class="col-name url-link"><a [routerLink]="['/project', project.projectId]">{{project.name}}</a></td>
 <td class="col-group">{{project.groupName}}</td>
 <td class="col-provider">{{providerHostname}}</td>
 <td class="col-status"><span class="not-available">N/A</span></td>

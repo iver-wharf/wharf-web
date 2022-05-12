@@ -61,15 +61,6 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  onProjectRowClicked(event, project: WharfProject) {
-    // Hack to avoid navigation on event bubbling from child buttons.
-    const targetClassName: string = event.target.className;
-    if (targetClassName.includes('p-button')) {
-      return;
-    }
-    this.router.navigate(['/project', project.projectId]);
-  }
-
   onProjectRefreshed(event: ProjectRefreshedEvent) {
     this.replaceProject(event.projectId);
   }
