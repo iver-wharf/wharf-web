@@ -134,10 +134,6 @@ body .p-datatable .p-datatable-tbody > wh-project-list-item {
 
   &:hover {
     background-color: $wharf_table_row_hover_background_color;
-
-    &[role="button"] {
-      cursor: pointer;
-    }
   }
 
   > td {

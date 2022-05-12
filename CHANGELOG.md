@@ -14,6 +14,9 @@ This project tries to follow [SemVer 2.0.0](https://semver.org/).
 
 ## v1.6.2 (WIP)
 
+- Fixed an issue where input was being ignored on a dropdown for 
+  selecting a specific build stage to run. (#148)
+
 - Fixed log not streaming. (#147)
 
 ## v1.6.1 (2022-05-10)

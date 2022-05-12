@@ -122,7 +122,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
       });
     }
     // eslint-disable-next-line no-underscore-dangle
-    this.initialFormState.branch = this.editedProjectInstance.branches.find(o => o._default);
+    this.initialFormState.branch = this.editedProjectInstance.branches?.find(o => o._default) ?? '';
     this.initialFormState.environment =
       this.editedProjectInstance.build.environments[1] // 1 to skip the first noEnvironment
       || this.projectUtilsService.noEnvironment;
@@ -131,6 +131,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
     inputsGroup.environment = new FormControl('');
     inputsGroup.engine = new FormControl('');
     this.actionsFormGroup = new FormGroup(inputsGroup);
+    this.initialFormState.engine = this.initialFormState.engine ?? '';
     this.actionsFormGroup.setValue(this.initialFormState);
   }
 
@@ -147,7 +148,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
   }
 
   private populateFieldsOfEditableProject() {
-    if (this.project.build.inputs) {
+    if (this.project?.build?.inputs) {
       Object.values(this.project.build.inputs).map((input, index) => {
         const inputField: InputField = {
           default: input.default,
@@ -160,7 +161,7 @@ export class ActionsModalComponent implements OnInit, OnDestroy {
         }
       });
     }
-    if (this.project.build.environments) {
+    if (this.project?.build?.environments) {
       this.populateEnvironments();
     }
   }

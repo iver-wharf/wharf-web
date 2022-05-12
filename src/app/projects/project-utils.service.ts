@@ -21,24 +21,10 @@ export class ProjectUtilsService {
 
   getActionsMenuItems(proj: WharfProject): MenuItem[] {
     if (proj.build != null) {
-      proj.actions = [];
-      return Object.keys(proj.build)
+      const actions: MenuItem[] = Object.keys(proj.build)
         .filter(x => !this.actionsExcludedElements.includes(x))
-        .map((x) => {
-          proj.actions.push({ label: x, value: x });
-          return { label: x, command: () => this.openActions(x, proj) };
-        });
-    }
-    return [];
-  }
-
-  getActionsEnvironments(proj: WharfProject): string[] {
-    if (proj.build != null) {
-      const actions = Object.keys(proj.build || {})
-        .filter(x => !this.actionsExcludedElements.includes(x))
-        .map(x => proj.build[x].environments);
-
-      return [...new Set<string>([].concat.apply([], actions))];
+        .map<MenuItem>(x => ({ label: x, value: x, command: () => this.openActions(x, proj) }));
+      return actions;
     }
     return [];
   }
@@ -47,7 +33,7 @@ export class ProjectUtilsService {
     return [...new Set<string>(Object.keys(proj.build.environments || {}))];
   }
 
-  openActions(label, proj) {
+  openActions(label, proj: WharfProject) {
     this.actionsModalStore.openModal(
       {
         project: proj,

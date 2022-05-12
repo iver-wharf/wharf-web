@@ -1,13 +1,15 @@
-<td class="col-name">{{project.name}}</td>
+<td class="col-name url-link"><a [routerLink]="['/project', project.projectId]">{{project.name}}</a></td>
 <td class="col-group">{{project.groupName}}</td>
 <td class="col-provider">{{providerHostname}}</td>
 <td class="col-status"><span class="not-available">N/A</span></td>
 <td class="col-actions">
-  <p-splitButton *ngIf="projectUtilsService.getActionsMenuItems(project).length > 0"
-    label="{{projectUtilsService.runAllActionName}}" [model]="projectUtilsService.getActionsMenuItems(project)"
+  <p-splitButton
+    [disabled]="!menuItems.length"
+    [pTooltip]="noStagesTooltip"
+    label="{{projectUtilsService.runAllActionName}}"
+    [model]="menuItems"
     (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName, project)"
-    (click)="$event.stopPropagation()">
-  </p-splitButton>
+  ></p-splitButton>
 </td>
 <td class="col-quickactions">
   <wh-project-refresh-icon (refreshed)="refreshed.emit($event)" [project]="project"></wh-project-refresh-icon>

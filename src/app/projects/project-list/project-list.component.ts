@@ -61,10 +61,6 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  onProjectRowClicked(event: MouseEvent, project: WharfProject) {
-    this.router.navigate(['/project', project.projectId]);
-  }
-
   onProjectRefreshed(event: ProjectRefreshedEvent) {
     this.replaceProject(event.projectId);
   }

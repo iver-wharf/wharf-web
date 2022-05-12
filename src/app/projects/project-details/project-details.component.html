@@ -32,7 +32,7 @@
           <ng-template pTemplate="side-header-override">
             <p-splitButton *ngIf="project.actions" class="button-container"
               label="{{projectUtilsService.runAllActionName}}"
-              [model]="projectUtilsService.getActionsMenuItems(project)"
+              [model]="buildStageMenuItems"
               (onClick)="projectUtilsService.openActions(projectUtilsService.runAllActionName,project)">
             </p-splitButton>
           </ng-template>
